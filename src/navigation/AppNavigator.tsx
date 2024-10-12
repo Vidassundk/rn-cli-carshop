@@ -16,27 +16,40 @@ export type RootTabParamList = {
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
-const AppNavigator = () => {
-  const iconMap: Record<string, {focused: string; unfocused: string}> = {
-    Home: {focused: 'home', unfocused: 'home-outline'},
-    'Data List': {focused: 'list', unfocused: 'list-outline'},
-    Location: {focused: 'location', unfocused: 'location-outline'},
-    Settings: {focused: 'settings', unfocused: 'settings-outline'},
-  };
+const iconMap: Record<string, {focused: string; unfocused: string}> = {
+  Home: {focused: 'home', unfocused: 'home-outline'},
+  'Data List': {focused: 'list', unfocused: 'list-outline'},
+  Location: {focused: 'location', unfocused: 'location-outline'},
+  Settings: {focused: 'settings', unfocused: 'settings-outline'},
+};
 
+const TabBarIcon = ({
+  route,
+  focused,
+  color,
+}: {
+  route: any;
+  focused: boolean;
+  color: string;
+}) => {
+  const icons = iconMap[route.name];
+  const iconName = focused ? icons.focused : icons.unfocused;
+
+  return <Icon name={iconName} size={20} color={color} />;
+};
+
+const screenOptions = ({route}: {route: any}) => ({
+  tabBarIcon: ({focused, color}: {focused: boolean; color: string}) => (
+    <TabBarIcon route={route} focused={focused} color={color} />
+  ),
+  tabBarActiveTintColor: 'black',
+  tabBarInactiveTintColor: 'gray',
+});
+
+const AppNavigator = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({route}) => ({
-          tabBarIcon: ({focused, color}) => {
-            const icons = iconMap[route.name];
-            const iconName = focused ? icons.focused : icons.unfocused;
-
-            return <Icon name={iconName} size={20} color={color} />;
-          },
-          tabBarActiveTintColor: 'black',
-          tabBarInactiveTintColor: 'gray',
-        })}>
+      <Tab.Navigator screenOptions={screenOptions}>
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Data List" component={DataListScreen} />
         <Tab.Screen name="Location" component={GeolocationScreen} />
