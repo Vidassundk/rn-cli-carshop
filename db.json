@@ -2,23 +2,14 @@
   "cars": [
     {
       "userId": "User1",
-      "photoUrl": "https://images.unsplash.com/photo-1616448199730-6d5c44a012e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxWb2xrc3dhZ2VufGVufDB8fHx8MTcyODczMTkwNXww&ixlib=rb-4.0.3&q=80&w=1080",
-      "brand": "Volkswagen",
-      "model": "Golf",
-      "gearbox": "Automatic",
-      "color": "Red",
-      "makeYear": 2020,
-      "datePosted": "2024-10-10"
-    },
-    {
-      "userId": "User1",
       "photoUrl": "https://images.unsplash.com/photo-1646405871744-2005e64f8e32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxBdWRpfGVufDB8fHx8MTcyODczMTkwNnww&ixlib=rb-4.0.3&q=80&w=1080",
       "brand": "Audi",
       "model": "A4",
       "gearbox": "Manual",
       "color": "Blue",
       "makeYear": 2019,
-      "datePosted": "2024-10-09"
+      "datePosted": "2024-10-09",
+      "id": "37c8"
     },
     {
       "userId": "User1",
@@ -28,7 +19,8 @@
       "gearbox": "Automatic",
       "color": "Black",
       "makeYear": 2021,
-      "datePosted": "2024-10-08"
+      "datePosted": "2024-10-08",
+      "id": "281a"
     },
     {
       "userId": "User1",
@@ -38,7 +30,8 @@
       "gearbox": "Automatic",
       "color": "White",
       "makeYear": 2020,
-      "datePosted": "2024-10-07"
+      "datePosted": "2024-10-07",
+      "id": "bd6c"
     },
     {
       "userId": "User1",
@@ -48,7 +41,8 @@
       "gearbox": "Manual",
       "color": "Gray",
       "makeYear": 2018,
-      "datePosted": "2024-10-06"
+      "datePosted": "2024-10-06",
+      "id": "2df7"
     },
     {
       "userId": "User2",
@@ -58,7 +52,8 @@
       "gearbox": "Automatic",
       "color": "Green",
       "makeYear": 2019,
-      "datePosted": "2024-10-11"
+      "datePosted": "2024-10-11",
+      "id": "da4b"
     },
     {
       "userId": "User2",
@@ -68,7 +63,8 @@
       "gearbox": "Manual",
       "color": "Yellow",
       "makeYear": 2021,
-      "datePosted": "2024-10-09"
+      "datePosted": "2024-10-09",
+      "id": "6784"
     },
     {
       "userId": "User2",
@@ -78,7 +74,8 @@
       "gearbox": "Automatic",
       "color": "Silver",
       "makeYear": 2017,
-      "datePosted": "2024-10-08"
+      "datePosted": "2024-10-08",
+      "id": "3e4b"
     },
     {
       "userId": "User2",
@@ -88,7 +85,8 @@
       "gearbox": "Manual",
       "color": "Orange",
       "makeYear": 2016,
-      "datePosted": "2024-10-07"
+      "datePosted": "2024-10-07",
+      "id": "14aa"
     },
     {
       "userId": "User2",
@@ -98,7 +96,8 @@
       "gearbox": "Automatic",
       "color": "Black",
       "makeYear": 2019,
-      "datePosted": "2024-10-06"
+      "datePosted": "2024-10-06",
+      "id": "fa5d"
     },
     {
       "userId": "User3",
@@ -108,7 +107,8 @@
       "gearbox": "Automatic",
       "color": "Purple",
       "makeYear": 2020,
-      "datePosted": "2024-10-08"
+      "datePosted": "2024-10-08",
+      "id": "706d"
     },
     {
       "userId": "User3",
@@ -118,7 +118,8 @@
       "gearbox": "Manual",
       "color": "White",
       "makeYear": 2018,
-      "datePosted": "2024-10-10"
+      "datePosted": "2024-10-10",
+      "id": "be37"
     },
     {
       "userId": "User3",
@@ -128,7 +129,8 @@
       "gearbox": "Automatic",
       "color": "Red",
       "makeYear": 2017,
-      "datePosted": "2024-10-07"
+      "datePosted": "2024-10-07",
+      "id": "c1e4"
     },
     {
       "userId": "User3",
@@ -138,7 +140,8 @@
       "gearbox": "Manual",
       "color": "Yellow",
       "makeYear": 2016,
-      "datePosted": "2024-10-09"
+      "datePosted": "2024-10-09",
+      "id": "3f93"
     },
     {
       "userId": "User3",
@@ -148,7 +151,8 @@
       "gearbox": "Automatic",
       "color": "Silver",
       "makeYear": 2020,
-      "datePosted": "2024-10-06"
+      "datePosted": "2024-10-06",
+      "id": "b7a1"
     },
     {
       "userId": "User4",
@@ -158,7 +162,8 @@
       "gearbox": "Automatic",
       "color": "Gray",
       "makeYear": 2019,
-      "datePosted": "2024-10-10"
+      "datePosted": "2024-10-10",
+      "id": "93c6"
     },
     {
       "userId": "User4",
@@ -168,7 +173,8 @@
       "gearbox": "Manual",
       "color": "Green",
       "makeYear": 2016,
-      "datePosted": "2024-10-08"
+      "datePosted": "2024-10-08",
+      "id": "2f58"
     },
     {
       "userId": "User4",
@@ -178,7 +184,8 @@
       "gearbox": "Automatic",
       "color": "Black",
       "makeYear": 2021,
-      "datePosted": "2024-10-09"
+      "datePosted": "2024-10-09",
+      "id": "848b"
     },
     {
       "userId": "User4",
@@ -188,7 +195,8 @@
       "gearbox": "Manual",
       "color": "Blue",
       "makeYear": 2017,
-      "datePosted": "2024-10-07"
+      "datePosted": "2024-10-07",
+      "id": "920d"
     },
     {
       "userId": "User4",
@@ -198,7 +206,8 @@
       "gearbox": "Automatic",
       "color": "Orange",
       "makeYear": 2018,
-      "datePosted": "2024-10-06"
+      "datePosted": "2024-10-06",
+      "id": "d171"
     },
     {
       "userId": "User5",
@@ -208,7 +217,8 @@
       "gearbox": "Automatic",
       "color": "Red",
       "makeYear": 2019,
-      "datePosted": "2024-10-10"
+      "datePosted": "2024-10-10",
+      "id": "7b98"
     },
     {
       "userId": "User5",
@@ -218,7 +228,8 @@
       "gearbox": "Manual",
       "color": "Purple",
       "makeYear": 2020,
-      "datePosted": "2024-10-09"
+      "datePosted": "2024-10-09",
+      "id": "8d2f"
     },
     {
       "userId": "User5",
@@ -228,7 +239,8 @@
       "gearbox": "Automatic",
       "color": "White",
       "makeYear": 2021,
-      "datePosted": "2024-10-08"
+      "datePosted": "2024-10-08",
+      "id": "ec31"
     },
     {
       "userId": "User5",
@@ -238,7 +250,8 @@
       "gearbox": "Manual",
       "color": "Blue",
       "makeYear": 2017,
-      "datePosted": "2024-10-07"
+      "datePosted": "2024-10-07",
+      "id": "c91f"
     },
     {
       "userId": "User5",
@@ -248,7 +261,8 @@
       "gearbox": "Automatic",
       "color": "Gray",
       "makeYear": 2016,
-      "datePosted": "2024-10-06"
+      "datePosted": "2024-10-06",
+      "id": "6bb1"
     },
     {
       "userId": "User6",
@@ -258,7 +272,8 @@
       "gearbox": "Automatic",
       "color": "Yellow",
       "makeYear": 2021,
-      "datePosted": "2024-10-10"
+      "datePosted": "2024-10-10",
+      "id": "691d"
     },
     {
       "userId": "User6",
@@ -268,7 +283,8 @@
       "gearbox": "Manual",
       "color": "Black",
       "makeYear": 2018,
-      "datePosted": "2024-10-08"
+      "datePosted": "2024-10-08",
+      "id": "2623"
     },
     {
       "userId": "User6",
@@ -278,7 +294,8 @@
       "gearbox": "Automatic",
       "color": "Red",
       "makeYear": 2020,
-      "datePosted": "2024-10-07"
+      "datePosted": "2024-10-07",
+      "id": "571c"
     },
     {
       "userId": "User6",
@@ -288,7 +305,8 @@
       "gearbox": "Automatic",
       "color": "Gray",
       "makeYear": 2019,
-      "datePosted": "2024-10-06"
+      "datePosted": "2024-10-06",
+      "id": "afa2"
     },
     {
       "userId": "User6",
@@ -298,7 +316,8 @@
       "gearbox": "Manual",
       "color": "Green",
       "makeYear": 2017,
-      "datePosted": "2024-10-09"
+      "datePosted": "2024-10-09",
+      "id": "0991"
     },
     {
       "userId": "User7",
@@ -308,7 +327,8 @@
       "gearbox": "Automatic",
       "color": "Orange",
       "makeYear": 2021,
-      "datePosted": "2024-10-08"
+      "datePosted": "2024-10-08",
+      "id": "5b49"
     },
     {
       "userId": "User7",
@@ -318,7 +338,8 @@
       "gearbox": "Manual",
       "color": "White",
       "makeYear": 2016,
-      "datePosted": "2024-10-10"
+      "datePosted": "2024-10-10",
+      "id": "b24c"
     },
     {
       "userId": "User7",
@@ -328,7 +349,8 @@
       "gearbox": "Automatic",
       "color": "Silver",
       "makeYear": 2018,
-      "datePosted": "2024-10-09"
+      "datePosted": "2024-10-09",
+      "id": "df68"
     },
     {
       "userId": "User7",
@@ -338,7 +360,8 @@
       "gearbox": "Manual",
       "color": "Black",
       "makeYear": 2019,
-      "datePosted": "2024-10-07"
+      "datePosted": "2024-10-07",
+      "id": "af6d"
     },
     {
       "userId": "User7",
@@ -348,7 +371,8 @@
       "gearbox": "Automatic",
       "color": "Gray",
       "makeYear": 2017,
-      "datePosted": "2024-10-06"
+      "datePosted": "2024-10-06",
+      "id": "9fe5"
     },
     {
       "userId": "User8",
@@ -358,7 +382,8 @@
       "gearbox": "Automatic",
       "color": "Green",
       "makeYear": 2021,
-      "datePosted": "2024-10-10"
+      "datePosted": "2024-10-10",
+      "id": "0a43"
     },
     {
       "userId": "User8",
@@ -368,7 +393,8 @@
       "gearbox": "Manual",
       "color": "Blue",
       "makeYear": 2018,
-      "datePosted": "2024-10-08"
+      "datePosted": "2024-10-08",
+      "id": "886f"
     },
     {
       "userId": "User8",
@@ -378,7 +404,8 @@
       "gearbox": "Automatic",
       "color": "Yellow",
       "makeYear": 2020,
-      "datePosted": "2024-10-07"
+      "datePosted": "2024-10-07",
+      "id": "f380"
     },
     {
       "userId": "User8",
@@ -388,7 +415,8 @@
       "gearbox": "Manual",
       "color": "White",
       "makeYear": 2017,
-      "datePosted": "2024-10-06"
+      "datePosted": "2024-10-06",
+      "id": "06e0"
     },
     {
       "userId": "User8",
@@ -398,7 +426,8 @@
       "gearbox": "Automatic",
       "color": "Red",
       "makeYear": 2019,
-      "datePosted": "2024-10-09"
+      "datePosted": "2024-10-09",
+      "id": "0cf0"
     },
     {
       "userId": "User9",
@@ -408,7 +437,8 @@
       "gearbox": "Automatic",
       "color": "Red",
       "makeYear": 2019,
-      "datePosted": "2024-10-09"
+      "datePosted": "2024-10-09",
+      "id": "823b"
     }
   ]
 }

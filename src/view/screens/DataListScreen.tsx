@@ -1,26 +1,39 @@
 import React from 'react';
-import {View, Text, Button} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
-import {RootTabParamList} from '../../navigation/AppNavigator';
+import {View, FlatList, Text, StyleSheet} from 'react-native';
+import {useCars} from '../../viewmodel/useCars';
+import CarItem from '../components/CarItem';
 
-type DataListScreenNavigationProp = BottomTabNavigationProp<
-  RootTabParamList,
-  'Data List'
->;
+const DataListScreen: React.FC = () => {
+  const {cars, isLoading, error, deleteExistingCar} = useCars();
 
-const DataListScreen = () => {
-  const navigation = useNavigation<DataListScreenNavigationProp>();
+  if (isLoading) {
+    return <Text>Loading cars...</Text>;
+  }
+
+  if (error) {
+    return <Text>Error loading cars: {error.message}</Text>;
+  }
+
+  const handleDelete = (id: number) => {
+    deleteExistingCar(id);
+  };
 
   return (
-    <View>
-      <Text>Data List Screen</Text>
-      <Button
-        title="Go to Location"
-        onPress={() => navigation.navigate('Location')}
+    <View style={styles.container}>
+      <FlatList
+        data={cars}
+        keyExtractor={item => item.id.toString()}
+        renderItem={({item}) => <CarItem car={item} onDelete={handleDelete} />}
       />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+  },
+});
 
 export default DataListScreen;
