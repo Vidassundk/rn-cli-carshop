@@ -5,10 +5,10 @@ require('dotenv').config();
 const UNSPLASH_ACCESS_KEY = process.env.UNSPLASH_ACCESS_KEY;
 
 // Function to fetch car images based on brand from Unsplash
-async function fetchCarImageByBrand(brand) {
+async function fetchCarImageByBrand(brand, model) {
   try {
     const response = await axios.get('https://api.unsplash.com/search/photos', {
-      params: {query: brand, per_page: 1}, // Query the brand and limit to 1 image
+      params: {query: `${brand} ${model} car`, per_page: 1}, // Query the brand and limit to 1 image
       headers: {
         Authorization: `Client-ID ${UNSPLASH_ACCESS_KEY}`,
       },
@@ -50,7 +50,7 @@ async function updateDbJson() {
   for (let car of cars) {
     // If the brand is already cached, use the cached URL
     if (!brandCache[car.brand]) {
-      const imageUrl = await fetchCarImageByBrand(car.brand);
+      const imageUrl = await fetchCarImageByBrand(car.brand, car.model);
       brandCache[car.brand] = imageUrl || 'http://default-image-url.com';
     }
     car.photoUrl = brandCache[car.brand]; // Assign cached URL
@@ -64,6 +64,3 @@ async function updateDbJson() {
 
 // Run the update
 updateDbJson().catch(error => console.error('Error updating db.json:', error));
-
-// Export the functions for testing
-module.exports = {fetchCarImageByBrand, updateDbJson};
