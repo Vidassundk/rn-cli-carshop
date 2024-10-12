@@ -1,0 +1,404 @@
+{
+  "cars": [
+    {
+      "userId": "User1",
+      "photoUrl": "http://template.com/car1.jpg",
+      "brand": "Volkswagen",
+      "model": "Golf",
+      "gearbox": "Automatic",
+      "color": "Red",
+      "makeYear": 2020,
+      "datePosted": "2024-10-10"
+    },
+    {
+      "userId": "User1",
+      "photoUrl": "http://template.com/car2.jpg",
+      "brand": "Audi",
+      "model": "A4",
+      "gearbox": "Manual",
+      "color": "Blue",
+      "makeYear": 2019,
+      "datePosted": "2024-10-09"
+    },
+    {
+      "userId": "User1",
+      "photoUrl": "http://template.com/car3.jpg",
+      "brand": "Skoda",
+      "model": "Octavia",
+      "gearbox": "Automatic",
+      "color": "Black",
+      "makeYear": 2021,
+      "datePosted": "2024-10-08"
+    },
+    {
+      "userId": "User1",
+      "photoUrl": "http://template.com/car4.jpg",
+      "brand": "Porsche",
+      "model": "Cayenne",
+      "gearbox": "Automatic",
+      "color": "White",
+      "makeYear": 2020,
+      "datePosted": "2024-10-07"
+    },
+    {
+      "userId": "User1",
+      "photoUrl": "http://template.com/car5.jpg",
+      "brand": "Seat",
+      "model": "Leon",
+      "gearbox": "Manual",
+      "color": "Gray",
+      "makeYear": 2018,
+      "datePosted": "2024-10-06"
+    },
+    {
+      "userId": "User2",
+      "photoUrl": "http://template.com/car6.jpg",
+      "brand": "Volkswagen",
+      "model": "Passat",
+      "gearbox": "Automatic",
+      "color": "Green",
+      "makeYear": 2019,
+      "datePosted": "2024-10-11"
+    },
+    {
+      "userId": "User2",
+      "photoUrl": "http://template.com/car7.jpg",
+      "brand": "Audi",
+      "model": "Q7",
+      "gearbox": "Manual",
+      "color": "Yellow",
+      "makeYear": 2021,
+      "datePosted": "2024-10-09"
+    },
+    {
+      "userId": "User2",
+      "photoUrl": "http://template.com/car8.jpg",
+      "brand": "Skoda",
+      "model": "Superb",
+      "gearbox": "Automatic",
+      "color": "Silver",
+      "makeYear": 2017,
+      "datePosted": "2024-10-08"
+    },
+    {
+      "userId": "User2",
+      "photoUrl": "http://template.com/car9.jpg",
+      "brand": "Porsche",
+      "model": "Macan",
+      "gearbox": "Manual",
+      "color": "Orange",
+      "makeYear": 2016,
+      "datePosted": "2024-10-07"
+    },
+    {
+      "userId": "User2",
+      "photoUrl": "http://template.com/car10.jpg",
+      "brand": "Bentley",
+      "model": "Bentayga",
+      "gearbox": "Automatic",
+      "color": "Black",
+      "makeYear": 2019,
+      "datePosted": "2024-10-06"
+    },
+    {
+      "userId": "User3",
+      "photoUrl": "http://template.com/car11.jpg",
+      "brand": "Lamborghini",
+      "model": "Urus",
+      "gearbox": "Automatic",
+      "color": "Purple",
+      "makeYear": 2020,
+      "datePosted": "2024-10-08"
+    },
+    {
+      "userId": "User3",
+      "photoUrl": "http://template.com/car12.jpg",
+      "brand": "Volkswagen",
+      "model": "Tiguan",
+      "gearbox": "Manual",
+      "color": "White",
+      "makeYear": 2018,
+      "datePosted": "2024-10-10"
+    },
+    {
+      "userId": "User3",
+      "photoUrl": "http://template.com/car13.jpg",
+      "brand": "Audi",
+      "model": "A6",
+      "gearbox": "Automatic",
+      "color": "Red",
+      "makeYear": 2017,
+      "datePosted": "2024-10-07"
+    },
+    {
+      "userId": "User3",
+      "photoUrl": "http://template.com/car14.jpg",
+      "brand": "Seat",
+      "model": "Ibiza",
+      "gearbox": "Manual",
+      "color": "Yellow",
+      "makeYear": 2016,
+      "datePosted": "2024-10-09"
+    },
+    {
+      "userId": "User3",
+      "photoUrl": "http://template.com/car15.jpg",
+      "brand": "Porsche",
+      "model": "911",
+      "gearbox": "Automatic",
+      "color": "Silver",
+      "makeYear": 2020,
+      "datePosted": "2024-10-06"
+    },
+    {
+      "userId": "User4",
+      "photoUrl": "http://template.com/car16.jpg",
+      "brand": "Skoda",
+      "model": "Kodiaq",
+      "gearbox": "Automatic",
+      "color": "Gray",
+      "makeYear": 2019,
+      "datePosted": "2024-10-10"
+    },
+    {
+      "userId": "User4",
+      "photoUrl": "http://template.com/car17.jpg",
+      "brand": "Volkswagen",
+      "model": "Touareg",
+      "gearbox": "Manual",
+      "color": "Green",
+      "makeYear": 2016,
+      "datePosted": "2024-10-08"
+    },
+    {
+      "userId": "User4",
+      "photoUrl": "http://template.com/car18.jpg",
+      "brand": "Audi",
+      "model": "Q5",
+      "gearbox": "Automatic",
+      "color": "Black",
+      "makeYear": 2021,
+      "datePosted": "2024-10-09"
+    },
+    {
+      "userId": "User4",
+      "photoUrl": "http://template.com/car19.jpg",
+      "brand": "Bentley",
+      "model": "Continental GT",
+      "gearbox": "Manual",
+      "color": "Blue",
+      "makeYear": 2017,
+      "datePosted": "2024-10-07"
+    },
+    {
+      "userId": "User4",
+      "photoUrl": "http://template.com/car20.jpg",
+      "brand": "Porsche",
+      "model": "Panamera",
+      "gearbox": "Automatic",
+      "color": "Orange",
+      "makeYear": 2018,
+      "datePosted": "2024-10-06"
+    },
+    {
+      "userId": "User5",
+      "photoUrl": "http://template.com/car21.jpg",
+      "brand": "Volkswagen",
+      "model": "Jetta",
+      "gearbox": "Automatic",
+      "color": "Red",
+      "makeYear": 2019,
+      "datePosted": "2024-10-10"
+    },
+    {
+      "userId": "User5",
+      "photoUrl": "http://template.com/car22.jpg",
+      "brand": "Audi",
+      "model": "A3",
+      "gearbox": "Manual",
+      "color": "Purple",
+      "makeYear": 2020,
+      "datePosted": "2024-10-09"
+    },
+    {
+      "userId": "User5",
+      "photoUrl": "http://template.com/car23.jpg",
+      "brand": "Skoda",
+      "model": "Rapid",
+      "gearbox": "Automatic",
+      "color": "White",
+      "makeYear": 2021,
+      "datePosted": "2024-10-08"
+    },
+    {
+      "userId": "User5",
+      "photoUrl": "http://template.com/car24.jpg",
+      "brand": "Porsche",
+      "model": "Taycan",
+      "gearbox": "Manual",
+      "color": "Blue",
+      "makeYear": 2017,
+      "datePosted": "2024-10-07"
+    },
+    {
+      "userId": "User5",
+      "photoUrl": "http://template.com/car25.jpg",
+      "brand": "Seat",
+      "model": "Toledo",
+      "gearbox": "Automatic",
+      "color": "Gray",
+      "makeYear": 2016,
+      "datePosted": "2024-10-06"
+    },
+    {
+      "userId": "User6",
+      "photoUrl": "http://template.com/car26.jpg",
+      "brand": "Lamborghini",
+      "model": "Huracan",
+      "gearbox": "Automatic",
+      "color": "Yellow",
+      "makeYear": 2021,
+      "datePosted": "2024-10-10"
+    },
+    {
+      "userId": "User6",
+      "photoUrl": "http://template.com/car27.jpg",
+      "brand": "Audi",
+      "model": "Q8",
+      "gearbox": "Manual",
+      "color": "Black",
+      "makeYear": 2018,
+      "datePosted": "2024-10-08"
+    },
+    {
+      "userId": "User6",
+      "photoUrl": "http://template.com/car28.jpg",
+      "brand": "Volkswagen",
+      "model": "Arteon",
+      "gearbox": "Automatic",
+      "color": "Red",
+      "makeYear": 2020,
+      "datePosted": "2024-10-07"
+    },
+    {
+      "userId": "User6",
+      "photoUrl": "http://template.com/car29.jpg",
+      "brand": "Bentley",
+      "model": "Flying Spur",
+      "gearbox": "Automatic",
+      "color": "Gray",
+      "makeYear": 2019,
+      "datePosted": "2024-10-06"
+    },
+    {
+      "userId": "User6",
+      "photoUrl": "http://template.com/car30.jpg",
+      "brand": "Porsche",
+      "model": "Cayman",
+      "gearbox": "Manual",
+      "color": "Green",
+      "makeYear": 2017,
+      "datePosted": "2024-10-09"
+    },
+    {
+      "userId": "User7",
+      "photoUrl": "http://template.com/car31.jpg",
+      "brand": "Audi",
+      "model": "RS7",
+      "gearbox": "Automatic",
+      "color": "Orange",
+      "makeYear": 2021,
+      "datePosted": "2024-10-08"
+    },
+    {
+      "userId": "User7",
+      "photoUrl": "http://template.com/car32.jpg",
+      "brand": "Volkswagen",
+      "model": "Polo",
+      "gearbox": "Manual",
+      "color": "White",
+      "makeYear": 2016,
+      "datePosted": "2024-10-10"
+    },
+    {
+      "userId": "User7",
+      "photoUrl": "http://template.com/car33.jpg",
+      "brand": "Skoda",
+      "model": "Scala",
+      "gearbox": "Automatic",
+      "color": "Silver",
+      "makeYear": 2018,
+      "datePosted": "2024-10-09"
+    },
+    {
+      "userId": "User7",
+      "photoUrl": "http://template.com/car34.jpg",
+      "brand": "Porsche",
+      "model": "Boxster",
+      "gearbox": "Manual",
+      "color": "Black",
+      "makeYear": 2019,
+      "datePosted": "2024-10-07"
+    },
+    {
+      "userId": "User7",
+      "photoUrl": "http://template.com/car35.jpg",
+      "brand": "Seat",
+      "model": "Ateca",
+      "gearbox": "Automatic",
+      "color": "Gray",
+      "makeYear": 2017,
+      "datePosted": "2024-10-06"
+    },
+    {
+      "userId": "User8",
+      "photoUrl": "http://template.com/car36.jpg",
+      "brand": "Bentley",
+      "model": "Mulsanne",
+      "gearbox": "Automatic",
+      "color": "Green",
+      "makeYear": 2021,
+      "datePosted": "2024-10-10"
+    },
+    {
+      "userId": "User8",
+      "photoUrl": "http://template.com/car37.jpg",
+      "brand": "Volkswagen",
+      "model": "Golf",
+      "gearbox": "Manual",
+      "color": "Blue",
+      "makeYear": 2018,
+      "datePosted": "2024-10-08"
+    },
+    {
+      "userId": "User8",
+      "photoUrl": "http://template.com/car38.jpg",
+      "brand": "Audi",
+      "model": "S3",
+      "gearbox": "Automatic",
+      "color": "Yellow",
+      "makeYear": 2020,
+      "datePosted": "2024-10-07"
+    },
+    {
+      "userId": "User8",
+      "photoUrl": "http://template.com/car39.jpg",
+      "brand": "Seat",
+      "model": "Tarraco",
+      "gearbox": "Manual",
+      "color": "White",
+      "makeYear": 2017,
+      "datePosted": "2024-10-06"
+    },
+    {
+      "userId": "User8",
+      "photoUrl": "http://template.com/car40.jpg",
+      "brand": "Skoda",
+      "model": "Fabia",
+      "gearbox": "Automatic",
+      "color": "Red",
+      "makeYear": 2019,
+      "datePosted": "2024-10-09"
+    }
+  ]
+}
