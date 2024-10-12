@@ -10,7 +10,7 @@ interface CarItemProps {
 const CarItem: React.FC<CarItemProps> = ({car, onDelete}) => {
   return (
     <View style={styles.container}>
-      <Image source={{uri: car.photoUrl}} style={{width: 100, height: 100}} />
+      <Image source={{uri: car.photoUrl}} style={styles.image} />
       <Text>
         {car.brand} {car.model} ({car.makeYear})
       </Text>
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
   },
+  image: {width: 100, height: 100},
 });
 
 export default CarItem;

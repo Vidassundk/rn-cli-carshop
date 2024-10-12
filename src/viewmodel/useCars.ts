@@ -9,6 +9,7 @@ export const useCars = () => {
     data: cars,
     isLoading,
     error,
+    refetch,
   } = useQuery<Car[]>({
     queryKey: ['cars'],
     queryFn: getCars,
@@ -39,6 +40,7 @@ export const useCars = () => {
     cars,
     isLoading,
     error,
+    refetch,
     addNewCar,
     updateExistingCar,
     deleteExistingCar,
