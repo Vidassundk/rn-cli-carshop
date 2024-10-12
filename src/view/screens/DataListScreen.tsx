@@ -2,9 +2,11 @@ import React, {useState} from 'react';
 import {View, FlatList, Text, StyleSheet, RefreshControl} from 'react-native';
 import {useCars} from '../../viewmodel/useCars';
 import CarItem from '../components/CarItem';
+import {useAuth} from '../../context/UserContext';
 
 const DataListScreen: React.FC = () => {
   const {cars, isLoading, error, deleteExistingCar, refetch} = useCars();
+  const {userId} = useAuth();
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = async () => {
@@ -33,7 +35,14 @@ const DataListScreen: React.FC = () => {
         showsVerticalScrollIndicator={false}
         keyExtractor={item => item.id.toString()}
         renderItem={({item}) => (
-          <CarItem car={item} onDelete={() => deleteExistingCar(item.id)} />
+          <CarItem
+            car={item}
+            onClickDelete={
+              userId === item.userId
+                ? () => deleteExistingCar(item.id)
+                : undefined
+            }
+          />
         )}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />

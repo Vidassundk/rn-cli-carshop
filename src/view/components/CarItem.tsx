@@ -4,10 +4,10 @@ import {Car} from '../../models/Car';
 
 interface CarItemProps {
   car: Car;
-  onDelete: (id: number) => void;
+  onClickDelete?: (id: number) => void;
 }
 
-const CarItem: React.FC<CarItemProps> = ({car, onDelete}) => {
+const CarItem: React.FC<CarItemProps> = ({car, onClickDelete}) => {
   return (
     <View style={styles.container}>
       <Image source={{uri: car.photoUrl}} style={styles.image} />
@@ -16,7 +16,9 @@ const CarItem: React.FC<CarItemProps> = ({car, onDelete}) => {
       </Text>
       <Text>Color: {car.color}</Text>
       <Text>Gearbox: {car.gearbox}</Text>
-      <Button title="Delete" onPress={() => onDelete(car.id)} />
+      {onClickDelete && (
+        <Button title="Delete" onPress={() => onClickDelete(car.id)} />
+      )}
     </View>
   );
 };
