@@ -36,6 +36,7 @@ export interface CarFilters {
   filterYearTo: number | null;
   filterGearbox: GearboxOption | null;
   filterColor: string | null;
+  showOnlyUserCars: boolean;
 }
 
 export interface CarFilterFunctions {
@@ -45,6 +46,7 @@ export interface CarFilterFunctions {
   setFilterYearTo: (value: number | null) => void;
   setFilterGearbox: (value: GearboxOption | null) => void;
   setFilterColor: (value: string | null) => void;
+  setShowOnlyUserCars: (value: boolean) => void;
 }
 
 export interface CarFilterOptions {

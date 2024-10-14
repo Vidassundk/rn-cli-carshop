@@ -29,6 +29,7 @@ export const useCarFilterConfig = ({
     filterFunctions.setFilterYearTo(null);
     filterFunctions.setFilterGearbox(null);
     filterFunctions.setFilterColor(null);
+    filterFunctions.setShowOnlyUserCars(false); // Reset showOnlyUserCars
   };
 
   const isResetDisabled =
@@ -37,9 +38,15 @@ export const useCarFilterConfig = ({
     !filters.filterYearFrom &&
     !filters.filterYearTo &&
     !filters.filterGearbox &&
-    !filters.filterColor;
+    !filters.filterColor &&
+    !filters.showOnlyUserCars; // Add showOnlyUserCars to disable logic
 
   return [
+    {
+      title: `Show Only My Cars: ${filters.showOnlyUserCars ? 'Yes' : 'No'}`,
+      onPress: () =>
+        filterFunctions.setShowOnlyUserCars(!filters.showOnlyUserCars),
+    },
     {
       title: 'Reset Filters',
       onPress: resetFilters,
