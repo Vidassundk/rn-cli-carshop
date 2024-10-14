@@ -8,7 +8,7 @@ const UNSPLASH_ACCESS_KEY = process.env.UNSPLASH_ACCESS_KEY;
 async function fetchCarImageByBrand(brand, model) {
   try {
     const response = await axios.get('https://api.unsplash.com/search/photos', {
-      params: {query: `${brand} ${model} car`, per_page: 1}, // Query the brand and limit to 1 image
+      params: {query: `${brand} ${model}`, per_page: 1}, // Query the brand and limit to 1 image
       headers: {
         Authorization: `Client-ID ${UNSPLASH_ACCESS_KEY}`,
       },

@@ -8,13 +8,9 @@ interface UseCarsProps {
 
 export const useCars = ({userId}: UseCarsProps = {userId: undefined}) => {
   const {
-    cars,
-    isLoading,
-    error,
-    refetch,
-    addNewCar,
-    updateExistingCar,
-    deleteExistingCar,
+    carData: {cars, isCarsLoading, carsError, refetchCars},
+
+    mutations: {addNewCar, updateExistingCar, deleteExistingCar},
   } = useCarService();
 
   const {
@@ -41,13 +37,13 @@ export const useCars = ({userId}: UseCarsProps = {userId: undefined}) => {
       sortingFunctions,
     },
     serverFunctions: {
-      refetch,
+      refetchCars,
       addNewCar,
       updateExistingCar,
       deleteExistingCar,
     },
     isCarOwner,
-    isLoading,
-    error,
+    isCarsLoading,
+    carsError,
   };
 };

@@ -21,17 +21,23 @@ import {Car} from '../../models/entities/Car';
 const DataListScreen: React.FC = () => {
   const {userId} = useAuth();
 
-  const {cars, isLoading, error, isCarOwner, dataHandling, serverFunctions} =
-    useCars({userId});
+  const {
+    cars,
+    isCarOwner,
+    isCarsLoading,
+    carsError,
+    dataHandling,
+    serverFunctions,
+  } = useCars({userId});
 
   const {filterOptions, filters, filterFunctions, sorting, sortingFunctions} =
     dataHandling;
 
-  const {refetch, deleteExistingCar} = serverFunctions;
+  const {refetchCars, deleteExistingCar} = serverFunctions;
 
   const [refreshing, setRefreshing] = useState(false);
 
-  const onRefresh = useOnRefresh(refetch, setRefreshing);
+  const onRefresh = useOnRefresh(refetchCars, setRefreshing);
 
   const filterConfigs = useCarFilterConfig({
     filterOptions,
@@ -41,17 +47,16 @@ const DataListScreen: React.FC = () => {
 
   const sortingConfigs = useCarSortingConfig(sorting, sortingFunctions);
 
-  if (isLoading) {
+  if (isCarsLoading) {
     return <Text style={styles.centeredText}>Loading cars...</Text>;
   }
-  if (error) {
+  if (carsError) {
     return (
       <Text style={styles.centeredText}>
-        Error loading cars: {error.message}
+        Error loading cars: {carsError.message}
       </Text>
     );
   }
-
   return (
     <View style={styles.container}>
       <View>

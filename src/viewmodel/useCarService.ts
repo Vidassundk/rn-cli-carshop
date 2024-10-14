@@ -4,57 +4,77 @@ import {
   addCar,
   updateCar,
   deleteCar,
+  getSupportedCarBrandsAndModels,
 } from '../models/repositories/carService';
 import {Car} from '../models/entities/Car';
 
 export const useCarService = () => {
   const queryClient = useQueryClient();
 
+  // Fetch car list
   const {
     data: cars,
-    isLoading,
-    error,
-    refetch,
+    isLoading: isCarsLoading,
+    error: carsError,
+    refetch: refetchCars,
   } = useQuery<Car[]>({
     queryKey: ['cars'],
     queryFn: getCars,
   });
 
-  const {mutate: addNewCar, ...addCarMutationStatus} = useMutation({
+  // Fetch supported car brands and models
+  const {
+    data: supportedCarBrandsAndModels,
+    isLoading: isBrandsLoading,
+    error: brandsError,
+    refetch: refetchBrandsAndModels,
+  } = useQuery({
+    queryKey: ['supportedCarBrandsAndModels'],
+    queryFn: getSupportedCarBrandsAndModels,
+  });
+
+  // Mutations
+  const {mutate: addNewCar} = useMutation({
     mutationFn: addCar,
     onSuccess: () => {
       queryClient.invalidateQueries({queryKey: ['cars']});
     },
   });
 
-  const {mutate: updateExistingCar, ...updateCarMutationStatus} = useMutation({
+  const {mutate: updateExistingCar} = useMutation({
     mutationFn: updateCar,
     onSuccess: () => {
       queryClient.invalidateQueries({queryKey: ['cars']});
     },
   });
 
-  const {mutate: deleteExistingCar, ...deleteCarMutationStatus} = useMutation({
+  const {mutate: deleteExistingCar} = useMutation({
     mutationFn: deleteCar,
     onSuccess: () => {
-      console.log('Car deleted successfully');
       queryClient.invalidateQueries({queryKey: ['cars']});
-    },
-    onError: errorMessage => {
-      console.error('Error deleting car:', errorMessage);
     },
   });
 
   return {
-    cars,
-    isLoading,
-    error,
-    refetch,
-    addNewCar,
-    updateExistingCar,
-    deleteExistingCar,
-    addCarMutationStatus,
-    updateCarMutationStatus,
-    deleteCarMutationStatus,
+    // Car data
+    carData: {
+      cars,
+      isCarsLoading,
+      carsError,
+      refetchCars,
+    },
+    // Supported brands and models
+    supportedBrandsAndModels: {
+      supportedCarBrandsAndModels,
+      isBrandsLoading,
+      brandsError,
+      refetchBrandsAndModels,
+    },
+    // Mutation functions
+    mutations: {
+      addNewCar,
+      updateExistingCar,
+      deleteExistingCar,
+    },
   };
 };

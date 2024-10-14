@@ -1,5 +1,5 @@
 {
-  "cars": [
+  "carsPosted": [
     {
       "userId": "User4",
       "photoUrl": "https://images.unsplash.com/photo-1608506876688-ab805ee6c2c6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxBdWRpJTIwQTQlMjBjYXJ8ZW58MHx8fHwxNzI4NzQxNTc3fDA&ixlib=rb-4.0.3&q=80&w=1080",
@@ -439,6 +439,299 @@
       "makeYear": 2019,
       "datePosted": "2024-10-09",
       "id": "0cf0"
+    },
+    {
+      "id": "70e17i",
+      "userId": "User1",
+      "brand": "Toyota",
+      "model": "Yaris",
+      "makeYear": 2011,
+      "gearbox": "Manual",
+      "color": "Brown",
+      "photoUrl": "https://images.unsplash.com/photo-1677764822934-7c9a3d1cb768?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxTa29kYSUyME9jdGF2aWElMjBjYXJ8ZW58MHx8fHwxNzI4NzQxNTc4fDA&ixlib=rb-4.0.3&q=80&w=1080",
+      "datePosted": "2024-10-14"
+    },
+    {
+      "id": "far36j",
+      "userId": "User1",
+      "brand": "Honda",
+      "model": "CR-V",
+      "makeYear": 2017,
+      "gearbox": "Automatic",
+      "color": "White",
+      "photoUrl": "https://images.unsplash.com/photo-1677764822934-7c9a3d1cb768?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxTa29kYSUyME9jdGF2aWElMjBjYXJ8ZW58MHx8fHwxNzI4NzQxNTc4fDA&ixlib=rb-4.0.3&q=80&w=1080",
+      "datePosted": "2024-10-14"
+    },
+    {
+      "id": "r6kl6n",
+      "userId": "User1",
+      "brand": "BMW",
+      "model": "X5",
+      "makeYear": 2023,
+      "gearbox": "Manual",
+      "color": "Blue",
+      "photoUrl": "https://images.unsplash.com/photo-1677764822934-7c9a3d1cb768?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxTa29kYSUyME9jdGF2aWElMjBjYXJ8ZW58MHx8fHwxNzI4NzQxNTc4fDA&ixlib=rb-4.0.3&q=80&w=1080",
+      "datePosted": "2024-10-14"
+    }
+  ],
+  "supportedCarBrandsAndModels": [
+    {
+      "brand": "Toyota",
+      "models": [
+        "Corolla",
+        "Camry",
+        "Prius",
+        "Yaris",
+        "RAV4",
+        "Highlander"
+      ]
+    },
+    {
+      "brand": "Honda",
+      "models": [
+        "Civic",
+        "Accord",
+        "Fit",
+        "CR-V",
+        "HR-V",
+        "Pilot"
+      ]
+    },
+    {
+      "brand": "Ford",
+      "models": [
+        "Fiesta",
+        "Focus",
+        "Mustang",
+        "Explorer",
+        "Escape",
+        "F-150"
+      ]
+    },
+    {
+      "brand": "Chevrolet",
+      "models": [
+        "Spark",
+        "Malibu",
+        "Impala",
+        "Camaro",
+        "Traverse",
+        "Silverado"
+      ]
+    },
+    {
+      "brand": "Nissan",
+      "models": [
+        "Sentra",
+        "Altima",
+        "Maxima",
+        "Rogue",
+        "Murano",
+        "Pathfinder"
+      ]
+    },
+    {
+      "brand": "BMW",
+      "models": [
+        "1 Series",
+        "3 Series",
+        "5 Series",
+        "X3",
+        "X5",
+        "X7"
+      ]
+    },
+    {
+      "brand": "Mercedes-Benz",
+      "models": [
+        "A-Class",
+        "C-Class",
+        "E-Class",
+        "GLE",
+        "GLA",
+        "S-Class"
+      ]
+    },
+    {
+      "brand": "Audi",
+      "models": [
+        "A3",
+        "A4",
+        "A6",
+        "Q3",
+        "Q5",
+        "Q7"
+      ]
+    },
+    {
+      "brand": "Volkswagen",
+      "models": [
+        "Golf",
+        "Passat",
+        "Tiguan",
+        "Jetta",
+        "Polo",
+        "Touareg"
+      ]
+    },
+    {
+      "brand": "Hyundai",
+      "models": [
+        "Elantra",
+        "Sonata",
+        "Tucson",
+        "Santa Fe",
+        "Kona",
+        "Accent"
+      ]
+    },
+    {
+      "brand": "Kia",
+      "models": [
+        "Rio",
+        "Forte",
+        "Optima",
+        "Sorento",
+        "Sportage",
+        "Telluride"
+      ]
+    },
+    {
+      "brand": "Mazda",
+      "models": [
+        "Mazda3",
+        "Mazda6",
+        "CX-3",
+        "CX-5",
+        "CX-9",
+        "MX-5 Miata"
+      ]
+    },
+    {
+      "brand": "Subaru",
+      "models": [
+        "Impreza",
+        "Legacy",
+        "Forester",
+        "Outback",
+        "Crosstrek",
+        "WRX"
+      ]
+    },
+    {
+      "brand": "Tesla",
+      "models": [
+        "Model 3",
+        "Model S",
+        "Model X",
+        "Model Y"
+      ]
+    },
+    {
+      "brand": "Volvo",
+      "models": [
+        "XC40",
+        "XC60",
+        "XC90",
+        "S60",
+        "V60",
+        "S90"
+      ]
+    },
+    {
+      "brand": "Jeep",
+      "models": [
+        "Wrangler",
+        "Cherokee",
+        "Grand Cherokee",
+        "Renegade",
+        "Compass"
+      ]
+    },
+    {
+      "brand": "Porsche",
+      "models": [
+        "911",
+        "Cayenne",
+        "Macan",
+        "Panamera",
+        "Taycan"
+      ]
+    },
+    {
+      "brand": "Land Rover",
+      "models": [
+        "Range Rover",
+        "Discovery",
+        "Defender",
+        "Velar",
+        "Evoque"
+      ]
+    },
+    {
+      "brand": "Jaguar",
+      "models": [
+        "XE",
+        "XF",
+        "F-PACE",
+        "E-PACE",
+        "I-PACE",
+        "F-TYPE"
+      ]
+    },
+    {
+      "brand": "Ferrari",
+      "models": [
+        "488 GTB",
+        "812 Superfast",
+        "Portofino",
+        "SF90 Stradale"
+      ]
+    },
+    {
+      "brand": "Lamborghini",
+      "models": [
+        "Huracan",
+        "Aventador",
+        "Urus"
+      ]
+    },
+    {
+      "brand": "Maserati",
+      "models": [
+        "Ghibli",
+        "Quattroporte",
+        "Levante",
+        "GranTurismo"
+      ]
+    },
+    {
+      "brand": "McLaren",
+      "models": [
+        "570S",
+        "600LT",
+        "720S",
+        "GT"
+      ]
+    },
+    {
+      "brand": "Bentley",
+      "models": [
+        "Continental GT",
+        "Flying Spur",
+        "Bentayga",
+        "Mulsanne"
+      ]
+    },
+    {
+      "brand": "Rolls-Royce",
+      "models": [
+        "Ghost",
+        "Wraith",
+        "Dawn",
+        "Cullinan",
+        "Phantom"
+      ]
     }
   ]
 }
