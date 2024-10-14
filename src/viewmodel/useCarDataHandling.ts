@@ -4,7 +4,7 @@ import {
   GearboxOption,
   SortField,
   SortDirection,
-} from './types/CarDataFiltering';
+} from './types/carDataHandlingTypes';
 import {User} from '../models/entities/User';
 
 export const useCarDataHandling = (
@@ -23,6 +23,9 @@ export const useCarDataHandling = (
 
   const [sortBy, setSortBy] = useState<SortField>(null);
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
+
+  // Add search state
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   const brandOptions = useMemo(
     () => [...new Set(cars?.map(car => car.brand) ?? [])],
@@ -54,7 +57,11 @@ export const useCarDataHandling = (
     }
   }, [filterBrand, modelOptions, filterModel]);
 
+  // Modify the filtering logic to split the search query into multiple terms
   const filteredCars = useMemo(() => {
+    // Split the search query into individual terms (separated by spaces)
+    const searchTerms = searchQuery.trim().toLowerCase().split(/\s+/);
+
     return (
       cars
         ?.filter(car => {
@@ -79,6 +86,16 @@ export const useCarDataHandling = (
           if (filterColor && car.color !== filterColor) {
             return false;
           }
+
+          // If there are search terms, check if all terms match one of the car fields
+          if (searchTerms.length > 0 && searchTerms[0] !== '') {
+            const carData =
+              `${car.brand} ${car.model} ${car.gearbox} ${car.makeYear} ${car.color}`.toLowerCase();
+
+            // Ensure every search term matches part of the car's data
+            return searchTerms.every(term => carData.includes(term));
+          }
+
           return true;
         })
         ?.sort((a, b) => {
@@ -103,6 +120,7 @@ export const useCarDataHandling = (
     filterColor,
     sortBy,
     sortDirection,
+    searchQuery, // Add searchQuery as a dependency
   ]);
 
   return {
@@ -131,6 +149,7 @@ export const useCarDataHandling = (
       setFilterGearbox,
       setFilterColor,
       setShowOnlyUserCars,
+      setSearchQuery, // Expose search query setter
     },
     sorting: {
       sortBy,

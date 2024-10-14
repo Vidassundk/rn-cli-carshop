@@ -6,6 +6,7 @@ import {
   StyleSheet,
   RefreshControl,
   ScrollView,
+  TextInput,
 } from 'react-native';
 import {useCars} from '../../viewmodel/useCars';
 import CarItem from '../components/CarItem';
@@ -99,6 +100,12 @@ const DataListScreen: React.FC = () => {
         </ScrollView>
       </View>
 
+      <TextInput
+        placeholder="Search by brand, model, year, gearbox, color"
+        onChangeText={filterFunctions.setSearchQuery}
+        style={styles.searchInput}
+      />
+
       <View style={styles.listContainer}>
         <FlatList
           data={cars}
@@ -159,6 +166,17 @@ const styles = StyleSheet.create({
   centeredText: {
     textAlign: 'center',
     marginVertical: 20,
+  },
+  searchInput: {
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    marginHorizontal: 16,
+    marginVertical: 10,
+    backgroundColor: '#f9f9f9',
+    fontSize: 16,
   },
 });
 

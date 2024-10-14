@@ -4,7 +4,7 @@ import {
   SortField,
   SortingProps,
   SortingFunctions,
-} from './types/CarDataFiltering';
+} from './types/carDataHandlingTypes';
 
 export const useCarSortingConfig = (
   sorting: SortingProps,

@@ -4,7 +4,7 @@ import {
   CarFilterOptions,
   CarFilters,
   FilterConfigItem,
-} from './types/CarDataFiltering';
+} from './types/carDataHandlingTypes';
 
 export const useCarFilterConfig = ({
   filterOptions,
