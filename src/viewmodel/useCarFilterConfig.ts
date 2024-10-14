@@ -1,24 +1,19 @@
 import {useState} from 'react';
 import {
+  CarFilterFunctions,
+  CarFilterOptions,
   CarFilters,
   FilterConfigItem,
-  GearboxOption,
 } from './types/CarDataFiltering';
 
 export const useCarFilterConfig = ({
-  brandOptions,
-  modelOptions,
-  yearOptions,
-  gearboxOptions,
-  colorOptions,
+  filterOptions,
   filters,
+  filterFunctions,
 }: {
-  brandOptions: string[];
-  modelOptions: string[];
-  yearOptions: number[];
-  gearboxOptions: GearboxOption[];
-  colorOptions: string[];
+  filterOptions: CarFilterOptions;
   filters: CarFilters;
+  filterFunctions: CarFilterFunctions;
 }): FilterConfigItem[] => {
   const [brandModalVisible, setBrandModalVisible] = useState(false);
   const [modelModalVisible, setModelModalVisible] = useState(false);
@@ -28,12 +23,12 @@ export const useCarFilterConfig = ({
   const [colorModalVisible, setColorModalVisible] = useState(false);
 
   const resetFilters = () => {
-    filters.setFilterBrand(null);
-    filters.setFilterModel(null);
-    filters.setFilterYearFrom(null);
-    filters.setFilterYearTo(null);
-    filters.setFilterGearbox(null);
-    filters.setFilterColor(null);
+    filterFunctions.setFilterBrand(null);
+    filterFunctions.setFilterModel(null);
+    filterFunctions.setFilterYearFrom(null);
+    filterFunctions.setFilterYearTo(null);
+    filterFunctions.setFilterGearbox(null);
+    filterFunctions.setFilterColor(null);
   };
 
   const isResetDisabled =
@@ -57,10 +52,13 @@ export const useCarFilterConfig = ({
         modalVisible: brandModalVisible,
         options: [
           {label: 'All Brands', value: null},
-          ...brandOptions.map(brand => ({label: brand, value: brand})),
+          ...filterOptions.brandOptions.map(brand => ({
+            label: brand,
+            value: brand,
+          })),
         ],
         selectedValue: filters.filterBrand,
-        onValueChange: filters.setFilterBrand,
+        onValueChange: filterFunctions.setFilterBrand,
         onRequestClose: () => setBrandModalVisible(false),
       },
     },
@@ -71,10 +69,13 @@ export const useCarFilterConfig = ({
         modalVisible: modelModalVisible,
         options: [
           {label: 'All Models', value: null},
-          ...modelOptions.map(model => ({label: model, value: model})),
+          ...filterOptions.modelOptions.map(model => ({
+            label: model,
+            value: model,
+          })),
         ],
         selectedValue: filters.filterModel,
-        onValueChange: filters.setFilterModel,
+        onValueChange: filterFunctions.setFilterModel,
         onRequestClose: () => setModelModalVisible(false),
       },
     },
@@ -85,10 +86,13 @@ export const useCarFilterConfig = ({
         modalVisible: gearboxModalVisible,
         options: [
           {label: 'All Gearboxes', value: null},
-          ...gearboxOptions.map(gearbox => ({label: gearbox, value: gearbox})),
+          ...filterOptions.gearboxOptions.map(gearbox => ({
+            label: gearbox,
+            value: gearbox,
+          })),
         ],
         selectedValue: filters.filterGearbox,
-        onValueChange: filters.setFilterGearbox as (
+        onValueChange: filterFunctions.setFilterGearbox as (
           value: string | null,
         ) => void,
         onRequestClose: () => setGearboxModalVisible(false),
@@ -101,13 +105,14 @@ export const useCarFilterConfig = ({
         modalVisible: yearFromModalVisible,
         options: [
           {label: 'All Years', value: null},
-          ...yearOptions.map(year => ({
+          ...filterOptions.yearOptions.map(year => ({
             label: year.toString(),
             value: year.toString(),
           })),
         ],
         selectedValue: filters.filterYearFrom?.toString() ?? null,
-        onValueChange: value => filters.setFilterYearFrom(Number(value)),
+        onValueChange: value =>
+          filterFunctions.setFilterYearFrom(Number(value)),
         onRequestClose: () => setYearFromModalVisible(false),
       },
     },
@@ -118,13 +123,13 @@ export const useCarFilterConfig = ({
         modalVisible: yearToModalVisible,
         options: [
           {label: 'All Years', value: null},
-          ...yearOptions.map(year => ({
+          ...filterOptions.yearOptions.map(year => ({
             label: year.toString(),
             value: year.toString(),
           })),
         ],
         selectedValue: filters.filterYearTo?.toString() ?? null,
-        onValueChange: value => filters.setFilterYearTo(Number(value)),
+        onValueChange: value => filterFunctions.setFilterYearTo(Number(value)),
         onRequestClose: () => setYearToModalVisible(false),
       },
     },
@@ -135,10 +140,13 @@ export const useCarFilterConfig = ({
         modalVisible: colorModalVisible,
         options: [
           {label: 'All Colors', value: null},
-          ...colorOptions.map(color => ({label: color, value: color})),
+          ...filterOptions.colorOptions.map(color => ({
+            label: color,
+            value: color,
+          })),
         ],
         selectedValue: filters.filterColor,
-        onValueChange: filters.setFilterColor,
+        onValueChange: filterFunctions.setFilterColor,
         onRequestClose: () => setColorModalVisible(false),
       },
     },

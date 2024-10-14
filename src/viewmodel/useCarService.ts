@@ -37,7 +37,11 @@ export const useCarService = () => {
   const {mutate: deleteExistingCar, ...deleteCarMutationStatus} = useMutation({
     mutationFn: deleteCar,
     onSuccess: () => {
+      console.log('Car deleted successfully');
       queryClient.invalidateQueries({queryKey: ['cars']});
+    },
+    onError: errorMessage => {
+      console.error('Error deleting car:', errorMessage);
     },
   });
 

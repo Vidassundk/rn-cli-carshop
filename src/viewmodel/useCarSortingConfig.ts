@@ -3,20 +3,24 @@ import {
   FilterConfigItem,
   SortField,
   SortingProps,
+  SortingFunctions,
 } from './types/CarDataFiltering';
 
 export const useCarSortingConfig = (
   sorting: SortingProps,
+  sortingFunctions: SortingFunctions,
 ): FilterConfigItem<SortField>[] => {
   const [sortByModalVisible, setSortByModalVisible] = useState(false);
 
   const toggleSortDirection = () => {
-    sorting.setSortDirection(sorting.sortDirection === 'asc' ? 'desc' : 'asc');
+    sortingFunctions.setSortDirection(
+      sorting.sortDirection === 'asc' ? 'desc' : 'asc',
+    );
   };
 
   const resetSorting = () => {
-    sorting.setSortBy(null);
-    sorting.setSortDirection('desc');
+    sortingFunctions.setSortBy(null);
+    sortingFunctions.setSortDirection('desc');
   };
 
   const isSortingDefault =
@@ -34,7 +38,7 @@ export const useCarSortingConfig = (
           {label: 'Make Year', value: 'makeYear'},
         ],
         selectedValue: sorting.sortBy,
-        onValueChange: sorting.setSortBy,
+        onValueChange: sortingFunctions.setSortBy,
         onRequestClose: () => setSortByModalVisible(false),
       },
     },

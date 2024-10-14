@@ -13,66 +13,53 @@ import FilterModal from '../components/FilterModal';
 import FilterButton from '../components/FilterButton';
 import {useCarFilterConfig} from '../../viewmodel/useCarFilterConfig';
 import {useCarSortingConfig} from '../../viewmodel/useCarSortingConfig';
+import {useAuth} from '../../context/UserContext';
+import {QueryObserverResult} from '@tanstack/react-query';
+import {Car} from '../../models/entities/Car';
 
 const DataListScreen: React.FC = () => {
-  const {
-    cars,
-    isLoading,
-    error,
-    deleteExistingCar,
-    refetch,
-    filterOptions,
-    filters,
-    sorting,
-    isCarOwner,
-  } = useCars();
+  const {userId} = useAuth();
+
+  const {cars, isLoading, error, isCarOwner, dataHandling, serverFunctions} =
+    useCars({userId});
+
+  const {filterOptions, filters, filterFunctions, sorting, sortingFunctions} =
+    dataHandling;
+
+  const {refetch, deleteExistingCar} = serverFunctions;
 
   const [refreshing, setRefreshing] = useState(false);
 
-  const onRefresh = async () => {
-    setRefreshing(true);
-    try {
-      await refetch();
-    } finally {
-      setRefreshing(false);
-    }
-  };
-
-  const {
-    brandOptions,
-    modelOptions,
-    yearOptions,
-    gearboxOptions,
-    colorOptions,
-  } = filterOptions;
+  const onRefresh = useOnRefresh(refetch, setRefreshing);
 
   const filterConfigs = useCarFilterConfig({
-    brandOptions,
-    modelOptions,
-    yearOptions,
-    gearboxOptions,
-    colorOptions,
+    filterOptions,
     filters,
+    filterFunctions,
   });
 
-  const sortingConfigs = useCarSortingConfig(sorting);
+  const sortingConfigs = useCarSortingConfig(sorting, sortingFunctions);
 
   if (isLoading) {
-    return <Text>Loading cars...</Text>;
+    return <Text style={styles.centeredText}>Loading cars...</Text>;
   }
   if (error) {
-    return <Text>Error loading cars: {error.message}</Text>;
+    return (
+      <Text style={styles.centeredText}>
+        Error loading cars: {error.message}
+      </Text>
+    );
   }
 
   return (
     <View style={styles.container}>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={styles.filterButtons}>
-        <View style={styles.filterButtonWrapper}>
+      <View>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.scrollView}>
           {filterConfigs.map((filter, index) => (
-            <React.Fragment key={index}>
+            <View key={index} style={styles.buttonContainer}>
               <FilterButton title={filter.title} onPress={filter.onPress} />
               {filter.modalOptions && (
                 <FilterModal
@@ -83,18 +70,18 @@ const DataListScreen: React.FC = () => {
                   onRequestClose={filter.modalOptions.onRequestClose}
                 />
               )}
-            </React.Fragment>
+            </View>
           ))}
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
 
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={styles.sortButtons}>
-        <View style={styles.filterButtonWrapper}>
+      <View>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.scrollView}>
           {sortingConfigs.map((sort, index) => (
-            <React.Fragment key={index}>
+            <View key={index} style={styles.buttonContainer}>
               {!sort.hidden && (
                 <FilterButton title={sort.title} onPress={sort.onPress} />
               )}
@@ -107,10 +94,10 @@ const DataListScreen: React.FC = () => {
                   onRequestClose={sort.modalOptions.onRequestClose}
                 />
               )}
-            </React.Fragment>
+            </View>
           ))}
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
 
       <View style={styles.listContainer}>
         <FlatList
@@ -129,11 +116,29 @@ const DataListScreen: React.FC = () => {
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
-          ListEmptyComponent={<Text>No cars available. Pull to refresh.</Text>}
+          ListEmptyComponent={
+            <Text style={styles.centeredText}>
+              No cars available. Pull to refresh.
+            </Text>
+          }
         />
       </View>
     </View>
   );
+};
+
+const useOnRefresh = (
+  refetch: () => Promise<QueryObserverResult<Car[], Error>>,
+  setRefreshing: (value: boolean) => void,
+) => {
+  return async () => {
+    setRefreshing(true);
+    try {
+      await refetch();
+    } finally {
+      setRefreshing(false);
+    }
+  };
 };
 
 const styles = StyleSheet.create({
@@ -142,19 +147,19 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 16,
   },
-  filterButtons: {
-    flexGrow: 0,
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    gap: 16,
+  scrollView: {
+    paddingHorizontal: 8,
+    marginVertical: 8,
   },
-  sortButtons: {
+  buttonContainer: {
     flexGrow: 0,
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    gap: 16,
+    flexShrink: 1,
+    marginHorizontal: 8,
   },
-  filterButtonWrapper: {flexDirection: 'row', gap: 8},
+  centeredText: {
+    textAlign: 'center',
+    marginVertical: 20,
+  },
 });
 
 export default DataListScreen;

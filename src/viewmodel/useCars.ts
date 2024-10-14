@@ -1,12 +1,12 @@
+import {useCarDataHandling} from './useCarDataHandling';
+import {User} from '../models/entities/User';
 import {useCarService} from './useCarService';
-import {useCarFilters} from './useCarFilters';
-import {useCarSorting} from './useCarSorting';
-import {useAuth} from '../context/UserContext';
-import {Car} from '../models/entities/Car';
 
-export const useCars = () => {
-  const {userId} = useAuth();
+interface UseCarsProps {
+  userId?: User['userId'];
+}
 
+export const useCars = ({userId}: UseCarsProps = {userId: undefined}) => {
   const {
     cars,
     isLoading,
@@ -17,74 +17,37 @@ export const useCars = () => {
     deleteExistingCar,
   } = useCarService();
 
-  const {sortBy, setSortBy, sortDirection, setSortDirection} = useCarSorting();
-
   const {
     filteredCars,
-    brandOptions,
-    modelOptions,
-    yearOptions,
-    filterBrand,
-    setFilterBrand,
-    filterModel,
-    setFilterModel,
-    filterYearFrom,
-    setFilterYearFrom,
-    filterYearTo,
-    setFilterYearTo,
-    filterGearbox,
-    setFilterGearbox,
-    filterColor,
-    setFilterColor,
-    gearboxOptions,
-    colorOptions,
-    showOnlyUserCars,
-    setShowOnlyUserCars,
-  } = useCarFilters(cars, sortBy, sortDirection);
+    filterOptions,
+    filters,
+    filterFunctions,
+    sorting,
+    sortingFunctions,
+  } = useCarDataHandling(cars, userId);
 
-  const isCarOwner = (carId: Car['id']) => {
+  const isCarOwner = (carId: string) => {
     const car = cars?.find(singleCar => singleCar.id === carId);
     return car?.userId === userId;
   };
 
   return {
     cars: filteredCars,
-    filterOptions: {
-      brandOptions,
-      modelOptions,
-      yearOptions,
-      gearboxOptions,
-      colorOptions,
+    dataHandling: {
+      filterOptions,
+      filters,
+      filterFunctions,
+      sorting,
+      sortingFunctions,
     },
-    filters: {
-      filterBrand,
-      setFilterBrand,
-      filterModel,
-      setFilterModel,
-      filterYearFrom,
-      setFilterYearFrom,
-      filterYearTo,
-      setFilterYearTo,
-      filterGearbox,
-      setFilterGearbox,
-      filterColor,
-      setFilterColor,
+    serverFunctions: {
+      refetch,
+      addNewCar,
+      updateExistingCar,
+      deleteExistingCar,
     },
-    sorting: {
-      sortBy,
-      setSortBy,
-      sortDirection,
-      setSortDirection,
-    },
-
-    showOnlyUserCars,
-    setShowOnlyUserCars,
+    isCarOwner,
     isLoading,
     error,
-    refetch,
-    addNewCar,
-    updateExistingCar,
-    deleteExistingCar,
-    isCarOwner,
   };
 };

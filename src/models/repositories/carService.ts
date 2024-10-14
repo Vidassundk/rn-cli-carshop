@@ -19,5 +19,5 @@ export const updateCar = async (car: Car): Promise<Car> => {
 };
 
 export const deleteCar = (id: Car['id']) => {
-  return axios.delete(`/cars/${id}`);
+  return axios.delete(`${API_URL}/${id}`);
 };

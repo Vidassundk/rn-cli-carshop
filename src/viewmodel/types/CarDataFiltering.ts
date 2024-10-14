@@ -21,22 +21,36 @@ export interface FilterConfigItem<T = string | null> {
 
 export interface SortingProps {
   sortBy: SortField;
-  setSortBy: (value: SortField) => void;
   sortDirection: SortDirection;
+}
+
+export interface SortingFunctions {
+  setSortBy: (value: SortField) => void;
   setSortDirection: (value: SortDirection) => void;
 }
 
 export interface CarFilters {
   filterBrand: string | null;
-  setFilterBrand: (value: string | null) => void;
   filterModel: string | null;
-  setFilterModel: (value: string | null) => void;
   filterYearFrom: number | null;
-  setFilterYearFrom: (value: number | null) => void;
   filterYearTo: number | null;
-  setFilterYearTo: (value: number | null) => void;
   filterGearbox: GearboxOption | null;
-  setFilterGearbox: (value: GearboxOption | null) => void;
   filterColor: string | null;
+}
+
+export interface CarFilterFunctions {
+  setFilterBrand: (value: string | null) => void;
+  setFilterModel: (value: string | null) => void;
+  setFilterYearFrom: (value: number | null) => void;
+  setFilterYearTo: (value: number | null) => void;
+  setFilterGearbox: (value: GearboxOption | null) => void;
   setFilterColor: (value: string | null) => void;
+}
+
+export interface CarFilterOptions {
+  brandOptions: string[];
+  modelOptions: string[];
+  yearOptions: number[];
+  gearboxOptions: GearboxOption[];
+  colorOptions: string[];
 }
