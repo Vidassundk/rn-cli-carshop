@@ -1,42 +1,13 @@
-import {useQuery, useMutation, useQueryClient} from '@tanstack/react-query';
-import {getCars, addCar, updateCar, deleteCar} from '../services/carService';
+import {useCarService} from './useCarService';
+import {useCarFilters} from './useCarFilters';
+import {useCarSorting} from './useCarSorting';
+import {useAuth} from '../context/UserContext';
 import {Car} from '../models/Car';
 
 export const useCars = () => {
-  const queryClient = useQueryClient();
+  const {userId} = useAuth();
 
   const {
-    data: cars,
-    isLoading,
-    error,
-    refetch,
-  } = useQuery<Car[]>({
-    queryKey: ['cars'],
-    queryFn: getCars,
-  });
-
-  const {mutate: addNewCar, ...addCarMutationStatus} = useMutation({
-    mutationFn: addCar,
-    onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['cars']});
-    },
-  });
-
-  const {mutate: updateExistingCar, ...updateCarMutationStatus} = useMutation({
-    mutationFn: updateCar,
-    onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['cars']});
-    },
-  });
-
-  const {mutate: deleteExistingCar, ...deleteCarMutationStatus} = useMutation({
-    mutationFn: deleteCar,
-    onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['cars']});
-    },
-  });
-
-  return {
     cars,
     isLoading,
     error,
@@ -44,8 +15,76 @@ export const useCars = () => {
     addNewCar,
     updateExistingCar,
     deleteExistingCar,
-    addCarMutationStatus,
-    updateCarMutationStatus,
-    deleteCarMutationStatus,
+  } = useCarService();
+
+  const {sortBy, setSortBy, sortDirection, setSortDirection} = useCarSorting();
+
+  const {
+    filteredCars,
+    brandOptions,
+    modelOptions,
+    yearOptions,
+    filterBrand,
+    setFilterBrand,
+    filterModel,
+    setFilterModel,
+    filterYearFrom,
+    setFilterYearFrom,
+    filterYearTo,
+    setFilterYearTo,
+    filterGearbox,
+    setFilterGearbox,
+    filterColor,
+    setFilterColor,
+    gearboxOptions,
+    colorOptions,
+    showOnlyUserCars,
+    setShowOnlyUserCars,
+  } = useCarFilters(cars, sortBy, sortDirection);
+
+  const isCarOwner = (carId: Car['id']) => {
+    const car = cars?.find(singleCar => singleCar.id === carId);
+    return car?.userId === userId;
+  };
+
+  return {
+    cars: filteredCars,
+    filterOptions: {
+      brandOptions,
+      modelOptions,
+      yearOptions,
+      gearboxOptions,
+      colorOptions,
+    },
+    filters: {
+      filterBrand,
+      setFilterBrand,
+      filterModel,
+      setFilterModel,
+      filterYearFrom,
+      setFilterYearFrom,
+      filterYearTo,
+      setFilterYearTo,
+      filterGearbox,
+      setFilterGearbox,
+      filterColor,
+      setFilterColor,
+    },
+    sorting: {
+      sortBy,
+      setSortBy,
+      sortDirection,
+      setSortDirection,
+    },
+
+    showOnlyUserCars,
+    setShowOnlyUserCars,
+    isLoading,
+    error,
+    refetch,
+    addNewCar,
+    updateExistingCar,
+    deleteExistingCar,
+    isCarOwner,
   };
 };

@@ -4,7 +4,7 @@ import {Car} from '../../models/Car';
 
 interface CarItemProps {
   car: Car;
-  onClickDelete?: (id: number) => void;
+  onClickDelete?: (id: Car['id']) => void;
 }
 
 const CarItem: React.FC<CarItemProps> = ({car, onClickDelete}) => {

@@ -20,14 +20,16 @@ export const UserProvider: React.FC<{children: React.ReactNode}> = ({
   const [darkModePreference, setDarkModePreference] = useState(false);
 
   useEffect(() => {
-    // Load user preferences from AsyncStorage
     const loadUserPreferences = async () => {
       const storedUserName = await AsyncStorage.getItem('userName');
       const storedDarkMode = await AsyncStorage.getItem('darkModePreference');
 
-      if (storedUserName) setUserName(storedUserName);
-      if (storedDarkMode !== null)
+      if (storedUserName) {
+        setUserName(storedUserName);
+      }
+      if (storedDarkMode !== null) {
         setDarkModePreference(storedDarkMode === 'true');
+      }
     };
 
     loadUserPreferences();
