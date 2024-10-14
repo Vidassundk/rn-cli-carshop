@@ -3,7 +3,7 @@ import {
   CarFilters,
   FilterConfigItem,
   GearboxOption,
-} from '../models/CarDataFiltering';
+} from './types/CarDataFiltering';
 
 export const useCarFilterConfig = ({
   brandOptions,

@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {SortDirection, SortField} from '../models/CarDataFiltering';
+import {SortDirection, SortField} from './types/CarDataFiltering';
 
 export const useCarSorting = () => {
   const [sortBy, setSortBy] = useState<SortField>(null);

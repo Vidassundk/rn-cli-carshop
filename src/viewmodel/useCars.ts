@@ -2,7 +2,7 @@ import {useCarService} from './useCarService';
 import {useCarFilters} from './useCarFilters';
 import {useCarSorting} from './useCarSorting';
 import {useAuth} from '../context/UserContext';
-import {Car} from '../models/Car';
+import {Car} from '../models/entities/Car';
 
 export const useCars = () => {
   const {userId} = useAuth();

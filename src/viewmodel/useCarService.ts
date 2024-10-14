@@ -1,6 +1,11 @@
 import {useQuery, useMutation, useQueryClient} from '@tanstack/react-query';
-import {getCars, addCar, updateCar, deleteCar} from '../services/carService';
-import {Car} from '../models/Car';
+import {
+  getCars,
+  addCar,
+  updateCar,
+  deleteCar,
+} from '../models/repositories/carService';
+import {Car} from '../models/entities/Car';
 
 export const useCarService = () => {
   const queryClient = useQueryClient();

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {Car} from '../models/Car';
+import {Car} from '../entities/Car';
 
 const API_URL = 'http://localhost:3001/cars';
 

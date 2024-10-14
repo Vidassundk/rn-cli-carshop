@@ -3,7 +3,7 @@ import {
   FilterConfigItem,
   SortField,
   SortingProps,
-} from '../models/CarDataFiltering';
+} from './types/CarDataFiltering';
 
 export const useCarSortingConfig = (
   sorting: SortingProps,

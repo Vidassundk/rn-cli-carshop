@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet, Button} from 'react-native';
-import {Car} from '../../models/Car';
+import {Car} from '../../models/entities/Car';
 
 interface CarItemProps {
   car: Car;

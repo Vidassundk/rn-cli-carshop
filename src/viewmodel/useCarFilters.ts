@@ -1,11 +1,11 @@
 import {useState, useMemo, useEffect} from 'react';
-import {Car} from '../models/Car';
+import {Car} from '../models/entities/Car';
 import {
   GearboxOption,
   SortField,
   SortDirection,
-} from '../models/CarDataFiltering';
-import {User} from '../models/User';
+} from './types/CarDataFiltering';
+import {User} from '../models/entities/User';
 
 export const useCarFilters = (
   cars: Car[] | undefined,
