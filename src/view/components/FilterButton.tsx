@@ -15,14 +15,21 @@ const FilterButton: React.FC<FilterButtonProps> = ({
   title,
   style,
   hidden,
+  disabled,
   ...props
 }) => {
   if (hidden) {
-    return;
+    return null;
   }
 
+  const buttonStyles = [
+    styles.button,
+    style,
+    disabled && styles.disabledButton,
+  ];
+
   return (
-    <TouchableOpacity style={[styles.button, style]} {...props}>
+    <TouchableOpacity disabled={disabled} style={buttonStyles} {...props}>
       <Text style={styles.buttonText}>{title}</Text>
     </TouchableOpacity>
   );
@@ -39,6 +46,10 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     fontSize: 12,
+  },
+
+  disabledButton: {
+    opacity: 0.5,
   },
 });
 

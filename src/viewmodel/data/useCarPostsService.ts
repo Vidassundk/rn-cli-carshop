@@ -1,39 +1,32 @@
-import {useQuery, useMutation, useQueryClient} from '@tanstack/react-query';
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryObserverResult,
+} from '@tanstack/react-query';
 import {
   getCars,
   addCar,
   updateCar,
   deleteCar,
-  getSupportedCarBrandsAndModels,
-} from '../models/repositories/carService';
-import {Car} from '../models/entities/Car';
+} from '../../models/repositories/CarPostsService';
+import {Car} from '../../models/entities/Car';
 
-export const useCarService = () => {
+export const useCarPostsService = () => {
   const queryClient = useQueryClient();
 
-  // Fetch car list
+  // Fetch car list with proper types
   const {
     data: cars,
     isLoading: isCarsLoading,
     error: carsError,
     refetch: refetchCars,
-  } = useQuery<Car[]>({
+  }: QueryObserverResult<Car[], Error> = useQuery<Car[]>({
     queryKey: ['cars'],
     queryFn: getCars,
   });
 
-  // Fetch supported car brands and models
-  const {
-    data: supportedCarBrandsAndModels,
-    isLoading: isBrandsLoading,
-    error: brandsError,
-    refetch: refetchBrandsAndModels,
-  } = useQuery({
-    queryKey: ['supportedCarBrandsAndModels'],
-    queryFn: getSupportedCarBrandsAndModels,
-  });
-
-  // Mutations
+  // Add new car mutation
   const {mutate: addNewCar} = useMutation({
     mutationFn: addCar,
     onSuccess: () => {
@@ -41,6 +34,7 @@ export const useCarService = () => {
     },
   });
 
+  // Update car mutation
   const {mutate: updateExistingCar} = useMutation({
     mutationFn: updateCar,
     onSuccess: () => {
@@ -48,6 +42,7 @@ export const useCarService = () => {
     },
   });
 
+  // Delete car mutation
   const {mutate: deleteExistingCar} = useMutation({
     mutationFn: deleteCar,
     onSuccess: () => {
@@ -56,21 +51,12 @@ export const useCarService = () => {
   });
 
   return {
-    // Car data
     carData: {
       cars,
       isCarsLoading,
       carsError,
       refetchCars,
     },
-    // Supported brands and models
-    supportedBrandsAndModels: {
-      supportedCarBrandsAndModels,
-      isBrandsLoading,
-      brandsError,
-      refetchBrandsAndModels,
-    },
-    // Mutation functions
     mutations: {
       addNewCar,
       updateExistingCar,

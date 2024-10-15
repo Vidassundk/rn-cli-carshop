@@ -2,23 +2,23 @@ import React from 'react';
 import {View, Modal, Button, StyleSheet} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 
-interface FilterModalProps<T> {
+interface FilterModalProps {
   visible: boolean;
   onRequestClose: () => void;
-  selectedValue: T | null;
-  onValueChange: (value: T | null) => void;
-  options: {label: string; value: T | null}[];
+  selectedValue: string | number | null;
+  onValueChange: (value: string | number | null) => void;
+  options: {label: string; value: (string | number) | null}[];
 }
 
-const FilterModal = <T extends unknown>({
+const FilterModal: React.FC<FilterModalProps> = ({
   visible,
   onRequestClose,
   selectedValue,
   onValueChange,
   options,
-}: FilterModalProps<T>) => {
-  const handleValueChange = (value: T | number) => {
-    onValueChange(value === 'null' ? null : (value as T));
+}) => {
+  const handleValueChange = (value: string | number) => {
+    onValueChange(value === 'null' ? null : value);
   };
 
   return (
@@ -26,13 +26,13 @@ const FilterModal = <T extends unknown>({
       <View style={styles.modalOverlay}>
         <View style={styles.modalContent}>
           <Picker
-            selectedValue={selectedValue ?? undefined}
+            selectedValue={selectedValue ?? 'null'}
             onValueChange={handleValueChange}>
             {options.map(option => (
               <Picker.Item
-                key={String(option.value) || 'null'}
+                key={option.value !== null ? String(option.value) : 'null'}
                 label={option.label}
-                value={option.value === null ? 'null' : option.value}
+                value={option.value !== null ? option.value : 'null'}
               />
             ))}
           </Picker>

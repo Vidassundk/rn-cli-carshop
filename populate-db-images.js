@@ -2,7 +2,7 @@ const axios = require('axios');
 const fs = require('fs');
 require('dotenv').config();
 
-const UNSPLASH_ACCESS_KEY = process.env.UNSPLASH_ACCESS_KEY;
+const UNSPLASH_ACCESS_KEY = process.env.REACT_APP_UNSPLASH_ACCESS_KEY;
 
 // Function to fetch car images based on brand from Unsplash
 async function fetchCarImageByBrand(brand, model) {
@@ -26,7 +26,7 @@ async function fetchCarImageByBrand(brand, model) {
   }
 }
 
-// Update db.json with customized Unsplash images based on car brand (with caching)
+// Update db.json but only affect the "carsPosted" array
 async function updateDbJson() {
   // Load the existing db.json file
   let db;
@@ -38,11 +38,11 @@ async function updateDbJson() {
     db = JSON.parse(data);
   } catch (error) {
     console.error('Error parsing db.json:', error);
-    db = {cars: []}; // Default to an empty list of cars if the file is invalid
+    return;
   }
 
-  // Cars array (no types needed)
-  const cars = db.cars;
+  // Extract the carsPosted array, leaving other data intact
+  const cars = db.carsPosted || [];
 
   const brandCache = {};
 
@@ -56,10 +56,15 @@ async function updateDbJson() {
     car.photoUrl = brandCache[car.brand]; // Assign cached URL
   }
 
-  // Write the updated data back to db.json
-  fs.writeFileSync('./db.json', JSON.stringify({cars}, null, 2), 'utf-8');
+  // Only update the "carsPosted" array and leave other data intact
+  db.carsPosted = cars;
 
-  console.log('db.json successfully updated with Unsplash images!');
+  // Write the updated data back to db.json
+  fs.writeFileSync('./db.json', JSON.stringify(db, null, 2), 'utf-8');
+
+  console.log(
+    'db.json successfully updated with Unsplash images for carsPosted!',
+  );
 }
 
 // Run the update
