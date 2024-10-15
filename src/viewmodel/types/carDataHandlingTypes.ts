@@ -1,3 +1,5 @@
+import {Car} from '../../models/entities/Car';
+
 export type SortField = 'datePosted' | 'makeYear' | null;
 export type SortDirection = 'asc' | 'desc';
 
@@ -50,9 +52,9 @@ export interface CarFilterFunctions {
 }
 
 export interface CarFilterOptions {
-  brandOptions: string[];
-  modelOptions: string[];
-  yearOptions: number[];
+  brandOptions: Car['brand'][];
+  modelOptions: Car['model'][];
+  yearOptions: Car['makeYear'][];
   gearboxOptions: GearboxOption[];
-  colorOptions: string[];
+  colorOptions: Car['color'][];
 }
