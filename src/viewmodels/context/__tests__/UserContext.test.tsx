@@ -9,6 +9,7 @@ describe('UserContext', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     asyncStorageMock = {};
+
     (AsyncStorage.getItem as jest.Mock).mockImplementation(async key => {
       return asyncStorageMock[key] || null;
     });
@@ -24,17 +25,17 @@ describe('UserContext', () => {
 
   it('should load user preferences from AsyncStorage', async () => {
     asyncStorageMock.userName = 'Test User';
-    asyncStorageMock.darkModePreference = 'true';
 
     const wrapper = ({children}: {children: ReactNode}) =>
       React.createElement(UserProvider, null, children);
 
-    const {result, waitForNextUpdate} = renderHook(() => useAuth(), {wrapper});
+    const {result, waitForNextUpdate} = renderHook(() => useAuth(), {
+      wrapper,
+    });
 
     await waitForNextUpdate();
 
     expect(result.current.userName).toBe('Test User');
-    expect(result.current.darkModePreference).toBe(true);
   });
 
   it('should save username to AsyncStorage', async () => {
@@ -53,22 +54,12 @@ describe('UserContext', () => {
     expect(asyncStorageMock.userName).toBe('New User');
   });
 
-  it('should toggle dark mode and save to AsyncStorage', async () => {
+  it('should have default userId', () => {
     const wrapper = ({children}: {children: ReactNode}) =>
       React.createElement(UserProvider, null, children);
 
     const {result} = renderHook(() => useAuth(), {wrapper});
 
-    await act(async () => {
-      await result.current.toggleDarkMode();
-    });
-
-    expect(AsyncStorage.setItem).toHaveBeenCalledWith(
-      'darkModePreference',
-      'true',
-    );
-    expect(result.current.darkModePreference).toBe(true);
-
-    expect(asyncStorageMock.darkModePreference).toBe('true');
+    expect(result.current.userId).toBe('User1');
   });
 });

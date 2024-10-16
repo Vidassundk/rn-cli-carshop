@@ -1,6 +1,5 @@
 import {useState} from 'react';
 import {Alert} from 'react-native';
-import {AddDataScreenNavigationProp} from '../../../navigation/AppNavigator';
 import {useAuth} from '../../context/UserContext';
 import {useSupportedCarsService} from '../../data/useSupportedCarService';
 import {useCarPostsService} from '../../data/useCarPostsService';
@@ -8,6 +7,7 @@ import {Car} from '../../../models/entities/Car';
 import {useYearOptions} from '../../../utils/hooks/useYearOptions';
 import {useCarImageUpdater} from './useCarImageUpdater';
 import {useCarValidation} from './useCarValidation';
+import {AddDataScreenNavigationProp} from '../../../navigation/AppNavigator';
 
 export type CarForm = {
   brand: string | null;

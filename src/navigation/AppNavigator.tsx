@@ -1,21 +1,18 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {
-  createBottomTabNavigator,
-  BottomTabNavigationOptions,
-} from '@react-navigation/bottom-tabs';
+import {NavigationContainer, RouteProp} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {
   createStackNavigator,
   StackNavigationProp,
 } from '@react-navigation/stack';
-import {RouteProp} from '@react-navigation/core';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 import HomeScreen from '../views/screens/HomeScreen';
 import DataListScreen from '../views/screens/DataListScreen';
 import GeolocationScreen from '../views/screens/GeolocationScreen';
 import SettingsScreen from '../views/screens/SettingsScreen';
 import AddDataScreen from '../views/screens/AddDataScreen';
-import Icon from 'react-native-vector-icons/Ionicons';
-import {TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {useTheme} from '../viewmodels/context/ThemeContext';
 
 export type RootTabParamList = {
   Home: undefined;
@@ -32,10 +29,6 @@ export type AddDataScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
   'AddDataScreen'
 >;
-
-export interface AddDataScreenProps {
-  navigation: AddDataScreenNavigationProp;
-}
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 const Stack = createStackNavigator<RootStackParamList>();
@@ -58,52 +51,29 @@ const TabBarIcon = ({
 }) => {
   const icons = iconMap[route.name];
   const iconName = focused ? icons.focused : icons.unfocused;
-
   return <Icon name={iconName} size={24} color={color} />;
 };
 
-const getScreenOptions = ({
-  route,
-}: {
-  route: RouteProp<RootTabParamList, keyof RootTabParamList>;
-}): BottomTabNavigationOptions => ({
-  tabBarIcon: ({focused, color}: {focused: boolean; color: string}) => (
-    <TabBarIcon route={route} focused={focused} color={color} />
-  ),
-  tabBarActiveTintColor: 'black',
-  tabBarInactiveTintColor: 'gray',
-});
-
-const TabBarButton = ({
-  onPress,
-  children,
-}: {
-  onPress: () => void;
-  children: React.ReactNode;
-}) => <TouchableOpacity onPress={onPress}>{children}</TouchableOpacity>;
-
-const HeaderRightButton = ({onPress}: {onPress: () => void}) => (
-  <TouchableOpacity style={styles.addButton} onPress={onPress}>
-    <Text style={styles.addButtonText}>Add Car</Text>
-  </TouchableOpacity>
-);
-
 const TabNavigator = ({navigation}: {navigation: any}) => (
-  <Tab.Navigator screenOptions={getScreenOptions}>
+  <Tab.Navigator
+    screenOptions={({route}) => ({
+      tabBarIcon: ({focused, color}) => (
+        <TabBarIcon route={route} focused={focused} color={color} />
+      ),
+      tabBarActiveTintColor: 'black',
+      tabBarInactiveTintColor: 'gray',
+    })}>
     <Tab.Screen name="Home" component={HomeScreen} />
     <Tab.Screen
       name="Data List"
       component={DataListScreen}
       options={{
-        tabBarButton: props => (
-          <TabBarButton onPress={() => navigation.navigate('Data List')}>
-            {props.children}
-          </TabBarButton>
-        ),
         headerRight: () => (
-          <HeaderRightButton
-            onPress={() => navigation.navigate('AddDataScreen')}
-          />
+          <TouchableOpacity
+            style={styles.addButton}
+            onPress={() => navigation.navigate('AddDataScreen')}>
+            <Text style={styles.addButtonText}>Add Car</Text>
+          </TouchableOpacity>
         ),
       }}
     />
@@ -112,22 +82,26 @@ const TabNavigator = ({navigation}: {navigation: any}) => (
   </Tab.Navigator>
 );
 
-const AppNavigator = () => (
-  <NavigationContainer>
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Main"
-        component={TabNavigator}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="AddDataScreen"
-        component={AddDataScreen}
-        options={{title: 'Add Car'}}
-      />
-    </Stack.Navigator>
-  </NavigationContainer>
-);
+const AppNavigator = () => {
+  const {navigationTheme} = useTheme();
+
+  return (
+    <NavigationContainer theme={navigationTheme}>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Main"
+          component={TabNavigator}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="AddDataScreen"
+          component={AddDataScreen}
+          options={{title: 'Add Car'}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
 
 const styles = StyleSheet.create({
   addButton: {

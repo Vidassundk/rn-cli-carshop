@@ -1,10 +1,14 @@
 import React, {useState} from 'react';
 import {View, Button, Image, ScrollView, StyleSheet} from 'react-native';
 import {useAddCarForm} from '../../viewmodels/handling/addCar/useAddCarForm';
-import {AddDataScreenProps} from '../../navigation/AppNavigator';
+
 import {LoadingState, ErrorState} from '../components/StatusComponents';
 import PickerField from '../components/PickerField';
 import {carColors} from '../../models/constants/carColors'; // Import carColors
+import {RootStackParamList} from '../../navigation/AppNavigator';
+import {StackScreenProps} from '@react-navigation/stack';
+
+type AddDataScreenProps = StackScreenProps<RootStackParamList, 'AddDataScreen'>;
 
 const AddDataScreen: React.FC<AddDataScreenProps> = ({navigation}) => {
   const {

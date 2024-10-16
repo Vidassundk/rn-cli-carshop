@@ -4,17 +4,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export interface UserContextType {
   userId: string;
   userName: string;
-  darkModePreference: boolean;
   changeUserName: (newUserName: string) => void;
-  toggleDarkMode: () => void;
 }
 
 const defaultValues: UserContextType = {
   userId: 'User1',
   userName: 'User',
-  darkModePreference: false,
+
   changeUserName: () => {},
-  toggleDarkMode: () => {},
 };
 
 const UserContext = createContext<UserContextType>(defaultValues);
@@ -24,18 +21,13 @@ export const UserProvider: React.FC<{children: React.ReactNode}> = ({
 }) => {
   const [userId] = useState('User1');
   const [userName, setUserName] = useState('User');
-  const [darkModePreference, setDarkModePreference] = useState(false);
 
   useEffect(() => {
     const loadUserPreferences = async () => {
       const storedUserName = await AsyncStorage.getItem('userName');
-      const storedDarkMode = await AsyncStorage.getItem('darkModePreference');
 
       if (storedUserName) {
         setUserName(storedUserName);
-      }
-      if (storedDarkMode !== null) {
-        setDarkModePreference(storedDarkMode === 'true');
       }
     };
 
@@ -47,26 +39,23 @@ export const UserProvider: React.FC<{children: React.ReactNode}> = ({
     await AsyncStorage.setItem('userName', newName);
   };
 
-  const toggleDarkMode = async () => {
-    setDarkModePreference(prev => !prev);
-    await AsyncStorage.setItem(
-      'darkModePreference',
-      (!darkModePreference).toString(),
-    );
-  };
-
   return (
     <UserContext.Provider
       value={{
         userId,
         userName,
-        darkModePreference,
+
         changeUserName,
-        toggleDarkMode,
       }}>
       {children}
     </UserContext.Provider>
   );
 };
 
-export const useAuth = () => useContext(UserContext);
+export const useAuth = () => {
+  const context = useContext(UserContext);
+  if (!context) {
+    throw new Error('useAuth must be used within a UserProvider');
+  }
+  return context;
+};
