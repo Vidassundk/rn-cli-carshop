@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {View, FlatList, Text, StyleSheet, RefreshControl} from 'react-native';
-import {useCarDataHandling} from '../../../viewmodel/handling/viewCars/useCarDataHandling';
+import {useCarDataHandling} from '../../../viewmodels/handling/viewCars/useCarDataHandling';
 import FiltersHeader from './components/FiltersHeader';
 import SortingHeader from './components/SortingHeader';
 import SearchBar from './components/SearchBar';
 import CarItem from '../../components/CarItem';
-import {useCarPostsService} from '../../../viewmodel/data/useCarPostsService';
+import {useCarPostsService} from '../../../viewmodels/data/useCarPostsService';
 import {QueryObserverResult} from '@tanstack/react-query';
 import {Car} from '../../../models/entities/Car';
 

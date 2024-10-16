@@ -3,12 +3,12 @@ import {useAddCarForm} from '../useAddCarForm';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {Alert} from 'react-native';
 import React from 'react';
-import {useAuth} from '../../../../context/UserContext';
+import {useAuth} from '../../../context/UserContext';
 import {useCarPostsService} from '../../../data/useCarPostsService';
 import {useSupportedCarsService} from '../../../data/useSupportedCarService';
 import {useCarValidation} from '../useCarValidation';
 
-jest.mock('../../../../context/UserContext');
+jest.mock('../../../context/UserContext');
 jest.mock('../../../data/useCarPostsService');
 jest.mock('../../../data/useSupportedCarService');
 jest.mock('../../../../utils/hooks/useYearOptions', () => ({

@@ -33,7 +33,7 @@ export const useGeolocation = () => {
               latitudeDelta: 0,
               longitudeDelta: 0,
             },
-            0,
+            200,
           );
         });
       }
@@ -107,7 +107,7 @@ export const useGeolocation = () => {
               latitudeDelta: newZoomLevel,
               longitudeDelta: newZoomLevel,
             },
-            0,
+            200,
           );
         });
       }

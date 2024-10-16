@@ -1,7 +1,7 @@
 import {renderHook, act} from '@testing-library/react-hooks';
-import {useGeolocation} from '../useGeolocation';
 import {Alert} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
+import {useGeolocation} from '../useGeolocation';
 
 jest.mock('react-native-geolocation-service', () => ({
   requestAuthorization: jest.fn(),

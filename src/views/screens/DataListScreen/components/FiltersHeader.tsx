@@ -6,7 +6,7 @@ import {
   FilterFunctions,
   FilterOptions,
   Filters,
-} from '../../../../viewmodel/handling/viewCars/useCarFilters';
+} from '../../../../viewmodels/handling/viewCars/useCarFilters';
 
 interface FiltersHeaderProps {
   filters: Filters;

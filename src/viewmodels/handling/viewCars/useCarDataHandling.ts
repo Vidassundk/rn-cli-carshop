@@ -2,7 +2,7 @@ import {useCarFilters} from './useCarFilters';
 import {useCarSorting} from './useCarSorting';
 import {useCarSearch} from './useCarSearch';
 import {useCarPostsService} from '../../data/useCarPostsService';
-import {useAuth} from '../../../context/UserContext';
+import {useAuth} from '../../context/UserContext';
 
 export const useCarDataHandling = () => {
   const {carData} = useCarPostsService();

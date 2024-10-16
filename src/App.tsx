@@ -1,7 +1,7 @@
 import React from 'react';
 import AppNavigator from './navigation/AppNavigator';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
-import {UserProvider} from './context/UserContext';
+import {UserProvider} from './viewmodels/context/UserContext';
 
 const queryClient = new QueryClient();
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
-import {useGeolocation} from '../../viewmodel/data/geolocation/useGeolocation';
+import {useGeolocation} from '../../viewmodels/data/useGeolocation';
 
 const GeolocationScreen = () => {
   const {

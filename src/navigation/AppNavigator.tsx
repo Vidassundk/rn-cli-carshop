@@ -9,11 +9,11 @@ import {
   StackNavigationProp,
 } from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/core';
-import HomeScreen from '../view/screens/HomeScreen';
-import DataListScreen from '../view/screens/DataListScreen';
-import GeolocationScreen from '../view/screens/GeolocationScreen';
-import SettingsScreen from '../view/screens/SettingsScreen';
-import AddDataScreen from '../view/screens/AddDataScreen';
+import HomeScreen from '../views/screens/HomeScreen';
+import DataListScreen from '../views/screens/DataListScreen';
+import GeolocationScreen from '../views/screens/GeolocationScreen';
+import SettingsScreen from '../views/screens/SettingsScreen';
+import AddDataScreen from '../views/screens/AddDataScreen';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 

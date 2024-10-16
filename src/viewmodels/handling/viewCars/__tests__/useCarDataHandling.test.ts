@@ -1,10 +1,10 @@
 import {renderHook, act} from '@testing-library/react-hooks';
 import {useCarDataHandling} from '../useCarDataHandling';
 import {useCarPostsService} from '../../../data/useCarPostsService';
-import {useAuth} from '../../../../context/UserContext';
+import {useAuth} from '../../../context/UserContext';
 
 jest.mock('../../../data/useCarPostsService');
-jest.mock('../../../../context/UserContext');
+jest.mock('../../../context/UserContext');
 
 const mockUseCarPostsService = useCarPostsService as jest.Mock;
 const mockUseAuth = useAuth as jest.Mock;
