@@ -6,7 +6,7 @@ import {
   FilterFunctions,
   FilterOptions,
   Filters,
-} from '../../../../viewmodel/handling/useCarFilters';
+} from '../../../../viewmodel/handling/viewCars/useCarFilters';
 
 interface FiltersHeaderProps {
   filters: Filters;
@@ -44,6 +44,7 @@ const FiltersHeader: React.FC<FiltersHeaderProps> = ({
             }
           />
         </View>
+
         <View style={styles.buttonContainer}>
           <FilterButton
             title={filters.filterBrand || 'All Brands'}
@@ -52,17 +53,15 @@ const FiltersHeader: React.FC<FiltersHeaderProps> = ({
           <PickerModal
             visible={visibleModal === 'brand'}
             options={[
-              {label: 'All Brands', value: 'All Brands'},
+              {label: 'All Brands', value: ''},
               ...filterOptions.brandOptions.map(option => ({
                 label: option,
-                value: option.toString(),
+                value: option,
               })),
             ]}
-            selectedValue={filters.filterBrand ?? 'All Brands'}
+            selectedValue={filters.filterBrand || ''}
             onValueChange={value => {
-              filterFunctions.setFilterBrand(
-                value === 'All Brands' ? null : value?.toString() || null,
-              );
+              filterFunctions.setFilterBrand(value?.toString() || '');
             }}
             onRequestClose={() => toggleModal('brand')}
           />
@@ -76,17 +75,15 @@ const FiltersHeader: React.FC<FiltersHeaderProps> = ({
           <PickerModal
             visible={visibleModal === 'model'}
             options={[
-              {label: 'All Models', value: 'All Models'},
+              {label: 'All Models', value: ''},
               ...filterOptions.modelOptions.map(option => ({
                 label: option,
-                value: option.toString(),
+                value: option,
               })),
             ]}
-            selectedValue={filters.filterModel ?? 'All Models'}
+            selectedValue={filters.filterModel || ''}
             onValueChange={value => {
-              filterFunctions.setFilterModel(
-                value === 'All Models' ? null : value?.toString() || null,
-              );
+              filterFunctions.setFilterModel(value?.toString() || '');
             }}
             onRequestClose={() => toggleModal('model')}
           />
@@ -96,7 +93,7 @@ const FiltersHeader: React.FC<FiltersHeaderProps> = ({
           <FilterButton
             title={
               filters.filterYearFrom
-                ? `From ${filters.filterYearFrom?.toString()}`
+                ? `From ${filters.filterYearFrom.toString()}`
                 : 'From any year'
             }
             onPress={() => toggleModal('yearFrom')}
@@ -104,18 +101,18 @@ const FiltersHeader: React.FC<FiltersHeaderProps> = ({
           <PickerModal
             visible={visibleModal === 'yearFrom'}
             options={[
-              {label: 'All Years', value: 'All Years'},
+              {label: 'All Years', value: ''},
               ...filterOptions.yearOptions.map(option => ({
                 label: option.toString(),
                 value: option.toString(),
               })),
             ]}
-            selectedValue={filters.filterYearFrom?.toString() || 'All Years'}
+            selectedValue={filters.filterYearFrom?.toString() || ''}
             onValueChange={value => {
               filterFunctions.setFilterYearFrom(
-                value === 'All Years'
+                value === ''
                   ? null
-                  : parseInt(value as string, 10) || null,
+                  : parseInt(value?.toString() || '', 10) || null,
               );
             }}
             onRequestClose={() => toggleModal('yearFrom')}
@@ -134,18 +131,18 @@ const FiltersHeader: React.FC<FiltersHeaderProps> = ({
           <PickerModal
             visible={visibleModal === 'yearTo'}
             options={[
-              {label: 'All Years', value: 'All Years'},
+              {label: 'All Years', value: ''},
               ...filterOptions.yearOptions.map(option => ({
                 label: option.toString(),
                 value: option.toString(),
               })),
             ]}
-            selectedValue={filters.filterYearTo?.toString() || 'All Years'}
+            selectedValue={filters.filterYearTo?.toString() || ''}
             onValueChange={value => {
               filterFunctions.setFilterYearTo(
-                value === 'All Years'
+                value === ''
                   ? null
-                  : parseInt(value as string, 10) || null,
+                  : parseInt(value?.toString() || '', 10) || null,
               );
             }}
             onRequestClose={() => toggleModal('yearTo')}
@@ -157,21 +154,18 @@ const FiltersHeader: React.FC<FiltersHeaderProps> = ({
             title={filters.filterGearbox || 'All Gearboxes'}
             onPress={() => toggleModal('gearbox')}
           />
-
           <PickerModal
             visible={visibleModal === 'gearbox'}
             options={[
-              {label: 'All Gearboxes', value: 'All Gearboxes'},
+              {label: 'All Gearboxes', value: ''},
               ...filterOptions.gearboxOptions.map(option => ({
                 label: option,
                 value: option,
               })),
             ]}
-            selectedValue={filters.filterGearbox ?? 'All Gearboxes'}
+            selectedValue={filters.filterGearbox || ''}
             onValueChange={value => {
-              filterFunctions.setFilterGearbox(
-                value === 'All Gearboxes' ? null : value?.toString() || null,
-              );
+              filterFunctions.setFilterGearbox(value?.toString() || '');
             }}
             onRequestClose={() => toggleModal('gearbox')}
           />

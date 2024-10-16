@@ -6,7 +6,7 @@ import {
   SortField,
   SortingFunctions,
   Sorts,
-} from '../../../../viewmodel/handling/useCarSorting';
+} from '../../../../viewmodel/handling/viewCars/useCarSorting';
 
 interface SortingHeaderProps {
   sorts: Sorts;

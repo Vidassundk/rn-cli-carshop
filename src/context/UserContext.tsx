@@ -1,8 +1,15 @@
 import React, {createContext, useState, useContext, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {User} from '../models/entities/User';
 
-const defaultValues = {
+export interface UserContextType {
+  userId: string;
+  userName: string;
+  darkModePreference: boolean;
+  changeUserName: (newUserName: string) => void;
+  toggleDarkMode: () => void;
+}
+
+const defaultValues: UserContextType = {
   userId: 'User1',
   userName: 'User',
   darkModePreference: false,
@@ -10,7 +17,7 @@ const defaultValues = {
   toggleDarkMode: () => {},
 };
 
-const UserContext = createContext<User>(defaultValues);
+const UserContext = createContext<UserContextType>(defaultValues);
 
 export const UserProvider: React.FC<{children: React.ReactNode}> = ({
   children,

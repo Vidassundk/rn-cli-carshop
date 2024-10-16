@@ -1,8 +1,8 @@
 import {useState, useMemo, useEffect} from 'react';
-import {Car} from '../../models/entities/Car';
+import {Car} from '../../../models/entities/Car';
+import {useYearOptions} from '../../../utils/hooks/useYearOptions';
 
 export type CarFiltersReturn = ReturnType<typeof useCarFilters>;
-
 export type Filters = CarFiltersReturn['filters'];
 export type FilterFunctions = CarFiltersReturn['filterFunctions'];
 export type FilterOptions = CarFiltersReturn['filterOptions'];
@@ -11,24 +11,22 @@ export const useCarFilters = (
   cars: Car[] | undefined,
   userId: string | undefined,
 ) => {
-  // Filter state
-  const [filterBrand, setFilterBrand] = useState<string | null>(null);
-  const [filterModel, setFilterModel] = useState<string | null>(null);
+  const [filterBrand, setFilterBrand] = useState<string>('');
+  const [filterModel, setFilterModel] = useState<string>('');
   const [filterYearFrom, setFilterYearFrom] = useState<number | null>(null);
   const [filterYearTo, setFilterYearTo] = useState<number | null>(null);
-  const [filterGearbox, setFilterGearbox] = useState<string | null>(null);
-  const [filterColor, setFilterColor] = useState<string | null>(null);
+  const [filterGearbox, setFilterGearbox] = useState<string>('');
+  const [filterColor, setFilterColor] = useState<string>('');
   const [showOnlyUserCars, setShowOnlyUserCars] = useState<boolean>(false);
 
-  // Check if any filter is active
   const areFiltersActive = useMemo(() => {
     return (
-      filterBrand !== null ||
-      filterModel !== null ||
+      filterBrand !== '' ||
+      filterModel !== '' ||
       filterYearFrom !== null ||
       filterYearTo !== null ||
-      filterGearbox !== null ||
-      filterColor !== null ||
+      filterGearbox !== '' ||
+      filterColor !== '' ||
       showOnlyUserCars !== false
     );
   }, [
@@ -41,18 +39,16 @@ export const useCarFilters = (
     showOnlyUserCars,
   ]);
 
-  // Reset all filters
   const resetFilters = () => {
-    setFilterBrand(null);
-    setFilterModel(null);
+    setFilterBrand('');
+    setFilterModel('');
     setFilterYearFrom(null);
     setFilterYearTo(null);
-    setFilterGearbox(null);
-    setFilterColor(null);
+    setFilterGearbox('');
+    setFilterColor('');
     setShowOnlyUserCars(false);
   };
 
-  // Generate dynamic filter options from the unfiltered car data
   const brandOptions = useMemo(
     () => [...new Set(cars?.map(car => car.brand) ?? [])],
     [cars],
@@ -75,29 +71,38 @@ export const useCarFilters = (
     [cars],
   );
 
-  const yearOptions = useMemo(() => {
-    const currentYear = new Date().getFullYear();
-    return Array.from({length: 20}, (_, i) => currentYear - i);
-  }, []);
+  const yearOptions = useYearOptions();
 
-  // Watch for brand changes and reset model if necessary
   useEffect(() => {
     if (filterModel && !modelOptions.includes(filterModel)) {
-      setFilterModel(null); // Reset model if it's not available in the selected brand
+      setFilterModel('');
     }
   }, [filterBrand, modelOptions, filterModel]);
 
-  // Filter the cars based on the active filters
   const filteredCars = useMemo(() => {
     return (
       cars?.filter(car => {
-        if (showOnlyUserCars && userId && car.userId !== userId) {return false;}
-        if (filterBrand && car.brand !== filterBrand) {return false;}
-        if (filterModel && car.model !== filterModel) {return false;}
-        if (filterYearFrom && car.makeYear < filterYearFrom) {return false;}
-        if (filterYearTo && car.makeYear > filterYearTo) {return false;}
-        if (filterGearbox && car.gearbox !== filterGearbox) {return false;}
-        if (filterColor && car.color !== filterColor) {return false;}
+        if (showOnlyUserCars && userId && car.userId !== userId) {
+          return false;
+        }
+        if (filterBrand && car.brand !== filterBrand) {
+          return false;
+        }
+        if (filterModel && car.model !== filterModel) {
+          return false;
+        }
+        if (filterYearFrom && car.makeYear < filterYearFrom) {
+          return false;
+        }
+        if (filterYearTo && car.makeYear > filterYearTo) {
+          return false;
+        }
+        if (filterGearbox && car.gearbox !== filterGearbox) {
+          return false;
+        }
+        if (filterColor && car.color !== filterColor) {
+          return false;
+        }
         return true;
       }) ?? []
     );

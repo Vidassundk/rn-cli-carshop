@@ -1,4 +1,3 @@
-// CarService.ts
 import axios from 'axios';
 import {Car} from '../entities/Car';
 

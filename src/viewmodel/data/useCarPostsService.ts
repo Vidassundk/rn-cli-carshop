@@ -15,7 +15,6 @@ import {Car} from '../../models/entities/Car';
 export const useCarPostsService = () => {
   const queryClient = useQueryClient();
 
-  // Fetch car list with proper types
   const {
     data: cars,
     isLoading: isCarsLoading,
@@ -26,7 +25,6 @@ export const useCarPostsService = () => {
     queryFn: getCars,
   });
 
-  // Add new car mutation
   const {mutate: addNewCar} = useMutation({
     mutationFn: addCar,
     onSuccess: () => {
@@ -34,7 +32,6 @@ export const useCarPostsService = () => {
     },
   });
 
-  // Update car mutation
   const {mutate: updateExistingCar} = useMutation({
     mutationFn: updateCar,
     onSuccess: () => {
@@ -42,7 +39,6 @@ export const useCarPostsService = () => {
     },
   });
 
-  // Delete car mutation
   const {mutate: deleteExistingCar} = useMutation({
     mutationFn: deleteCar,
     onSuccess: () => {

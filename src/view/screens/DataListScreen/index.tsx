@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, FlatList, Text, StyleSheet, RefreshControl} from 'react-native';
-import {useCarDataHandling} from '../../../viewmodel/handling/useCarDataHandling';
+import {useCarDataHandling} from '../../../viewmodel/handling/viewCars/useCarDataHandling';
 import FiltersHeader from './components/FiltersHeader';
 import SortingHeader from './components/SortingHeader';
 import SearchBar from './components/SearchBar';

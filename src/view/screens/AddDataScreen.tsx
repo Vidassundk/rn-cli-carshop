@@ -1,7 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Button, Image, ScrollView, StyleSheet} from 'react-native';
-
-import {useAddCarForm} from '../../viewmodel/handling/useAddCarForm';
+import {useAddCarForm} from '../../viewmodel/handling/addCar/useAddCarForm';
 import {AddDataScreenProps} from '../../navigation/AppNavigator';
 import {LoadingState, ErrorState} from '../components/StatusComponents';
 import PickerField from '../components/PickerField';
@@ -9,17 +8,36 @@ import {carColors} from '../../models/constants/carColors'; // Import carColors
 
 const AddDataScreen: React.FC<AddDataScreenProps> = ({navigation}) => {
   const {
-    formData: {carData, modalVisible, setModalVisible, updateCarData},
+    formData: {carData, updateCarData},
     formActions: {handleAddCar},
     status: {isBrandsLoading, brandsError},
     options: {supportedCarBrandsAndModels, yearOptions},
   } = useAddCarForm(navigation);
 
-  if (isBrandsLoading) {return <LoadingState />;}
-  if (brandsError) {return <ErrorState error={brandsError} />;}
+  const [modalVisible, setModalVisible] = useState<{
+    brand: boolean;
+    model: boolean;
+    gearbox: boolean;
+    color: boolean;
+    year: boolean;
+  }>({
+    brand: false,
+    model: false,
+    gearbox: false,
+    color: false,
+    year: false,
+  });
 
-  if (!supportedCarBrandsAndModels)
-    {return <ErrorState error={new Error('No car brands available')} />;}
+  if (isBrandsLoading) {
+    return <LoadingState />;
+  }
+  if (brandsError) {
+    return <ErrorState error={brandsError} />;
+  }
+
+  if (!supportedCarBrandsAndModels) {
+    return <ErrorState error={new Error('No car brands available')} />;
+  }
 
   const getModelOptions = () => {
     return [
