@@ -45,7 +45,7 @@ const AddDataScreen: React.FC<AddDataScreenProps> = ({navigation}) => {
 
   const getModelOptions = () => {
     return [
-      {label: 'Select model', value: 'Select Model'}, // No-value option
+      {label: 'Select model', value: 'Select Model'},
       ...(supportedCarBrandsAndModels
         .find(brand => brand.brand === carData.brand)
         ?.models.map(model => ({label: model.name, value: model.name})) || []),
@@ -66,7 +66,7 @@ const AddDataScreen: React.FC<AddDataScreenProps> = ({navigation}) => {
           label="Brand"
           value={carData.brand}
           options={[
-            {label: 'Select brand', value: 'Select Brand'}, // No-value option
+            {label: 'Select brand', value: 'Select Brand'},
             ...supportedCarBrandsAndModels.map(brand => ({
               label: brand.brand,
               value: brand.brand,
@@ -105,7 +105,7 @@ const AddDataScreen: React.FC<AddDataScreenProps> = ({navigation}) => {
           label="Year"
           value={carData.makeYear?.toString() || 'Select Year'}
           options={[
-            {label: 'Select year', value: 'Select Year'}, // No-value option
+            {label: 'Select year', value: 'Select Year'},
             ...yearOptions.map(year => ({
               label: year.toString(),
               value: year.toString(),
@@ -129,7 +129,7 @@ const AddDataScreen: React.FC<AddDataScreenProps> = ({navigation}) => {
           label="Gearbox"
           value={carData.gearbox || 'Select Gearbox'}
           options={[
-            {label: 'Select gearbox', value: 'Select Gearbox'}, // No-value option
+            {label: 'Select gearbox', value: 'Select Gearbox'},
             {label: 'Automatic', value: 'Automatic'},
             {label: 'Manual', value: 'Manual'},
           ]}
@@ -151,7 +151,7 @@ const AddDataScreen: React.FC<AddDataScreenProps> = ({navigation}) => {
           label="Color"
           value={carData.color || 'Select Color'}
           options={[
-            {label: 'Select color', value: 'Select Color'}, // No-value option
+            {label: 'Select color', value: 'Select Color'},
             ...carColors.map(color => ({label: color, value: color})),
           ]}
           modalVisible={modalVisible.color}
