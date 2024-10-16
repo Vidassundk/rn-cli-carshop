@@ -1,5 +1,3 @@
-// ThemeContext.tsx
-
 import React, {createContext, useState, useEffect} from 'react';
 import {useColorScheme as useSystemColorScheme} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -14,12 +12,30 @@ interface ThemeContextType {
   theme: 'light' | 'dark';
   toggleTheme: () => void;
   navigationTheme: Theme;
+  colors: Theme['colors'];
+  spacing: {
+    xs: number;
+    sm: number;
+    md: number;
+    lg: number;
+    xl: number;
+  };
 }
+
+const defaultSpacing = {
+  xs: 4,
+  sm: 8,
+  md: 16,
+  lg: 24,
+  xl: 32,
+};
 
 const ThemeContext = createContext<ThemeContextType>({
   theme: 'light',
   toggleTheme: () => {},
   navigationTheme: NavigationDefaultTheme,
+  colors: NavigationDefaultTheme.colors,
+  spacing: defaultSpacing,
 });
 
 interface ThemeProviderProps {
@@ -59,7 +75,14 @@ export const ThemeProvider = ({
     theme === 'dark' ? NavigationDarkTheme : NavigationDefaultTheme;
 
   return (
-    <ThemeContext.Provider value={{theme, toggleTheme, navigationTheme}}>
+    <ThemeContext.Provider
+      value={{
+        theme,
+        toggleTheme,
+        navigationTheme,
+        colors: navigationTheme.colors,
+        spacing: defaultSpacing, // Centralized spacing
+      }}>
       <NavigationThemeProvider value={navigationTheme}>
         {children}
       </NavigationThemeProvider>

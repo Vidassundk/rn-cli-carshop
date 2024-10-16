@@ -7,7 +7,8 @@ import {Car} from '../../../models/entities/Car';
 import {useYearOptions} from '../../../utils/hooks/useYearOptions';
 import {useCarImageUpdater} from './useCarImageUpdater';
 import {useCarValidation} from './useCarValidation';
-import {AddDataScreenNavigationProp} from '../../../navigation/AppNavigator';
+import {NavigationProp} from '@react-navigation/native';
+import {RootStackParamList} from '@/navigation/AppNavigator';
 
 export type CarForm = {
   brand: string | null;
@@ -18,7 +19,9 @@ export type CarForm = {
   photoUrl: string | null;
 };
 
-export const useAddCarForm = (navigation: AddDataScreenNavigationProp) => {
+export const useAddCarForm = (
+  navigation: NavigationProp<RootStackParamList>,
+) => {
   const {userId} = useAuth();
   const {addNewCar} = useCarPostsService().mutations;
   const {supportedCarBrandsAndModels, isBrandsLoading, brandsError} =

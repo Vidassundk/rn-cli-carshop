@@ -12,4 +12,7 @@ module.exports = {
   ],
   testMatch: ['**/?(*.)+(spec|test).ts?(x)'],
   testTimeout: 10000,
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+  },
 };

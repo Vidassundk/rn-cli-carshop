@@ -1,8 +1,10 @@
 {
   "extends": "@react-native/typescript-config/tsconfig.json",
-
   "compilerOptions": {
     "types": ["jest"],
-    "jsx": "react"
+    "jsx": "react",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   }
 }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, FlatList, Text, StyleSheet, RefreshControl} from 'react-native';
 import {useCarDataHandling} from '../../../viewmodels/handling/viewCars/useCarDataHandling';
 import FiltersHeader from './components/FiltersHeader';
@@ -8,6 +8,10 @@ import CarItem from '../../components/CarItem';
 import {useCarPostsService} from '../../../viewmodels/data/useCarPostsService';
 import {QueryObserverResult} from '@tanstack/react-query';
 import {Car} from '../../../models/entities/Car';
+import {RouteProp, useRoute} from '@react-navigation/native';
+import {RootTabParamList} from '@/navigation/AppNavigator';
+
+type DataListScreenRouteProp = RouteProp<RootTabParamList, 'DataList'>;
 
 const DataListScreen: React.FC = () => {
   const {
@@ -19,9 +23,16 @@ const DataListScreen: React.FC = () => {
   } = useCarDataHandling();
 
   const {mutations} = useCarPostsService();
+  const route = useRoute<DataListScreenRouteProp>();
 
   const [refreshing, setRefreshing] = useState(false);
   const [visibleModal, setVisibleModal] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (route.params?.myCars) {
+      filterFunctions.setShowOnlyUserCars(true);
+    }
+  }, [route.params?.myCars, filterFunctions]);
 
   const onRefresh = useOnRefresh(refetchCars, setRefreshing);
   const toggleModal = (modal: string) =>

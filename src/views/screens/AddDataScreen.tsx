@@ -8,9 +8,12 @@ import {carColors} from '../../models/constants/carColors'; // Import carColors
 import {RootStackParamList} from '../../navigation/AppNavigator';
 import {StackScreenProps} from '@react-navigation/stack';
 
-type AddDataScreenProps = StackScreenProps<RootStackParamList, 'AddDataScreen'>;
+type AddDataScreenNavigationProp = StackScreenProps<
+  RootStackParamList,
+  'AddDataScreen'
+>;
 
-const AddDataScreen: React.FC<AddDataScreenProps> = ({navigation}) => {
+const AddDataScreen: React.FC<AddDataScreenNavigationProp> = ({navigation}) => {
   const {
     formData: {carData, updateCarData},
     formActions: {handleAddCar},

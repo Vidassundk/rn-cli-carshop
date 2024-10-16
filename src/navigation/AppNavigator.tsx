@@ -14,28 +14,24 @@ import SettingsScreen from '../views/screens/SettingsScreen';
 import AddDataScreen from '../views/screens/AddDataScreen';
 import {useTheme} from '../viewmodels/context/ThemeContext';
 
-export type RootTabParamList = {
-  Home: undefined;
-  'Data List': undefined;
-  Location: undefined;
-  Settings: undefined;
-};
-
 export type RootStackParamList = {
   Main: undefined;
   AddDataScreen: undefined;
 };
-export type AddDataScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  'AddDataScreen'
->;
+
+export type RootTabParamList = {
+  Home: undefined;
+  DataList: {myCars?: boolean};
+  Location: undefined;
+  Settings: undefined;
+};
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 const Stack = createStackNavigator<RootStackParamList>();
 
 const iconMap: Record<string, {focused: string; unfocused: string}> = {
   Home: {focused: 'home', unfocused: 'home-outline'},
-  'Data List': {focused: 'list', unfocused: 'list-outline'},
+  DataList: {focused: 'list', unfocused: 'list-outline'},
   Location: {focused: 'location', unfocused: 'location-outline'},
   Settings: {focused: 'settings', unfocused: 'settings-outline'},
 };
@@ -54,7 +50,11 @@ const TabBarIcon = ({
   return <Icon name={iconName} size={24} color={color} />;
 };
 
-const TabNavigator = ({navigation}: {navigation: any}) => (
+type TabNavigatorProps = {
+  navigation: StackNavigationProp<RootStackParamList, 'Main'>;
+};
+
+const TabNavigator = ({navigation}: TabNavigatorProps) => (
   <Tab.Navigator
     screenOptions={({route}) => ({
       tabBarIcon: ({focused, color}) => (
@@ -65,7 +65,7 @@ const TabNavigator = ({navigation}: {navigation: any}) => (
     })}>
     <Tab.Screen name="Home" component={HomeScreen} />
     <Tab.Screen
-      name="Data List"
+      name="DataList"
       component={DataListScreen}
       options={{
         headerRight: () => (

@@ -8,7 +8,6 @@ const GeolocationScreen = () => {
     location,
     errorMsg,
     isFollowing,
-
     mapRef,
     actions: {toggleFollowMode, reCenterMap, zoomIn, zoomOut},
   } = useGeolocation(); // Use the ViewModel

@@ -6,7 +6,7 @@ import {RootTabParamList} from '../../navigation/AppNavigator';
 
 type DetailScreenNavigationProp = BottomTabNavigationProp<
   RootTabParamList,
-  'Data List'
+  'DataList'
 >;
 
 const DetailScreen = () => {
