@@ -2882,6 +2882,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/geojson@npm:^7946.0.13":
+  version: 7946.0.14
+  resolution: "@types/geojson@npm:7946.0.14"
+  checksum: ae511bee6488ae3bd5a3a3347aedb0371e997b14225b8983679284e22fa4ebd88627c6e3ff8b08bf4cc35068cb29310c89427311ffc9322c255615821a922e71
+  languageName: node
+  linkType: hard
+
 "@types/graceful-fs@npm:^4.1.3":
   version: 4.1.9
   resolution: "@types/graceful-fs@npm:4.1.9"
@@ -3282,7 +3289,9 @@ __metadata:
     prettier: 2.8.8
     react: 18.3.1
     react-native: 0.75.4
+    react-native-geolocation-service: ^5.3.1
     react-native-gesture-handler: ^2.20.0
+    react-native-maps: ^1.18.2
     react-native-safe-area-context: ^4.11.0
     react-native-screens: ^3.34.0
     react-native-vector-icons: ^10.2.0
@@ -8856,6 +8865,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-geolocation-service@npm:^5.3.1":
+  version: 5.3.1
+  resolution: "react-native-geolocation-service@npm:5.3.1"
+  checksum: 9a625c9f87811933491055fd8cbd1ef46f97fbbe0262714ad1d9aa969a8900dcb4abc47e58fe162400a81bcdee79324dfcc8e631862df9a22d59ac84af9acfde
+  languageName: node
+  linkType: hard
+
 "react-native-gesture-handler@npm:^2.20.0":
   version: 2.20.0
   resolution: "react-native-gesture-handler@npm:2.20.0"
@@ -8868,6 +8884,22 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: f573bc3717ae0209ff30bf62b95b3c7f11bd97f4797090211bce416c250388f55d1995aac0a7f1bbc99b06223ea64cbeae8d4ef88dcb8c877201b49163ea0e4b
+  languageName: node
+  linkType: hard
+
+"react-native-maps@npm:^1.18.2":
+  version: 1.18.2
+  resolution: "react-native-maps@npm:1.18.2"
+  dependencies:
+    "@types/geojson": ^7946.0.13
+  peerDependencies:
+    react: ">= 17.0.1"
+    react-native: ">= 0.64.3"
+    react-native-web: ">= 0.11"
+  peerDependenciesMeta:
+    react-native-web:
+      optional: true
+  checksum: 69cb40f01ce8d467e7180399aa09005bd3b0b5427c0a29aef7a23208f02cb1bfd0bf28dcafb7ecc2757f7c5d61d9af6fb8d8a339a10100c9a88a572265a12eea
   languageName: node
   linkType: hard
 
