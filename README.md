@@ -1,37 +1,43 @@
 ## Car Shop
 
-Car Shop is a React Native app for managing and exploring car listings. Users can add their own vehicles, browse listings from others, and use filters and sorting to refine their search. For added realism, users are only permitted to delete vehicles they have personally uploaded (pre-loaded data in the database reflects this, among ability to add your own). The app also features Geolocation capabilities, including map integration with real-time location tracking, zoom controls, re-centering, and following functionality.
+Car Shop is a React Native app for managing and exploring car listings. Users can add their own vehicles, browse listings from others, and use filters and sorting to refine their search. For added realism, users can only delete vehicles they have personally uploaded, while pre-loaded data is available for browsing. Users can also add their own vehicles to the listings. The app also features Geolocation capabilities, including map integration with real-time location tracking, zoom controls, re-centering, and following functionality.
 
 ## Table of Contents
 
+- [Car Shop](#car-shop)
+- [Screens](#screens)
 - [Features](#features)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-  - [Project Structure](#project-structure)
+- [Project Structure](#project-structure)
 - [MVVM Architecture Overview](#mvvm-architecture-overview)
-  - [Benefits of MVVM](#benefits-of-mvvm)
-  - [File Responsibilities](#file-responsibilities)
+  - [Model](#model)
+  - [View](#view)
+  - [ViewModel](#viewmodel)
+- [Benefits of MVVM](#benefits-of-mvvm)
 - [Running Tests](#running-tests)
-- [Technologies Used](#technologies-used)
-- [Contributing](#contributing)
+- [Running TypeScript Checks](#running-typescript-checks)
+- [Running Linting](#running-linting)
+- [Key Technologies Used](#key-technologies-used)
+- [What Could Be Better, Where to Continue?](#what-could-be-better-where-to-continue)
 - [License](#license)
 
 ## Screens
 
 - Home Screen - Welcomes the user and provides information about navigation options and the current data or connection status.
 - Data List Screen - Data List with filtration, sorting, searching and crud available under one screen. Also linking to "Add Car Screen" and "Detail Screen".
-- Add Car Screen - Fun form to have your own vehicles to the list.
+- Add Car Screen - A simple form to add your vehicles to the list.
 - Detail Screen - Larger image of a car and ability to clearly see all related data.
 - Geolocation Screen - Full screen map with close tracking of coordinates and basic exploration features.
 - Settings Screen - Alter User State or Theme State in form of Settings.
 
 ## Features
 
-- Add New Cars: Users can add new cars with details such as brand, model, year, gearbox, color, and photo.
+- Add New Cars: Users can add new vehicles with details such as brand, model, year, gearbox and colors.
 - View Car Listings: Browse through a comprehensive list of cars, including those uploaded by other users.
 - Filter and Sort: Utilize advanced filtering and sorting options to find cars that match your preferences.
-- Geolocation: Geolocation feature to see your coordinates on the map and track your movement.
+- Geolocation: View your current coordinates on a map, track your movements, and use zoom, re-centering, and following features.
 - User Settings: Manage personal information, set a username, and switch between light and dark themes.
 - Dark Mode Support: Enjoy a sleek dark mode for a comfortable viewing experience in low-light environments.
 
@@ -98,7 +104,7 @@ json-server is located in db.json
 
 The project follows the MVVM (Model-View-ViewModel) architectural pattern, promoting a clear separation of concerns and facilitating maintainable, testable, and scalable code.
 
-```markdown
+```bash
 src
 ├── App.tsx
 ├── models
@@ -214,8 +220,8 @@ src
   - Utilizes reusable components to build UI @/views/components.
   - Full unique screen UI's from /components and react-native components @/views/screens - sometimes broken down into smaller components.
   - Handles user interactions and displays data provided by the ViewModel.
-  - Only Handles UI logic, keeping testing simple.
-  - Test Covered full Screens.
+  - Handles only UI logic, simplifying testing.
+  - All screens are fully covered by tests.
 
 ### ViewModel:
 
@@ -271,7 +277,7 @@ This command will run typescript checks on all typescript files.
 
 ## Running Linting
 
-To ensure type safety and catch potential issues, you can run TypeScript checks by executing:
+To ensure code consistency and catch potential style issues, you can run linting by executing:
 
 ```bash
 yarn lint
@@ -287,17 +293,16 @@ This command will run lint on all files in the repository.
 - React Query: Integrated via @tanstack/react-query, it simplifies server data synchronization for CarShop. It manages caching, background updates, and syncing of the car data from APIs like api/carPosts and api/supportedCarBrandsAndModels.
 - React Context: Manages global state such as user preferences (UserContext) and theme preferences (ThemeContext), with automatic persistence through AsyncStorage (@react-native-async-storage/async-storage).
 - Axios: The app uses axios for handling all HTTP requests, allowing CarShop to interact with server data for actions like fetching, adding, updating, and deleting car posts.
-- Geolocation and Maps: CarShop includes location-based features with react-native-geolocation-service for accessing the user’s GPS coordinates and react-native-maps for map integration. This is especially useful in features such as showing nearby car dealerships or visualizing a car’s location.
+- Geolocation and Maps: CarShop leverages react-native-geolocation-service to access GPS coordinates and integrates react-native-maps for map-based features.
 - JSON Server: A lightweight mock server (json-server) used during development to simulate RESTful API behavior, enabling you to develop and test against car data without requiring a full backend.
 - Jest and React Testing Library: The app’s testing framework includes Jest (jest, babel-jest) and React Testing Library for unit and integration tests on components, hooks, and services. Testing hooks like useAddCarForm, useCarFilters, and more ensure all business logic works as expected.
 - Prettier and ESLint: Prettier is used for formatting code, and ESLint ensures consistent code style and catches potential errors early. The setup helps maintain clean, readable, and high-quality code.
 
 ## What could be better, where to continue?
 
-- UI is responsive but not beautiful. It functions well but needs expansion of UI components and more time on screens.
+- The UI is responsive but could benefit from further refinement and additional attention to aesthetics. Expanding UI components and enhancing screen designs is an area for improvement.
 - View /components Unit Tests - Only Screens are covered.
-- Android adjustments for smooth multi-platform experience. App was built as IOS-first.
-- Navigation types streamlining and refactoring. We have to TS errors but it still needs work.
+- Refining navigation types and refactoring is ongoing. While there are no current TypeScript errors or casting issues, further improvements can still be made.
 - Type casting / "any" being used in a few tests. There are not many of them so it would be good to refactor. "any" is never used in components / hooks.
 
 ## License
