@@ -48,7 +48,7 @@ const FiltersHeader: React.FC<FiltersHeaderProps> = ({
             : `All ${title}`
         }
         style={{
-          backgroundColor: currentValue ? colors.notification : colors.card,
+          backgroundColor: currentValue ? colors.primary : colors.card,
         }}
         onPress={() => toggleModal(modalKey)}
       />
@@ -76,6 +76,11 @@ const FiltersHeader: React.FC<FiltersHeaderProps> = ({
             title={
               !filters.areFiltersActive ? 'No Filters Set' : 'Reset Filters'
             }
+            style={{
+              backgroundColor: !filters.areFiltersActive
+                ? colors.card
+                : colors.notification,
+            }}
             onPress={filterFunctions.resetFilters}
             disabled={!filters.areFiltersActive}
           />
@@ -84,7 +89,7 @@ const FiltersHeader: React.FC<FiltersHeaderProps> = ({
             style={{
               backgroundColor: !filters.showOnlyUserCars
                 ? colors.card
-                : colors.notification,
+                : colors.primary,
             }}
             onPress={() =>
               filterFunctions.setShowOnlyUserCars(!filters.showOnlyUserCars)

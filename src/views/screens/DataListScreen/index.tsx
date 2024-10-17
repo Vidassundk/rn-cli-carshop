@@ -69,7 +69,7 @@ const DataListScreen: React.FC = () => {
           ListHeaderComponent={
             <View
               style={{
-                gap: spacing.sm,
+                gap: spacing.md,
                 marginVertical: spacing.md,
               }}>
               <View style={{marginBottom: spacing.md}}>

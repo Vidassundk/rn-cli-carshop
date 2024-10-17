@@ -67,15 +67,13 @@ const SettingsScreen = () => {
           style={[
             styles.button,
             {
-              backgroundColor: colors.primary,
+              backgroundColor: theme === 'dark' ? colors.card : colors.primary,
               padding: spacing.md,
               borderRadius: spacing.sm,
             },
           ]}
           onPress={handleChangeUserName}>
-          <ThemedText style={[styles.buttonText, {color: colors.text}]}>
-            Update Username
-          </ThemedText>
+          <ThemedText style={[styles.buttonText]}>Update Username</ThemedText>
         </TouchableOpacity>
       </View>
 
@@ -119,6 +117,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontWeight: 'bold',
+    color: 'white',
   },
   switchContainer: {
     flexDirection: 'row',
