@@ -9,6 +9,7 @@ module.exports = {
   },
   transformIgnorePatterns: [
     'node_modules/(?!(react-native|@react-native|@testing-library|@react-navigation)/)',
+    'node_modules/(?!(react-native|react-native-geolocation-service|react-native-maps|@react-native|react-native-vector-icons)/)',
   ],
   testMatch: ['**/?(*.)+(spec|test).ts?(x)'],
   testTimeout: 10000,

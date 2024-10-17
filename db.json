@@ -166,17 +166,6 @@
       "id": "93c6"
     },
     {
-      "userId": "User1",
-      "photoUrl": "https://images.unsplash.com/photo-1550517615-c3f4eb9a306d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxWb2xrc3dhZ2VuJTIwUGFzc2F0JTIwY2FyfGVufDB8fHx8MTcyODc0MTU3OXww&ixlib=rb-4.0.3&q=80&w=1080",
-      "brand": "Volkswagen",
-      "model": "Touareg",
-      "gearbox": "Manual",
-      "color": "Green",
-      "makeYear": 2016,
-      "datePosted": "2024-10-08",
-      "id": "2f58"
-    },
-    {
       "userId": "User4",
       "photoUrl": "https://images.unsplash.com/photo-1608506876688-ab805ee6c2c6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxBdWRpJTIwQTQlMjBjYXJ8ZW58MHx8fHwxNzI4NzQxNTc3fDA&ixlib=rb-4.0.3&q=80&w=1080",
       "brand": "Audi",
@@ -430,17 +419,6 @@
       "id": "0cf0"
     },
     {
-      "id": "wldbux",
-      "userId": "User1",
-      "brand": "Audi",
-      "model": "A4",
-      "makeYear": 2020,
-      "gearbox": "Manual",
-      "color": "Blue",
-      "photoUrl": "https://images.unsplash.com/photo-1663832871970-ce04419ea2ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxBdWRpJTIwQTR8ZW58MHx8fHwxNzI4OTg4ODYzfDA&ixlib=rb-4.0.3&q=80&w=1080",
-      "datePosted": "2024-10-15"
-    },
-    {
       "id": "0xl3j3",
       "userId": "User1",
       "brand": "BMW",
@@ -472,6 +450,28 @@
       "color": "Black",
       "photoUrl": "https://images.unsplash.com/photo-1554475130-b9114b7e0aac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxCTVclMjAxJTIwU2VyaWVzfGVufDB8fHx8MTcyODk5MTYyMXww&ixlib=rb-4.0.3&q=80&w=1080",
       "datePosted": "2024-10-15"
+    },
+    {
+      "id": "zo9jkz",
+      "userId": "User1",
+      "brand": "Toyota",
+      "model": "Corolla",
+      "makeYear": 2024,
+      "gearbox": "Manual",
+      "color": "White",
+      "photoUrl": "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxUb3lvdGElMjBDb3JvbGxhfGVufDB8fHx8MTcyODk5MTYxM3ww&ixlib=rb-4.0.3&q=80&w=1080",
+      "datePosted": "2024-10-17"
+    },
+    {
+      "id": "krzydg",
+      "userId": "User1",
+      "brand": "Honda",
+      "model": "HR-V",
+      "makeYear": 2024,
+      "gearbox": "Manual",
+      "color": "Black",
+      "photoUrl": "https://images.unsplash.com/photo-1531545514256-b1400bc00f31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxIb25kYSUyMEhSLVZ8ZW58MHx8fHwxNzI4OTkxNjE1fDA&ixlib=rb-4.0.3&q=80&w=1080",
+      "datePosted": "2024-10-17"
     }
   ],
   "supportedCarBrandsAndModels": [
@@ -503,7 +503,8 @@
           "name": "Highlander",
           "image": "https://images.unsplash.com/photo-1706646533911-4b36c6e9b452?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxUb3lvdGElMjBIaWdobGFuZGVyfGVufDB8fHx8MTcyODk5MTYxNHww&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "c56a"
     },
     {
       "brand": "Honda",
@@ -533,7 +534,8 @@
           "name": "Pilot",
           "image": "https://images.unsplash.com/photo-1494367079857-303d616995e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxIb25kYSUyMFBpbG90fGVufDB8fHx8MTcyODk5MTYxNnww&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "6640"
     },
     {
       "brand": "Ford",
@@ -563,7 +565,8 @@
           "name": "F-150",
           "image": "https://images.unsplash.com/photo-1564435147636-8ca0966b0275?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxGb3JkJTIwRi0xNTB8ZW58MHx8fHwxNzI4OTkxNjE3fDA&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "0487"
     },
     {
       "brand": "Chevrolet",
@@ -593,7 +596,8 @@
           "name": "Silverado",
           "image": "https://images.unsplash.com/photo-1647698848537-c72bd8049ed0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxDaGV2cm9sZXQlMjBTaWx2ZXJhZG98ZW58MHx8fHwxNzI4OTkxNjE5fDA&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "bdd2"
     },
     {
       "brand": "Nissan",
@@ -623,7 +627,8 @@
           "name": "Pathfinder",
           "image": "https://images.unsplash.com/photo-1549156512-41b188820ac5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxOaXNzYW4lMjBQYXRoZmluZGVyfGVufDB8fHx8MTcyODk5MTYyMHww&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "fdd3"
     },
     {
       "brand": "BMW",
@@ -653,7 +658,8 @@
           "name": "X7",
           "image": "https://images.unsplash.com/photo-1605437174790-ddc5e83c39f1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxCTVclMjBYN3xlbnwwfHx8fDE3Mjg5OTE2MjJ8MA&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "0c32"
     },
     {
       "brand": "Mercedes-Benz",
@@ -683,7 +689,8 @@
           "name": "S-Class",
           "image": "https://images.unsplash.com/photo-1657976763238-baab2fee9c53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxNZXJjZWRlcy1CZW56JTIwUy1DbGFzc3xlbnwwfHx8fDE3Mjg5OTE2MjR8MA&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "baef"
     },
     {
       "brand": "Audi",
@@ -713,7 +720,8 @@
           "name": "Q7",
           "image": "https://images.unsplash.com/photo-1694635126316-3d79d6ae0c82?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxBdWRpJTIwUTd8ZW58MHx8fHwxNzI5MDEzNjE1fDA&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "2ecc"
     },
     {
       "brand": "Volkswagen",
@@ -743,7 +751,8 @@
           "name": "Touareg",
           "image": "https://images.unsplash.com/photo-1655125910638-8b582f37840f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxWb2xrc3dhZ2VuJTIwVG91YXJlZ3xlbnwwfHx8fDE3MjkwMTM2MTd8MA&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "9b0b"
     },
     {
       "brand": "Hyundai",
@@ -773,7 +782,8 @@
           "name": "Accent",
           "image": "https://images.unsplash.com/photo-1679943148492-4be81fd6ad0a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxIeXVuZGFpJTIwQWNjZW50fGVufDB8fHx8MTcyOTAxMzYxOXww&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "6cf2"
     },
     {
       "brand": "Kia",
@@ -803,7 +813,8 @@
           "name": "Telluride",
           "image": "https://images.unsplash.com/photo-1651041940745-9f04e2f72a1a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxLaWElMjBUZWxsdXJpZGV8ZW58MHx8fHwxNzI5MDEzNjIwfDA&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "29a8"
     },
     {
       "brand": "Mazda",
@@ -833,7 +844,8 @@
           "name": "MX-5 Miata",
           "image": "https://images.unsplash.com/photo-1495364152808-2676f284aac8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxNYXpkYSUyME1YLTUlMjBNaWF0YXxlbnwwfHx8fDE3MjkwMTM2MjJ8MA&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "c92c"
     },
     {
       "brand": "Subaru",
@@ -863,7 +875,8 @@
           "name": "WRX",
           "image": "https://images.unsplash.com/photo-1616804087673-cdcd32e5578f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxTdWJhcnUlMjBXUlh8ZW58MHx8fHwxNzI5MDEzNjI0fDA&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "2777"
     },
     {
       "brand": "Tesla",
@@ -885,7 +898,8 @@
           "name": "Model Y",
           "image": "https://images.unsplash.com/photo-1671078215617-13242979a317?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxUZXNsYSUyME1vZGVsJTIwWXxlbnwwfHx8fDE3MjkwMTM2MjV8MA&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "5b47"
     },
     {
       "brand": "Volvo",
@@ -915,7 +929,8 @@
           "name": "S90",
           "image": "https://images.unsplash.com/photo-1656200731767-ecfb9e24b929?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxWb2x2byUyMFM5MHxlbnwwfHx8fDE3MjkwMTM2Mjd8MA&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "5aa4"
     },
     {
       "brand": "Jeep",
@@ -941,7 +956,8 @@
           "name": "Compass",
           "image": "https://images.unsplash.com/photo-1629373373535-b5e644663c32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxKZWVwJTIwQ29tcGFzc3xlbnwwfHx8fDE3MjkwMTgwMTN8MA&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "d41e"
     },
     {
       "brand": "Porsche",
@@ -967,7 +983,8 @@
           "name": "Taycan",
           "image": "https://images.unsplash.com/photo-1595429610407-1319461be693?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxQb3JzY2hlJTIwVGF5Y2FufGVufDB8fHx8MTcyOTAxODAxNHww&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "76a7"
     },
     {
       "brand": "Land Rover",
@@ -993,7 +1010,8 @@
           "name": "Evoque",
           "image": "https://images.unsplash.com/photo-1659720361316-a8756b65c9dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxMYW5kJTIwUm92ZXIlMjBFdm9xdWV8ZW58MHx8fHwxNzI5MDE4MDE2fDA&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "5a7b"
     },
     {
       "brand": "Jaguar",
@@ -1023,7 +1041,8 @@
           "name": "F-TYPE",
           "image": "https://images.unsplash.com/photo-1685604089554-bfcb5fe82b77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxKYWd1YXIlMjBGLVRZUEV8ZW58MHx8fHwxNzI5MDE4MDE4fDA&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "0fbe"
     },
     {
       "brand": "Ferrari",
@@ -1045,7 +1064,8 @@
           "name": "SF90 Stradale",
           "image": "https://images.unsplash.com/photo-1712356842368-edaa6d2fe49b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxGZXJyYXJpJTIwU0Y5MCUyMFN0cmFkYWxlfGVufDB8fHx8MTcyOTAxODAxOXww&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "6fe6"
     },
     {
       "brand": "Lamborghini",
@@ -1063,7 +1083,8 @@
           "name": "Urus",
           "image": "https://images.unsplash.com/photo-1620591310087-37f0982bc84b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxMYW1ib3JnaGluaSUyMFVydXN8ZW58MHx8fHwxNzI4OTg4ODY0fDA&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "d5a1"
     },
     {
       "brand": "Maserati",
@@ -1085,7 +1106,8 @@
           "name": "GranTurismo",
           "image": "https://images.unsplash.com/photo-1692966307728-1d615077f813?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxNYXNlcmF0aSUyMEdyYW5UdXJpc21vfGVufDB8fHx8MTcyOTAxODAyMXww&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "1143"
     },
     {
       "brand": "McLaren",
@@ -1107,7 +1129,8 @@
           "name": "GT",
           "image": "https://images.unsplash.com/photo-1649182356401-48ce7123de2b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxNY0xhcmVuJTIwR1R8ZW58MHx8fHwxNzI5MDE4MDIyfDA&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "1832"
     },
     {
       "brand": "Bentley",
@@ -1129,7 +1152,8 @@
           "name": "Mulsanne",
           "image": "https://images.unsplash.com/photo-1617566347924-ad5ebdaa014e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxCZW50bGV5JTIwTXVsc2FubmV8ZW58MHx8fHwxNzI5MDE4MDIzfDA&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "6c12"
     },
     {
       "brand": "Rolls-Royce",
@@ -1155,7 +1179,8 @@
           "name": "Phantom",
           "image": "https://images.unsplash.com/photo-1653159721808-6f3708484d64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjQwMTR8MHwxfHNlYXJjaHwxfHxSb2xscy1Sb3ljZSUyMFBoYW50b218ZW58MHx8fHwxNzI5MDE4MDI0fDA&ixlib=rb-4.0.3&q=80&w=1080"
         }
-      ]
+      ],
+      "id": "e793"
     }
   ]
 }

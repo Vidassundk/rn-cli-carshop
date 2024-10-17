@@ -1,67 +1,143 @@
 import React from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
-import {useGeolocation} from '../../viewmodels/data/useGeolocation';
+import {useGeolocation} from '@/viewmodels/data/useGeolocation';
+import {useTheme} from '@/viewmodels/context/ThemeContext';
 
-const GeolocationScreen = () => {
+interface Location {
+  latitude: number;
+  longitude: number;
+}
+
+const GeolocationScreen: React.FC = () => {
   const {
     location,
     errorMsg,
     isFollowing,
     mapRef,
     actions: {toggleFollowMode, reCenterMap, zoomIn, zoomOut},
-  } = useGeolocation(); // Use the ViewModel
+  } = useGeolocation();
+
+  const {colors, spacing} = useTheme();
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: colors.background}]}>
       {location ? (
         <>
-          <MapView
-            ref={mapRef} // Assign the reference to the MapView from ViewModel
-            style={styles.map}
-            initialRegion={{
-              latitude: location.latitude,
-              longitude: location.longitude,
-              latitudeDelta: 0.01,
-              longitudeDelta: 0.01,
-            }}>
-            <Marker
-              coordinate={{
-                latitude: location.latitude,
-                longitude: location.longitude,
-              }}
-              title="Your Location"
-            />
-          </MapView>
-
-          {/* Overlay with Coordinates */}
-          <View style={styles.coordinatesContainer}>
-            <Text style={styles.coordinatesText}>
-              Latitude: {location.latitude.toFixed(6)}
-            </Text>
-            <Text style={styles.coordinatesText}>
-              Longitude: {location.longitude.toFixed(6)}
-            </Text>
-          </View>
-
-          {/* Button Container */}
-          <View style={styles.buttonContainer}>
-            <Button
-              title={isFollowing ? 'Disable Follow Mode' : 'Enable Follow Mode'}
-              onPress={toggleFollowMode}
-            />
-            <Button title="Re-center" onPress={reCenterMap} />
-
-            {/* Zoom In Button */}
-
-            <Button title="Zoom In" onPress={zoomIn} />
-
-            <Button title="Zoom Out" onPress={zoomOut} />
-          </View>
+          <LocationMap location={location} mapRef={mapRef} />
+          <CoordinatesDisplay location={location} />
+          <Controls
+            isFollowing={isFollowing}
+            toggleFollowMode={toggleFollowMode}
+            reCenterMap={reCenterMap}
+            zoomIn={zoomIn}
+            zoomOut={zoomOut}
+          />
         </>
       ) : (
-        <Text>{errorMsg ? errorMsg : 'Fetching location...'}</Text>
+        <Text
+          style={[
+            styles.errorText,
+            {color: colors.text, marginTop: spacing.lg},
+          ]}>
+          {errorMsg || 'Fetching location...'}
+        </Text>
       )}
+    </View>
+  );
+};
+
+interface LocationMapProps {
+  location: Location;
+  mapRef: React.RefObject<MapView>;
+}
+
+const LocationMap: React.FC<LocationMapProps> = ({location, mapRef}) => (
+  <MapView
+    testID="map-view"
+    ref={mapRef}
+    style={styles.map}
+    initialRegion={{
+      latitude: location.latitude,
+      longitude: location.longitude,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01,
+    }}>
+    <Marker
+      coordinate={{
+        latitude: location.latitude,
+        longitude: location.longitude,
+      }}
+      title="Your Location"
+    />
+  </MapView>
+);
+
+interface CoordinatesDisplayProps {
+  location: Location;
+}
+
+const CoordinatesDisplay: React.FC<CoordinatesDisplayProps> = ({location}) => {
+  const {colors, spacing} = useTheme();
+  return (
+    <View
+      style={[
+        styles.coordinatesContainer,
+        {
+          top: spacing.sm,
+          backgroundColor: colors.card,
+          opacity: 0.8,
+          padding: spacing.sm,
+          borderRadius: spacing.xs,
+        },
+      ]}>
+      <Text
+        testID="latitude-text"
+        style={[styles.coordinatesText, {color: colors.text}]}>
+        Latitude: {location.latitude.toFixed(6)}
+      </Text>
+      <Text
+        testID="longitude-text"
+        style={[styles.coordinatesText, {color: colors.text}]}>
+        Longitude: {location.longitude.toFixed(6)}
+      </Text>
+    </View>
+  );
+};
+
+interface ControlsProps {
+  isFollowing: boolean;
+  toggleFollowMode: () => void;
+  reCenterMap: () => void;
+  zoomIn: () => void;
+  zoomOut: () => void;
+}
+
+const Controls: React.FC<ControlsProps> = ({
+  isFollowing,
+  toggleFollowMode,
+  reCenterMap,
+  zoomIn,
+  zoomOut,
+}) => {
+  const {spacing} = useTheme();
+  return (
+    <View
+      style={[
+        styles.buttonContainer,
+        {
+          bottom: spacing.md,
+          right: spacing.md,
+          left: spacing.md,
+        },
+      ]}>
+      <Button
+        title={isFollowing ? 'Disable Follow Mode' : 'Enable Follow Mode'}
+        onPress={toggleFollowMode}
+      />
+      <Button disabled={isFollowing} title="Re-center" onPress={reCenterMap} />
+      <Button title="Zoom In" onPress={zoomIn} />
+      <Button title="Zoom Out" onPress={zoomOut} />
     </View>
   );
 };
@@ -78,23 +154,18 @@ const styles = StyleSheet.create({
   },
   coordinatesContainer: {
     position: 'absolute',
-    bottom: 140,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    padding: 10,
-    borderRadius: 10,
   },
   coordinatesText: {
-    color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
   },
   buttonContainer: {
     position: 'absolute',
-    bottom: 20,
-    right: 20,
-    left: 20,
     flexDirection: 'column',
     justifyContent: 'space-between',
+  },
+  errorText: {
+    textAlign: 'center',
   },
 });
 
