@@ -1,5 +1,9 @@
 import React from 'react';
-import {NavigationContainer, RouteProp} from '@react-navigation/native';
+import {
+  NavigationContainer,
+  RouteProp,
+  useNavigation,
+} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {
   createStackNavigator,
@@ -41,45 +45,67 @@ const iconMap: Record<string, {focused: string; unfocused: string}> = {
 };
 
 const TabBarIcon = ({
-  route,
+  routeName,
   focused,
   color,
 }: {
-  route: RouteProp<RootTabParamList, keyof RootTabParamList>;
+  routeName: keyof RootTabParamList;
   focused: boolean;
   color: string;
 }) => {
-  const icons = iconMap[route.name];
+  const icons = iconMap[routeName];
   const iconName = focused ? icons.focused : icons.unfocused;
   return <Icon name={iconName} size={24} color={color} />;
 };
 
-type TabNavigatorProps = {
-  navigation: StackNavigationProp<RootStackParamList, 'Main'>;
+const createTabBarIcon =
+  (routeName: keyof RootTabParamList) =>
+  ({focused, color}: {focused: boolean; color: string}) =>
+    <TabBarIcon routeName={routeName} focused={focused} color={color} />;
+
+const useScreenOptions = ({
+  route,
+}: {
+  route: RouteProp<RootTabParamList, keyof RootTabParamList>;
+}) => {
+  const {colors} = useTheme();
+
+  return {
+    tabBarIcon: createTabBarIcon(route.name),
+    tabBarActiveTintColor: colors.primary,
+    tabBarInactiveTintColor: colors.text,
+    tabBarStyle: {
+      paddingBottom: 12,
+      paddingTop: 4,
+      backgroundColor: colors.card,
+      height: 70,
+    },
+  };
 };
 
-const TabNavigator = ({navigation}: TabNavigatorProps) => (
-  <Tab.Navigator
-    screenOptions={({route}) => ({
-      tabBarIcon: ({focused, color}) => (
-        <TabBarIcon route={route} focused={focused} color={color} />
-      ),
-      tabBarActiveTintColor: 'black',
-      tabBarInactiveTintColor: 'gray',
-    })}>
+const DataListHeaderRight = () => {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+  return (
+    <FilterButton
+      title="Add New"
+      ghost
+      style={styles.addButton}
+      onPress={() => navigation.navigate('AddDataScreen')}
+    />
+  );
+};
+
+const DataListScreenOptions = {
+  headerRight: DataListHeaderRight,
+};
+
+const TabNavigator = () => (
+  <Tab.Navigator screenOptions={useScreenOptions}>
     <Tab.Screen name="Home" component={HomeScreen} />
     <Tab.Screen
       name="DataList"
       component={DataListScreen}
-      options={{
-        headerRight: () => (
-          <FilterButton
-            title="Add New"
-            ghost
-            style={styles.addButton}
-            onPress={() => navigation.navigate('AddDataScreen')} />
-        ),
-      }}
+      options={DataListScreenOptions}
     />
     <Tab.Screen name="Location" component={GeolocationScreen} />
     <Tab.Screen name="Settings" component={SettingsScreen} />
