@@ -7,16 +7,19 @@ import {
 } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
-import HomeScreen from '../views/screens/HomeScreen';
-import DataListScreen from '../views/screens/DataListScreen';
-import GeolocationScreen from '../views/screens/GeolocationScreen';
-import SettingsScreen from '../views/screens/SettingsScreen';
-import AddDataScreen from '../views/screens/AddDataScreen';
-import {useTheme} from '../viewmodels/context/ThemeContext';
+import HomeScreen from '@/views/screens/HomeScreen';
+import DataListScreen from '@/views/screens/DataListScreen';
+import GeolocationScreen from '@/views/screens/GeolocationScreen';
+import SettingsScreen from '@/views/screens/SettingsScreen';
+import AddDataScreen from '@/views/screens/AddDataScreen';
+import {useTheme} from '@/viewmodels/context/ThemeContext';
+import {Car} from '@/models/entities/Car';
+import DetailScreen from '@/views/screens/DetailScreen';
 
 export type RootStackParamList = {
   Main: undefined;
   AddDataScreen: undefined;
+  DetailScreen: {car: Car};
 };
 
 export type RootTabParamList = {
@@ -97,6 +100,11 @@ const AppNavigator = () => {
           name="AddDataScreen"
           component={AddDataScreen}
           options={{title: 'Add Car'}}
+        />
+        <Stack.Screen
+          name="DetailScreen"
+          component={DetailScreen}
+          options={{title: 'Car Details'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

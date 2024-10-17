@@ -65,6 +65,7 @@ const DataListScreen: React.FC = () => {
       ) : (
         <FlatList
           testID="flat-list-cars"
+          showsVerticalScrollIndicator={false}
           ListHeaderComponent={
             <View
               style={{
@@ -94,7 +95,9 @@ const DataListScreen: React.FC = () => {
           renderItem={({item}) => (
             <CarItem
               car={item}
-              onClickDelete={
+              style={{marginHorizontal: spacing.md}}
+              onPress={car => navigation.navigate('DetailScreen', {car})}
+              onPressDelete={
                 item.isUserCar
                   ? () => mutations.deleteExistingCar(item.id)
                   : undefined
