@@ -1,79 +1,282 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+Car Shop
+Welcome to Car Shop, a comprehensive React Native application designed to help users manage and view car listings. Whether you're looking to add your own vehicles, explore cars from others, or fine-tune your preferences through filters and sorting, Car Shop offers a seamless and intuitive experience.
 
-# Getting Started
+## Table of Contents
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Project Structure](#project-structure)
+- [MVVM Architecture Overview](#mvvm-architecture-overview)
+  - [Benefits of MVVM](#benefits-of-mvvm)
+  - [File Responsibilities](#file-responsibilities)
+- [Running Tests](#running-tests)
+- [Technologies Used](#technologies-used)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Step 1: Start the Metro Server
+## Features
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+- Add New Cars: Users can add new cars with details such as brand, model, year, gearbox, color, and photo.
+- View Car Listings: Browse through a comprehensive list of cars, including those uploaded by other users.
+- Filter and Sort: Utilize advanced filtering and sorting options to find cars that match your preferences.
+- Geolocation: Find cars near your current location with integrated geolocation features.
+- User Settings: Manage personal information, set a username, and switch between light and dark themes.
+- Dark Mode Support: Enjoy a sleek dark mode for a comfortable viewing experience in low-light environments.
+- Responsive Design: Optimized for various screen sizes and devices to ensure a consistent user experience.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## Getting Started
+
+### Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- Node.js: Install Node.js (version 14 or higher recommended).
+- Yarn: Install Yarn package manager.
+- React Native Environment: Set up your development environment for React Native by following the official guide.
+
+### Installation
+
+Clone the Repository:
 
 ```bash
-# using npm
-npm start
+git clone https://github.com/yourusername/car-shop.git
+cd car-shop
+```
 
-# OR using Yarn
+Install Dependencies:
+
+```bash
+yarn
+```
+
+Install iOS Pods (if developing for iOS):
+
+```bash
+yarn pods
+```
+
+Start the Metro Bundler:
+
+```bash
 yarn start
 ```
 
-## Step 2: Start your Application
+Run the App:
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
+- For iOS:
 
 ```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
 yarn ios
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+- For Android:
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+```bash
+yarn android
+```
 
-## Step 3: Modifying your App
+Start the Backend Server (if applicable):
 
-Now that you have successfully run the app, let's modify it.
+```bash
+yarn server
+```
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+Ensure you have a backend server set up and configured properly.
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+## Project Structure
 
-## Congratulations! :tada:
+The project follows the MVVM (Model-View-ViewModel) architectural pattern, promoting a clear separation of concerns and facilitating maintainable, testable, and scalable code.
 
-You've successfully run and modified your React Native App. :partying_face:
+```markdown
+src
+├── App.tsx
+├── models
+│ ├── constants
+│ │ └── carColors.ts
+│ ├── entities
+│ │ ├── Car.ts
+│ │ ├── SupportedCar.ts
+│ │ └── User.ts
+│ └── repositories
+│ ├── CarPostsService.ts
+│ ├── SupportedCarsService.ts
+│ └── tests
+│ ├── CarPostsService.test.ts
+│ └── SupportedCarsService.test.ts
+├── navigation
+│ └── AppNavigator.tsx
+├── utils
+│ └── hooks
+│ ├── tests
+│ │ └── useYearOptions.test.ts
+│ └── useYearOptions.ts
+├── viewmodels
+│ ├── context
+│ │ ├── ThemeContext.tsx
+│ │ ├── UserContext.tsx
+│ │ └── tests
+│ │ ├── ThemeContext.test.tsx
+│ │ └── UserContext.test.tsx
+│ ├── data
+│ │ ├── tests
+│ │ │ ├── useCarPostsService.test.ts
+│ │ │ ├── useGeolocation.test.ts
+│ │ │ └── useSupportedCarService.test.ts
+│ │ ├── useCarPostsService.ts
+│ │ ├── useGeolocation.ts
+│ │ └── useSupportedCarService.ts
+│ └── handling
+│ ├── addCar
+│ │ ├── tests
+│ │ │ ├── useAddCarForm.test.ts
+│ │ │ ├── useCarImageUploader.test.ts
+│ │ │ └── useCarValidation.test.ts
+│ │ ├── useAddCarForm.ts
+│ │ ├── useCarImageUpdater.ts
+│ │ └── useCarValidation.ts
+│ └── viewCars
+│ ├── tests
+│ │ ├── useCarDataHandling.test.ts
+│ │ ├── useCarFilters.test.ts
+│ │ ├── useCarSearch.test.ts
+│ │ └── useCarSorting.test.ts
+│ ├── useCarDataHandling.ts
+│ ├── useCarFilters.ts
+│ ├── useCarSearch.ts
+│ └── useCarSorting.ts
+└── views
+├── components
+│ ├── CarItem.tsx
+│ ├── FilterButton.tsx
+│ ├── FilterModal.tsx
+│ ├── Loader.tsx
+│ ├── NavigatableText.tsx
+│ ├── PickerComponent.tsx
+│ ├── PickerField.tsx
+│ ├── PickerModal.tsx
+│ └── ThemedText.tsx
+└── screens
+├── AddDataScreen.tsx
+├── DataListScreen
+│ ├── tests
+│ │ └── DataListScreen.test.tsx
+│ ├── components
+│ │ ├── FiltersHeader.tsx
+│ │ ├── SearchBar.tsx
+│ │ ├── SortingHeader.tsx
+│ │ └── tests
+│ │ ├── FiltersHeader.test.tsx
+│ │ ├── SearchBar.test.tsx
+│ │ └── SortingHeader.test.tsx
+│ └── index.tsx
+├── DetailScreen
+│ ├── AnimatedHeader.tsx
+│ ├── tests
+│ │ ├── AnimatedHeader.test.tsx
+│ │ └── DetailScreen.test.tsx
+│ └── index.tsx
+├── GeolocationScreen.tsx
+├── HomeScreen.tsx
+├── SettingsScreen.tsx
+└── tests
+├── AddDataScreen.test.tsx
+├── GeolocationScreen.test.tsx
+├── HomeScreen.test.tsx
+└── SettingsScreen.test.tsx
+```
 
-### Now what?
+## MVVM Architecture Overview
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+### Model:
 
-# Troubleshooting
+- Location: src/models
+- Responsibilities:
+  - Defines the data structures (entities) such as Car, User, and SupportedCar.
+  - Manages data operations through repositories like CarPostsService and SupportedCarsService.
+  - Contains constants used across the app, such as car colors.
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+### View:
 
-# Learn More
+- Location: src/views
+- Responsibilities:
+  - Renders the UI components and screens.
+  - Utilizes reusable components to build screens like HomeScreen, DataListScreen, AddDataScreen, etc.
+  - Handles user interactions and displays data provided by the ViewModel.
 
-To learn more about React Native, take a look at the following resources:
+### ViewModel:
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+- Location: src/viewmodels
+- Responsibilities:
+  - Acts as an intermediary between the Model and the View.
+  - Manages state and business logic.
+  - Provides data and actions to the View through context and custom hooks.
+  - Handles operations like adding a car (useAddCarForm), filtering cars (useCarFilters), and managing user data (useCarDataHandling).
+
+### Benefits of MVVM
+
+- Separation of Concerns:
+  - Model, View, and ViewModel are clearly separated, making the codebase easier to manage and understand.
+  - Enhances maintainability by allowing developers to work on different parts of the app independently.
+- Testability:
+  - ViewModels can be unit tested without relying on the UI, ensuring that business logic works as expected.
+  - Facilitates writing comprehensive tests for data handling and state management.
+- Reusability:
+  - Reusable components and hooks reduce code duplication and promote consistency across the app.
+  - ViewModels can be reused across different views if needed.
+- Scalability:
+  - The architecture supports scaling as the app grows, allowing for the addition of new features without major refactoring.
+  - Modular structure makes it easier to navigate and extend the codebase.
+- Enhanced Readability:
+  - Clear separation and organized file structure improve code readability and developer onboarding.
+  - Simplifies understanding the flow of data and control within the app.
+
+## Running Tests
+
+The project includes unit tests for various components, hooks, and services. To run the tests, execute:
+
+```bash
+yarn test
+```
+
+This command will run all test suites located in the **tests** directories throughout the project.
+
+## Technologies Used
+
+- React Native: Framework for building native mobile apps using JavaScript and React.
+- TypeScript: Typed superset of JavaScript that compiles to plain JavaScript.
+- React Navigation: Routing and navigation for React Native apps.
+- React Context: For managing global state such as theme and user information.
+- Jest: JavaScript testing framework.
+- React Native Vector Icons: Icon library for React Native.
+- Other Libraries: As required by components and features.
+
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the Repository.
+2. Create a New Branch:
+
+```bash
+git checkout -b feature/YourFeature
+```
+
+3. Make Your Changes and Commit Them:
+
+```bash
+git commit -m "Add your feature"
+```
+
+4. Push to the Branch:
+
+```bash
+git push origin feature/YourFeature
+```
+
+5. Open a Pull Request.
+
+## License
+
+This project is licensed under the MIT License.
