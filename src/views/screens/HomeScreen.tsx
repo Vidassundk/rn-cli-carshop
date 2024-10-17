@@ -1,36 +1,21 @@
 import React from 'react';
 import {View, ScrollView, StyleSheet} from 'react-native';
-import {CompositeNavigationProp, useNavigation} from '@react-navigation/native';
-import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
-import {RootStackParamList, RootTabParamList} from '@/navigation/AppNavigator';
+import {useNavigation} from '@react-navigation/native';
+import {AppNavigationProp} from '@/navigation/AppNavigator';
 import ThemedText from '@/views/components/ThemedText';
 import {useAuth} from '@/viewmodels/context/UserContext';
 import {useCarDataHandling} from '@/viewmodels/handling/viewCars/useCarDataHandling';
 import {useTheme} from '@/viewmodels/context/ThemeContext';
-import {StackNavigationProp} from '@react-navigation/stack';
 import {NavigableText} from '@/views/components/NavigatableText';
-import Loader from '../components/Loader';
-
-type HomeScreenNavigationProp = CompositeNavigationProp<
-  BottomTabNavigationProp<RootTabParamList, 'Home'>,
-  StackNavigationProp<RootStackParamList>
->;
+import Loader from '@/views/components/Loader';
 
 const HomeScreen: React.FC = () => {
-  const navigation = useNavigation<HomeScreenNavigationProp>();
+  const navigation = useNavigation<AppNavigationProp>();
   const {userName} = useAuth();
   const {cars, status} = useCarDataHandling();
   const {spacing, colors, toggleTheme} = useTheme();
 
   const userCarsCount = cars.filter(car => car.isUserCar).length;
-
-  const navigateTo =
-    (
-      screen: keyof RootTabParamList | keyof RootStackParamList,
-      params?: object,
-    ) =>
-    () =>
-      navigation.navigate(screen as any, params);
 
   const renderLoadingState = () => (
     <View style={styles.loadingContainer}>
@@ -53,8 +38,8 @@ const HomeScreen: React.FC = () => {
     if (userCarsCount > 0) {
       return (
         <>
-          {' '}
-          <NavigableText onPress={navigateTo('DataList', {myCars: true})}>
+          <NavigableText
+            onPress={() => navigation.navigate('DataList', {myCars: true})}>
             {`${userCarsCount} of them are yours 🚗`}
           </NavigableText>
           . You can delete them or add new.
@@ -65,7 +50,7 @@ const HomeScreen: React.FC = () => {
         <>
           {'\n\n'}
           You haven't uploaded any cars yet. You can do so in the{' '}
-          <NavigableText onPress={navigateTo('AddDataScreen')}>
+          <NavigableText onPress={() => navigation.navigate('AddDataScreen')}>
             Add Data Screen
           </NavigableText>
           .
@@ -76,11 +61,11 @@ const HomeScreen: React.FC = () => {
 
   const renderCarData = () => (
     <ThemedText variant="p">
-      There are a total of {cars.length} cars uploaded into our app.
+      There are a total of {cars.length} cars uploaded into our app.{' '}
       {renderUserCarsInfo()}
       {'\n\n'}
       All of the cars can be visited in{' '}
-      <NavigableText onPress={navigateTo('DataList')}>
+      <NavigableText onPress={() => navigation.navigate('DataList', {})}>
         Data List Screen
       </NavigableText>
       .
@@ -100,7 +85,7 @@ const HomeScreen: React.FC = () => {
 
         <ThemedText variant="p">
           We have{' '}
-          <NavigableText onPress={navigateTo('Location')}>
+          <NavigableText onPress={() => navigation.navigate('Location')}>
             Geolocation
           </NavigableText>{' '}
           feature to find cars near you, but make sure you agree with location
@@ -109,7 +94,7 @@ const HomeScreen: React.FC = () => {
 
         <ThemedText variant="p">
           Finally,{' '}
-          <NavigableText onPress={navigateTo('Settings')}>
+          <NavigableText onPress={() => navigation.navigate('Settings')}>
             Settings
           </NavigableText>{' '}
           will allow you to set your personal user name and a{' '}
