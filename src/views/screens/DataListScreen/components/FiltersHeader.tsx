@@ -47,6 +47,9 @@ const FiltersHeader: React.FC<FiltersHeaderProps> = ({
             ? safelyConvertValueToString(currentValue)
             : `All ${title}`
         }
+        style={{
+          backgroundColor: currentValue ? colors.notification : colors.card,
+        }}
         onPress={() => toggleModal(modalKey)}
       />
       <PickerModal

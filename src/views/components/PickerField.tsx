@@ -28,7 +28,7 @@ const PickerField: React.FC<PickerFieldProps> = ({
   const {spacing, colors} = useTheme();
 
   return (
-    <View style={{opacity: disabled ? 0.6 : 1}}>
+    <View style={disabled ? styles.disabled : styles.enabled}>
       <ThemedText variant="p" style={{marginBottom: spacing.xs}}>
         {label}
       </ThemedText>
@@ -64,6 +64,12 @@ const styles = StyleSheet.create({
   modalTrigger: {
     borderWidth: 1.5,
     borderRadius: 4,
+  },
+  disabled: {
+    opacity: 0.6,
+  },
+  enabled: {
+    opacity: 1,
   },
 });
 

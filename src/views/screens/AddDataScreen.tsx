@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {
   View,
   Button,
@@ -58,30 +58,37 @@ const AddDataScreen: React.FC<AddDataScreenNavigationProp> = ({navigation}) => {
 
   const imageHeight = useRef(new Animated.Value(0)).current;
   const imageOpacity = useRef(new Animated.Value(0)).current;
+  const animateImage = useCallback(
+    (photoUrl: string | null) => {
+      Animated.parallel([
+        Animated.timing(imageHeight, {
+          toValue: photoUrl ? 200 : 0,
+          duration: 500,
+          useNativeDriver: false,
+        }),
+        Animated.timing(imageOpacity, {
+          toValue: photoUrl ? 1 : 0,
+          duration: 500,
+          useNativeDriver: false,
+        }),
+      ]).start();
+    },
+    [imageHeight, imageOpacity],
+  );
 
   useEffect(() => {
     animateImage(carData.photoUrl);
-  }, [carData.photoUrl]);
+  }, [carData.photoUrl, animateImage]);
 
-  const animateImage = (photoUrl: string | null) => {
-    Animated.parallel([
-      Animated.timing(imageHeight, {
-        toValue: photoUrl ? 200 : 0,
-        duration: 500,
-        useNativeDriver: false,
-      }),
-      Animated.timing(imageOpacity, {
-        toValue: photoUrl ? 1 : 0,
-        duration: 500,
-        useNativeDriver: false,
-      }),
-    ]).start();
-  };
-
-  if (isBrandsLoading) return <Loader />;
-  if (brandsError) return <ThemedText>{brandsError.message}</ThemedText>;
-  if (!supportedCarBrandsAndModels)
+  if (isBrandsLoading) {
+    return <Loader />;
+  }
+  if (brandsError) {
+    return <ThemedText>{brandsError.message}</ThemedText>;
+  }
+  if (!supportedCarBrandsAndModels) {
     return <ThemedText>Error: No car brands available</ThemedText>;
+  }
 
   const getModelOptions = () => {
     return [

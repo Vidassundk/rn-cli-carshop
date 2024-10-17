@@ -1,13 +1,12 @@
-import React from 'react';
-import {render, fireEvent} from '@testing-library/react-native';
+import {render} from '@testing-library/react-native';
 import GeolocationScreen from '../GeolocationScreen';
 import {useGeolocation} from '@/viewmodels/data/useGeolocation';
 import {useTheme} from '@/viewmodels/context/ThemeContext';
+import React from 'react';
 
 jest.mock('@/viewmodels/data/useGeolocation');
 jest.mock('@/viewmodels/context/ThemeContext');
 jest.mock('react-native-maps', () => {
-  const React = require('react');
   const {View} = require('react-native');
 
   const MockMapView = ({children, testID}: any) => (

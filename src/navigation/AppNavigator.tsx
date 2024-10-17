@@ -77,7 +77,7 @@ const TabNavigator = ({navigation}: TabNavigatorProps) => (
             title="Add New"
             ghost
             style={styles.addButton}
-            onPress={() => navigation.navigate('AddDataScreen')}></FilterButton>
+            onPress={() => navigation.navigate('AddDataScreen')} />
         ),
       }}
     />

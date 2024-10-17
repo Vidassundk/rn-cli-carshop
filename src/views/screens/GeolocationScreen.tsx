@@ -86,7 +86,6 @@ const CoordinatesDisplay: React.FC<CoordinatesDisplayProps> = ({location}) => {
         {
           top: spacing.sm,
           backgroundColor: colors.card,
-          opacity: 0.8,
           padding: spacing.sm,
           borderRadius: spacing.xs,
         },
@@ -154,6 +153,7 @@ const styles = StyleSheet.create({
   },
   coordinatesContainer: {
     position: 'absolute',
+    opacity: 0.8,
   },
   coordinatesText: {
     fontSize: 16,

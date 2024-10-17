@@ -92,14 +92,16 @@ const CarItem: React.FC<CarItemProps> = ({
         </ThemedText>
         {onPressDelete && (
           <TouchableOpacity
-            style={{
-              backgroundColor: colors.notification,
-              marginTop: spacing.sm,
-              paddingVertical: spacing.xs,
-              paddingHorizontal: spacing.md,
-              borderRadius: spacing.sm,
-              alignItems: 'center',
-            }}
+            style={[
+              styles.deleteButton,
+              {
+                backgroundColor: colors.notification,
+                marginTop: spacing.sm,
+                paddingVertical: spacing.xs,
+                paddingHorizontal: spacing.md,
+                borderRadius: spacing.sm,
+              },
+            ]}
             onPress={() => onPressDelete(car.id)}>
             <ThemedText>Delete</ThemedText>
           </TouchableOpacity>
@@ -127,6 +129,9 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
+  },
+  deleteButton: {
+    alignItems: 'center',
   },
 });
 
