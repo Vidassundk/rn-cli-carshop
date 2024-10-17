@@ -47,7 +47,8 @@ const CustomDarkTheme: Theme = {
   ...NavigationDarkTheme,
   colors: {
     ...NavigationDarkTheme.colors,
-    notification: '#FF3347',
+    notification: '#FF8C00',
+    primary: '#6699CC',
   },
 };
 
@@ -55,7 +56,8 @@ const CustomDefaultTheme: Theme = {
   ...NavigationDefaultTheme,
   colors: {
     ...NavigationDefaultTheme.colors,
-    notification: '#FFADAD',
+    notification: '#FF9966',
+    primary: '#00B9E8',
   },
 };
 
