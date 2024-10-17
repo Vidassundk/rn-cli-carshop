@@ -4,14 +4,13 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "ios": "react-native run-ios --simulator='iPhone 16'",
+    "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
     "pods": "npx pod-install",
     "server": "json-server --watch db.json --port 3001",
-    "db-reset": "node reset-db.js",
-    "db-populate-images": "node populate-db-images.js"
+    "quick-start": "yarn install && cd ios && npx pod-install && cd .. && yarn start"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.0.0",
