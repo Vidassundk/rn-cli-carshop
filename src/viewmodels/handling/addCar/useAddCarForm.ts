@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {Alert} from 'react-native';
 import {useAuth} from '../../context/UserContext';
 import {useSupportedCarsService} from '../../data/useSupportedCarService';
@@ -74,6 +74,19 @@ export const useAddCarForm = (
       Alert.alert('Error', 'Failed to add the car');
     }
   };
+
+  useEffect(() => {
+    if (carData.brand) {
+      const selectedBrandModels =
+        supportedCarBrandsAndModels
+          ?.find(brand => brand.brand === carData.brand)
+          ?.models.map(model => model.name) || [];
+
+      if (!selectedBrandModels.includes(carData.model?.toString() || '')) {
+        updateCarData('model', null);
+      }
+    }
+  }, [carData.brand, carData.model, supportedCarBrandsAndModels]);
 
   return {
     formData: {

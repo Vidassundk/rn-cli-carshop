@@ -3,15 +3,16 @@ import {useAddCarForm} from '../useAddCarForm';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {Alert} from 'react-native';
 import React from 'react';
-import {useAuth} from '../../../context/UserContext';
-import {useCarPostsService} from '../../../data/useCarPostsService';
-import {useSupportedCarsService} from '../../../data/useSupportedCarService';
-import {useCarValidation} from '../useCarValidation';
 
-jest.mock('../../../context/UserContext');
-jest.mock('../../../data/useCarPostsService');
-jest.mock('../../../data/useSupportedCarService');
-jest.mock('../../../../utils/hooks/useYearOptions', () => ({
+import {useCarValidation} from '../useCarValidation';
+import {useAuth} from '@/viewmodels/context/UserContext';
+import {useCarPostsService} from '@/viewmodels/data/useCarPostsService';
+import {useSupportedCarsService} from '@/viewmodels/data/useSupportedCarService';
+
+jest.mock('@/viewmodels//context/UserContext');
+jest.mock('@/viewmodels//data/useCarPostsService');
+jest.mock('@/viewmodels//data/useSupportedCarService');
+jest.mock('@/utils/hooks/useYearOptions', () => ({
   useYearOptions: jest.fn(() => [2023, 2022, 2021]),
 }));
 jest.mock('../useCarImageUpdater', () => ({
@@ -164,5 +165,31 @@ describe('useAddCarForm', () => {
 
     expect(mockAddNewCar).toHaveBeenCalled();
     expect(Alert.alert).toHaveBeenCalledWith('Error', 'Failed to add the car');
+  });
+  it('should reset the model if a brand is re-chosen and the current model is invalid for the new brand', () => {
+    const {result} = renderHook(() => useAddCarForm({} as any), {wrapper});
+
+    act(() => {
+      result.current.formData.updateCarData('brand', 'Toyota');
+      result.current.formData.updateCarData('model', 'Corolla');
+    });
+
+    expect(result.current.formData.carData.model).toBe('Corolla');
+
+    mockUseSupportedCarsService.mockReturnValue({
+      supportedBrandsAndModels: {
+        supportedCarBrandsAndModels: [
+          {brand: 'Honda', brandImage: 'url', models: [{name: 'Civic'}]},
+        ],
+        isBrandsLoading: false,
+        brandsError: null,
+      },
+    });
+
+    act(() => {
+      result.current.formData.updateCarData('brand', 'Honda');
+    });
+
+    expect(result.current.formData.carData.model).toBe(null);
   });
 });
