@@ -1,6 +1,6 @@
 import {useTheme} from '@/viewmodels/context/ThemeContext';
 import React from 'react';
-import {Text, TextProps, StyleSheet} from 'react-native';
+import {Text, TextProps, StyleSheet, TextStyle} from 'react-native';
 
 interface ThemedTextProps extends TextProps {
   variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'label';
@@ -9,12 +9,17 @@ interface ThemedTextProps extends TextProps {
 const ThemedText: React.FC<ThemedTextProps> = ({
   children,
   variant = 'p',
+  style,
   ...rest
 }) => {
   const {colors} = useTheme();
 
+  const variantStyle: TextStyle = styles[variant];
+
   return (
-    <Text style={[styles[variant], {color: colors.text}]} {...rest}>
+    <Text
+      style={[variantStyle, {color: colors.text}, style as TextStyle]}
+      {...rest}>
       {children}
     </Text>
   );

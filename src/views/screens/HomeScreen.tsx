@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ScrollView, ActivityIndicator, StyleSheet} from 'react-native';
+import {View, ScrollView, StyleSheet} from 'react-native';
 import {CompositeNavigationProp, useNavigation} from '@react-navigation/native';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import {RootStackParamList, RootTabParamList} from '@/navigation/AppNavigator';
@@ -9,6 +9,7 @@ import {useCarDataHandling} from '@/viewmodels/handling/viewCars/useCarDataHandl
 import {useTheme} from '@/viewmodels/context/ThemeContext';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {NavigableText} from '@/views/components/NavigatableText';
+import Loader from '../components/Loader';
 
 type HomeScreenNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<RootTabParamList, 'Home'>,
@@ -33,7 +34,7 @@ const HomeScreen: React.FC = () => {
 
   const renderLoadingState = () => (
     <View style={styles.loadingContainer}>
-      <ActivityIndicator color={colors.primary} />
+      <Loader />
       <ThemedText variant="p">😴 Loading Data...</ThemedText>
     </View>
   );
@@ -56,7 +57,7 @@ const HomeScreen: React.FC = () => {
           <NavigableText onPress={navigateTo('DataList', {myCars: true})}>
             {`${userCarsCount} of them are yours 🚗`}
           </NavigableText>
-          .
+          . You can delete them or add new.
         </>
       );
     } else {

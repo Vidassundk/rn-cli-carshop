@@ -1,17 +1,32 @@
 import React, {useState, useEffect} from 'react';
-import {View, FlatList, Text, StyleSheet, RefreshControl} from 'react-native';
-import {useCarDataHandling} from '../../../viewmodels/handling/viewCars/useCarDataHandling';
+import {View, FlatList, StyleSheet, RefreshControl} from 'react-native';
+import ThemedText from '@/views/components/ThemedText';
+import {useCarDataHandling} from '@/viewmodels/handling/viewCars/useCarDataHandling';
 import FiltersHeader from './components/FiltersHeader';
 import SortingHeader from './components/SortingHeader';
 import SearchBar from './components/SearchBar';
 import CarItem from '../../components/CarItem';
-import {useCarPostsService} from '../../../viewmodels/data/useCarPostsService';
+import {useCarPostsService} from '@/viewmodels/data/useCarPostsService';
+import {Car} from '@/models/entities/Car';
+import {
+  RouteProp,
+  useRoute,
+  useNavigation,
+  CompositeNavigationProp,
+} from '@react-navigation/native';
+import {RootStackParamList, RootTabParamList} from '@/navigation/AppNavigator';
+import {useTheme} from '@/viewmodels/context/ThemeContext';
+import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
+import {StackNavigationProp} from '@react-navigation/stack';
+import Loader from '@/views/components/Loader';
 import {QueryObserverResult} from '@tanstack/react-query';
-import {Car} from '../../../models/entities/Car';
-import {RouteProp, useRoute} from '@react-navigation/native';
-import {RootTabParamList} from '@/navigation/AppNavigator';
 
 type DataListScreenRouteProp = RouteProp<RootTabParamList, 'DataList'>;
+
+type DataListScreenNavigationProp = CompositeNavigationProp<
+  BottomTabNavigationProp<RootTabParamList, 'DataList'>,
+  StackNavigationProp<RootStackParamList>
+>;
 
 const DataListScreen: React.FC = () => {
   const {
@@ -24,51 +39,56 @@ const DataListScreen: React.FC = () => {
 
   const {mutations} = useCarPostsService();
   const route = useRoute<DataListScreenRouteProp>();
+  const navigation = useNavigation<DataListScreenNavigationProp>();
 
   const [refreshing, setRefreshing] = useState(false);
   const [visibleModal, setVisibleModal] = useState<string | null>(null);
+  const {spacing, colors} = useTheme();
 
   useEffect(() => {
     if (route.params?.myCars) {
       filterFunctions.setShowOnlyUserCars(true);
+      navigation.setParams({myCars: undefined});
     }
-  }, [route.params?.myCars, filterFunctions]);
+  }, [route.params?.myCars, filterFunctions, navigation]);
 
   const onRefresh = useOnRefresh(refetchCars, setRefreshing);
   const toggleModal = (modal: string) =>
     setVisibleModal(visibleModal === modal ? null : modal);
 
-  if (isCarsLoading) {
-    return <Text style={styles.centeredText}>Loading cars...</Text>;
-  }
-
-  if (carsError) {
-    return (
-      <Text style={styles.centeredText}>
-        Error loading cars: {carsError.message}
-      </Text>
-    );
-  }
-
   return (
     <View style={styles.container}>
-      <FiltersHeader
-        filters={filters}
-        filterFunctions={filterFunctions}
-        filterOptions={filterOptions}
-        toggleModal={toggleModal}
-        visibleModal={visibleModal}
-      />
-      <SortingHeader
-        sorts={sorts}
-        sortingFunctions={sortingFunctions}
-        toggleModal={toggleModal}
-        visibleModal={visibleModal}
-      />
-      <SearchBar setSearchQuery={setSearchQuery} />
-
-      <View style={styles.listContainer}>
+      {isCarsLoading && !refreshing ? (
+        <View style={styles.loaderContainer}>
+          <Loader />
+        </View>
+      ) : (
         <FlatList
+          testID="flat-list-cars"
+          ListHeaderComponent={
+            <View
+              style={{
+                gap: spacing.sm,
+                marginVertical: spacing.md,
+              }}>
+              <View style={{marginBottom: spacing.md}}>
+                <SearchBar setSearchQuery={setSearchQuery} />
+              </View>
+              <FiltersHeader
+                filters={filters}
+                filterFunctions={filterFunctions}
+                filterOptions={filterOptions}
+                toggleModal={toggleModal}
+                visibleModal={visibleModal}
+              />
+              <SortingHeader
+                sorts={sorts}
+                sortingFunctions={sortingFunctions}
+                toggleModal={toggleModal}
+                visibleModal={visibleModal}
+              />
+            </View>
+          }
           data={cars}
           keyExtractor={item => item.id.toString()}
           renderItem={({item}) => (
@@ -82,15 +102,33 @@ const DataListScreen: React.FC = () => {
             />
           )}
           refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            <RefreshControl
+              testID="refresh-control"
+              tintColor={colors.primary}
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+            />
           }
+          getItemLayout={(_, index) => ({
+            length: 185,
+            offset: 185 * index,
+            index,
+          })}
           ListEmptyComponent={
-            <Text style={styles.centeredText}>
-              No cars available. Pull to refresh.
-            </Text>
+            carsError ? (
+              <ThemedText
+                style={[styles.centeredText, {marginTop: spacing.lg}]}>
+                😥 Error loading cars: {carsError.message}
+              </ThemedText>
+            ) : (
+              <ThemedText
+                style={[styles.centeredText, {marginTop: spacing.lg}]}>
+                😥 No cars available.
+              </ThemedText>
+            )
           }
         />
-      </View>
+      )}
     </View>
   );
 };
@@ -111,8 +149,8 @@ const useOnRefresh = (
 
 const styles = StyleSheet.create({
   container: {flex: 1},
-  listContainer: {flex: 1, paddingHorizontal: 16},
-  centeredText: {textAlign: 'center', marginVertical: 20},
+  loaderContainer: {flex: 1, justifyContent: 'center', alignItems: 'center'},
+  centeredText: {textAlign: 'center'},
 });
 
 export default DataListScreen;

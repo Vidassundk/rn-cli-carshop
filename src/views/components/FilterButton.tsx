@@ -1,10 +1,11 @@
 import React from 'react';
 import {
   TouchableOpacity,
-  Text,
   StyleSheet,
   TouchableOpacityProps,
 } from 'react-native';
+import {useTheme} from '@react-navigation/native';
+import ThemedText from '@/views/components/ThemedText';
 
 interface FilterButtonProps extends TouchableOpacityProps {
   title: string;
@@ -15,22 +16,27 @@ const FilterButton: React.FC<FilterButtonProps> = ({
   title,
   style,
   hidden,
-  disabled,
+  disabled = false,
   ...props
 }) => {
+  const {colors} = useTheme();
+
   if (hidden) {
     return null;
   }
 
   const buttonStyles = [
     styles.button,
+    {backgroundColor: colors.card},
     style,
     disabled && styles.disabledButton,
   ];
 
   return (
     <TouchableOpacity disabled={disabled} style={buttonStyles} {...props}>
-      <Text style={styles.buttonText}>{title}</Text>
+      <ThemedText variant="label" style={styles.text}>
+        {title}
+      </ThemedText>
     </TouchableOpacity>
   );
 };
@@ -39,15 +45,12 @@ const styles = StyleSheet.create({
   button: {
     paddingVertical: 4,
     paddingHorizontal: 8,
-    backgroundColor: '#007BFF',
     borderRadius: 5,
     alignItems: 'center',
   },
-  buttonText: {
-    color: 'white',
-    fontSize: 12,
+  text: {
+    fontWeight: '300',
   },
-
   disabledButton: {
     opacity: 0.5,
   },

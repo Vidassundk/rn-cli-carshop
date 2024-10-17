@@ -1,12 +1,14 @@
 import React from 'react';
 import {View, ScrollView, StyleSheet} from 'react-native';
-import FilterButton from '../../../components/FilterButton';
-import PickerModal from '../../../components/PickerModal';
+import FilterButton from '@/views/components/FilterButton';
+import PickerModal from '@/views/components/PickerModal';
 import {
   SortField,
   SortingFunctions,
   Sorts,
-} from '../../../../viewmodels/handling/viewCars/useCarSorting';
+} from '@/viewmodels/handling/viewCars/useCarSorting';
+import ThemedText from '@/views/components/ThemedText';
+import {useTheme} from '@/viewmodels/context/ThemeContext';
 
 interface SortingHeaderProps {
   sorts: Sorts;
@@ -21,6 +23,8 @@ const SortingHeader: React.FC<SortingHeaderProps> = ({
   toggleModal,
   visibleModal,
 }) => {
+  const {spacing} = useTheme();
+
   const sortByLabel = (sortBy: string | null) => {
     switch (sortBy) {
       case 'makeYear':
@@ -44,42 +48,55 @@ const SortingHeader: React.FC<SortingHeaderProps> = ({
     }
   };
 
+  const renderSortButton = (
+    title: string,
+    modalKey: string,
+    options: {label: string; value: string}[],
+    currentValue: string | null,
+    onValueChange: (value: string) => void,
+  ) => (
+    <>
+      <FilterButton
+        title={`Sort by ${title}`}
+        onPress={() => toggleModal(modalKey)}
+      />
+      <PickerModal
+        visible={visibleModal === modalKey}
+        options={options}
+        selectedValue={currentValue || null}
+        onValueChange={value => onValueChange(value?.toString() || 'Relevance')}
+        onRequestClose={() => toggleModal(modalKey)}
+      />
+    </>
+  );
+
   return (
     <View>
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={styles.scrollView}>
-        <View style={styles.buttonContainer}>
-          <FilterButton
-            title={`Sort by ${sortByLabel(sorts.sortBy)}`}
-            onPress={() => toggleModal('sortBy')}
-          />
-          <PickerModal
-            visible={visibleModal === 'sortBy'}
-            options={[
+        contentContainerStyle={{paddingHorizontal: spacing.md}}>
+        <View style={[styles.buttonRow, {gap: spacing.md}]}>
+          <ThemedText variant="label">Sort:</ThemedText>
+          {renderSortButton(
+            sortByLabel(sorts.sortBy),
+            'sortBy',
+            [
               {label: 'Relevance', value: 'Relevance'},
               {label: 'Make Year', value: 'makeYear'},
               {label: 'Date Posted', value: 'datePosted'},
-            ]}
-            selectedValue={sorts.sortBy || null}
-            onValueChange={value => {
-              sortingFunctions.setSortBy(
-                mapSortByValue(value?.toString() || 'Relevance'),
-              );
-
+            ],
+            sorts.sortBy,
+            value => {
+              sortingFunctions.setSortBy(mapSortByValue(value));
               if (value === 'Relevance') {
                 sortingFunctions.setSortDirection('desc');
               }
-            }}
-            onRequestClose={() => toggleModal('sortBy')}
-          />
-        </View>
-
-        {sorts.sortBy && (
-          <View style={styles.buttonContainer}>
+            },
+          )}
+          {sorts.sortBy && (
             <FilterButton
-              title={`${sorts.sortDirection === 'asc' ? 'Oldest' : 'Newest'}`}
+              title={sorts.sortDirection === 'asc' ? 'Oldest' : 'Newest'}
               onPress={() =>
                 sortingFunctions.setSortDirection(
                   sorts.sortDirection === 'asc' ? 'desc' : 'asc',
@@ -87,22 +104,17 @@ const SortingHeader: React.FC<SortingHeaderProps> = ({
               }
               disabled={!sorts.sortBy}
             />
-          </View>
-        )}
+          )}
+        </View>
       </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  buttonContainer: {
-    flexGrow: 0,
-    flexShrink: 1,
-    marginHorizontal: 8,
-  },
-  scrollView: {
-    paddingHorizontal: 8,
-    marginVertical: 8,
+  buttonRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {View, Text, Image, StyleSheet, Button} from 'react-native';
 import {Car} from '../../models/entities/Car';
 
@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
   image: {width: 100, height: 100},
 });
 
-export default CarItem;
+export default memo(CarItem);

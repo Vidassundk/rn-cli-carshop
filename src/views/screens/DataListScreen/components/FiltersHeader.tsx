@@ -1,12 +1,20 @@
 import React from 'react';
 import {View, ScrollView, StyleSheet} from 'react-native';
-import FilterButton from '../../../components/FilterButton';
-import PickerModal from '../../../components/PickerModal';
+import FilterButton from '@/views/components/FilterButton';
+import PickerModal from '@/views/components/PickerModal';
 import {
   FilterFunctions,
   FilterOptions,
   Filters,
-} from '../../../../viewmodels/handling/viewCars/useCarFilters';
+} from '@/viewmodels/handling/viewCars/useCarFilters';
+import ThemedText from '@/views/components/ThemedText';
+import {useTheme} from '@/viewmodels/context/ThemeContext';
+
+const safelyConvertValueToString = (
+  value: string | number | null | undefined,
+): string => {
+  return value !== null && value !== undefined ? value.toString() : '';
+};
 
 interface FiltersHeaderProps {
   filters: Filters;
@@ -23,152 +31,128 @@ const FiltersHeader: React.FC<FiltersHeaderProps> = ({
   toggleModal,
   visibleModal,
 }) => {
+  const {spacing, colors} = useTheme();
+
+  const renderFilterButton = (
+    title: string,
+    currentValue: string | number | null,
+    options: {label: string; value: string | number}[] = [],
+    modalKey: string,
+    onValueChange: (value: string) => void,
+  ) => (
+    <>
+      <FilterButton
+        title={
+          currentValue
+            ? safelyConvertValueToString(currentValue)
+            : `All ${title}`
+        }
+        onPress={() => toggleModal(modalKey)}
+      />
+      <PickerModal
+        visible={visibleModal === modalKey}
+        options={[{label: `All ${title}`, value: ''}, ...options]}
+        selectedValue={safelyConvertValueToString(currentValue)}
+        onValueChange={value =>
+          onValueChange(safelyConvertValueToString(value))
+        }
+        onRequestClose={() => toggleModal(modalKey)}
+      />
+    </>
+  );
+
   return (
     <View>
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={styles.scrollView}>
-        <View style={styles.buttonContainer}>
+        contentContainerStyle={{paddingHorizontal: spacing.md}}>
+        <View style={[styles.buttonRow, {gap: spacing.md}]}>
+          <ThemedText variant="label">Filter:</ThemedText>
           <FilterButton
-            title={!filters.areFiltersActive ? 'Set Filters:' : 'Reset Filters'}
+            title={
+              !filters.areFiltersActive ? 'No Filters Set' : 'Reset Filters'
+            }
             onPress={filterFunctions.resetFilters}
             disabled={!filters.areFiltersActive}
           />
-        </View>
-        <View style={styles.buttonContainer}>
           <FilterButton
-            title={filters.showOnlyUserCars ? 'My Cars' : 'All Cars'}
+            title={filters.showOnlyUserCars ? 'My Cars Only' : 'All Cars'}
+            style={{
+              backgroundColor: !filters.showOnlyUserCars
+                ? colors.card
+                : colors.notification,
+            }}
             onPress={() =>
               filterFunctions.setShowOnlyUserCars(!filters.showOnlyUserCars)
             }
           />
-        </View>
-
-        <View style={styles.buttonContainer}>
-          <FilterButton
-            title={filters.filterBrand || 'All Brands'}
-            onPress={() => toggleModal('brand')}
-          />
-          <PickerModal
-            visible={visibleModal === 'brand'}
-            options={[
-              {label: 'All Brands', value: ''},
-              ...filterOptions.brandOptions.map(option => ({
-                label: option,
-                value: option,
-              })),
-            ]}
-            selectedValue={filters.filterBrand || ''}
-            onValueChange={value => {
-              filterFunctions.setFilterBrand(value?.toString() || '');
-            }}
-            onRequestClose={() => toggleModal('brand')}
-          />
-        </View>
-
-        <View style={styles.buttonContainer}>
-          <FilterButton
-            title={filters.filterModel || 'All Models'}
-            onPress={() => toggleModal('model')}
-          />
-          <PickerModal
-            visible={visibleModal === 'model'}
-            options={[
-              {label: 'All Models', value: ''},
-              ...filterOptions.modelOptions.map(option => ({
-                label: option,
-                value: option,
-              })),
-            ]}
-            selectedValue={filters.filterModel || ''}
-            onValueChange={value => {
-              filterFunctions.setFilterModel(value?.toString() || '');
-            }}
-            onRequestClose={() => toggleModal('model')}
-          />
-        </View>
-
-        <View style={styles.buttonContainer}>
-          <FilterButton
-            title={
-              filters.filterYearFrom
-                ? `From ${filters.filterYearFrom.toString()}`
-                : 'From any year'
-            }
-            onPress={() => toggleModal('yearFrom')}
-          />
-          <PickerModal
-            visible={visibleModal === 'yearFrom'}
-            options={[
-              {label: 'All Years', value: ''},
-              ...filterOptions.yearOptions.map(option => ({
-                label: option.toString(),
-                value: option.toString(),
-              })),
-            ]}
-            selectedValue={filters.filterYearFrom?.toString() || ''}
-            onValueChange={value => {
+          {renderFilterButton(
+            'Brand',
+            filters.filterBrand,
+            filterOptions.brandOptions?.map(option => ({
+              label: option,
+              value: option,
+            })),
+            'brand',
+            filterFunctions.setFilterBrand,
+          )}
+          {renderFilterButton(
+            'Model',
+            filters.filterModel,
+            filterOptions.modelOptions?.map(option => ({
+              label: option,
+              value: option,
+            })),
+            'model',
+            filterFunctions.setFilterModel,
+          )}
+          {renderFilterButton(
+            'From Year',
+            filters.filterYearFrom,
+            filterOptions.yearOptions?.map(option => ({
+              label: option.toString(),
+              value: option.toString(),
+            })),
+            'yearFrom',
+            value =>
               filterFunctions.setFilterYearFrom(
-                value === ''
-                  ? null
-                  : parseInt(value?.toString() || '', 10) || null,
-              );
-            }}
-            onRequestClose={() => toggleModal('yearFrom')}
-          />
-        </View>
-
-        <View style={styles.buttonContainer}>
-          <FilterButton
-            title={
-              filters.filterYearTo
-                ? `To ${filters.filterYearTo?.toString()}`
-                : 'To any year'
-            }
-            onPress={() => toggleModal('yearTo')}
-          />
-          <PickerModal
-            visible={visibleModal === 'yearTo'}
-            options={[
-              {label: 'All Years', value: ''},
-              ...filterOptions.yearOptions.map(option => ({
-                label: option.toString(),
-                value: option.toString(),
-              })),
-            ]}
-            selectedValue={filters.filterYearTo?.toString() || ''}
-            onValueChange={value => {
+                value ? parseInt(value, 10) : null,
+              ),
+          )}
+          {renderFilterButton(
+            'To Year',
+            filters.filterYearTo,
+            filterOptions.yearOptions?.map(option => ({
+              label: option.toString(),
+              value: option.toString(),
+            })),
+            'yearTo',
+            value =>
               filterFunctions.setFilterYearTo(
-                value === ''
-                  ? null
-                  : parseInt(value?.toString() || '', 10) || null,
-              );
-            }}
-            onRequestClose={() => toggleModal('yearTo')}
-          />
-        </View>
-
-        <View style={styles.buttonContainer}>
-          <FilterButton
-            title={filters.filterGearbox || 'All Gearboxes'}
-            onPress={() => toggleModal('gearbox')}
-          />
-          <PickerModal
-            visible={visibleModal === 'gearbox'}
-            options={[
-              {label: 'All Gearboxes', value: ''},
-              ...filterOptions.gearboxOptions.map(option => ({
-                label: option,
-                value: option,
-              })),
-            ]}
-            selectedValue={filters.filterGearbox || ''}
-            onValueChange={value => {
-              filterFunctions.setFilterGearbox(value?.toString() || '');
-            }}
-            onRequestClose={() => toggleModal('gearbox')}
-          />
+                value ? parseInt(value, 10) : null,
+              ),
+          )}
+          {renderFilterButton(
+            'Gearbox',
+            filters.filterGearbox,
+            filterOptions.gearboxOptions?.map(option => ({
+              label: option,
+              value: option,
+            })),
+            'gearbox',
+            filterFunctions.setFilterGearbox,
+          )}
+          {renderFilterButton(
+            'Color',
+            filters.filterColor,
+            filterOptions.colorOptions?.map(option => ({
+              label: option,
+              value: option,
+            })),
+            'color',
+            filterFunctions.setFilterColor,
+          )}
         </View>
       </ScrollView>
     </View>
@@ -176,14 +160,9 @@ const FiltersHeader: React.FC<FiltersHeaderProps> = ({
 };
 
 const styles = StyleSheet.create({
-  buttonContainer: {
-    flexGrow: 0,
-    flexShrink: 1,
-    marginHorizontal: 8,
-  },
-  scrollView: {
-    paddingHorizontal: 8,
-    marginVertical: 8,
+  buttonRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });
 
