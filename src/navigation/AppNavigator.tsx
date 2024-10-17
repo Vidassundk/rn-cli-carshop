@@ -6,7 +6,7 @@ import {
   StackNavigationProp,
 } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import HomeScreen from '@/views/screens/HomeScreen';
 import DataListScreen from '@/views/screens/DataListScreen';
 import GeolocationScreen from '@/views/screens/GeolocationScreen';
@@ -15,6 +15,7 @@ import AddDataScreen from '@/views/screens/AddDataScreen';
 import {useTheme} from '@/viewmodels/context/ThemeContext';
 import {Car} from '@/models/entities/Car';
 import DetailScreen from '@/views/screens/DetailScreen';
+import FilterButton from '@/views/components/FilterButton';
 
 export type RootStackParamList = {
   Main: undefined;
@@ -72,11 +73,11 @@ const TabNavigator = ({navigation}: TabNavigatorProps) => (
       component={DataListScreen}
       options={{
         headerRight: () => (
-          <TouchableOpacity
+          <FilterButton
+            title="Add New"
+            ghost
             style={styles.addButton}
-            onPress={() => navigation.navigate('AddDataScreen')}>
-            <Text style={styles.addButtonText}>Add Car</Text>
-          </TouchableOpacity>
+            onPress={() => navigation.navigate('AddDataScreen')}></FilterButton>
         ),
       }}
     />
@@ -114,13 +115,9 @@ const AppNavigator = () => {
 const styles = StyleSheet.create({
   addButton: {
     marginRight: 16,
-    backgroundColor: 'lightgray',
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 5,
-  },
-  addButtonText: {
-    fontSize: 12,
   },
 });
 

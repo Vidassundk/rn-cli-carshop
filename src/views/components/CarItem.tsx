@@ -98,6 +98,7 @@ const CarItem: React.FC<CarItemProps> = ({
               paddingVertical: spacing.xs,
               paddingHorizontal: spacing.md,
               borderRadius: spacing.sm,
+              alignItems: 'center',
             }}
             onPress={() => onPressDelete(car.id)}>
             <ThemedText>Delete</ThemedText>

@@ -43,6 +43,22 @@ interface ThemeProviderProps {
   initialColorScheme?: 'light' | 'dark' | null;
 }
 
+const CustomDarkTheme: Theme = {
+  ...NavigationDarkTheme,
+  colors: {
+    ...NavigationDarkTheme.colors,
+    notification: '#FF3347',
+  },
+};
+
+const CustomDefaultTheme: Theme = {
+  ...NavigationDefaultTheme,
+  colors: {
+    ...NavigationDefaultTheme.colors,
+    notification: '#FFADAD',
+  },
+};
+
 export const ThemeProvider = ({
   children,
   initialColorScheme,
@@ -72,7 +88,7 @@ export const ThemeProvider = ({
   };
 
   const navigationTheme: Theme =
-    theme === 'dark' ? NavigationDarkTheme : NavigationDefaultTheme;
+    theme === 'dark' ? CustomDarkTheme : CustomDefaultTheme; // Use custom themes here
 
   return (
     <ThemeContext.Provider
@@ -81,7 +97,7 @@ export const ThemeProvider = ({
         toggleTheme,
         navigationTheme,
         colors: navigationTheme.colors,
-        spacing: defaultSpacing, // Centralized spacing
+        spacing: defaultSpacing,
       }}>
       <NavigationThemeProvider value={navigationTheme}>
         {children}

@@ -1,6 +1,8 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, TouchableOpacity, StyleSheet} from 'react-native';
+import {useTheme} from '@/viewmodels/context/ThemeContext'; // Assuming you are using a custom theme
 import PickerModal from './PickerModal'; // Assuming the PickerModal is already created
+import ThemedText from './ThemedText';
 
 interface PickerFieldProps {
   label: string;
@@ -22,39 +24,46 @@ const PickerField: React.FC<PickerFieldProps> = ({
   onValueChange,
   onClose,
   disabled,
-}) => (
-  <View>
-    <Text style={styles.label}>{label}</Text>
-    <TouchableOpacity
-      style={styles.modalTrigger}
-      onPress={onPress}
-      disabled={disabled}>
-      <Text>{value || `Select ${label}`}</Text>
-    </TouchableOpacity>
+}) => {
+  const {spacing, colors} = useTheme();
 
-    {modalVisible && (
-      <PickerModal
-        visible={modalVisible}
-        options={options}
-        selectedValue={value}
-        onValueChange={newValue => onValueChange(newValue)}
-        onRequestClose={onClose}
-      />
-    )}
-  </View>
-);
+  return (
+    <View style={{opacity: disabled ? 0.6 : 1}}>
+      <ThemedText variant="p" style={{marginBottom: spacing.xs}}>
+        {label}
+      </ThemedText>
+      <TouchableOpacity
+        style={[
+          styles.modalTrigger,
+          {
+            padding: spacing.md,
+            marginBottom: spacing.md,
+            borderColor: colors.border,
+          },
+        ]}
+        onPress={onPress}
+        disabled={disabled}>
+        <ThemedText>{value || `Select ${label}`}</ThemedText>
+      </TouchableOpacity>
+
+      {modalVisible && (
+        <PickerModal
+          testID="picker-modal"
+          visible={modalVisible}
+          options={options}
+          selectedValue={value}
+          onValueChange={newValue => onValueChange(newValue)}
+          onRequestClose={onClose}
+        />
+      )}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-  label: {
-    fontSize: 16,
-    marginBottom: 8,
-  },
   modalTrigger: {
-    borderWidth: 1,
-    borderColor: 'gray',
-    padding: 10,
+    borderWidth: 1.5,
     borderRadius: 4,
-    marginBottom: 16,
   },
 });
 

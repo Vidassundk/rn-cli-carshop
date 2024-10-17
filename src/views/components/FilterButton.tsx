@@ -3,6 +3,9 @@ import {
   TouchableOpacity,
   StyleSheet,
   TouchableOpacityProps,
+  StyleProp,
+  TextStyle,
+  ViewStyle,
 } from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import ThemedText from '@/views/components/ThemedText';
@@ -10,12 +13,16 @@ import ThemedText from '@/views/components/ThemedText';
 interface FilterButtonProps extends TouchableOpacityProps {
   title: string;
   hidden?: boolean;
+  textStyle?: StyleProp<TextStyle>;
+  ghost?: boolean;
 }
 
 const FilterButton: React.FC<FilterButtonProps> = ({
   title,
   style,
+  textStyle,
   hidden,
+  ghost = false,
   disabled = false,
   ...props
 }) => {
@@ -25,16 +32,22 @@ const FilterButton: React.FC<FilterButtonProps> = ({
     return null;
   }
 
-  const buttonStyles = [
+  const buttonStyles: StyleProp<ViewStyle>[] = [
     styles.button,
-    {backgroundColor: colors.card},
+    !ghost && {backgroundColor: colors.card}, // If ghost is true, no background
     style,
     disabled && styles.disabledButton,
   ];
 
+  const combinedTextStyles: StyleProp<TextStyle>[] = [
+    styles.text,
+    ghost && {color: colors.primary, fontWeight: 'bold'}, // Ghost variant uses primary color and bold text
+    textStyle,
+  ];
+
   return (
     <TouchableOpacity disabled={disabled} style={buttonStyles} {...props}>
-      <ThemedText variant="label" style={styles.text}>
+      <ThemedText variant="label" style={combinedTextStyles}>
         {title}
       </ThemedText>
     </TouchableOpacity>
