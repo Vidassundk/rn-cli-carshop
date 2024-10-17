@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   NavigationContainer,
+  NavigationProp,
   RouteProp,
   useNavigation,
 } from '@react-navigation/native';
@@ -33,6 +34,18 @@ export type RootTabParamList = {
   Location: undefined;
   Settings: undefined;
 };
+
+export type AppParamList = {
+  Main: undefined;
+  AddDataScreen: undefined;
+  DetailScreen: {car: Car};
+  Home: undefined;
+  DataList: {myCars?: boolean};
+  Location: undefined;
+  Settings: undefined;
+};
+
+export type AppNavigationProp = NavigationProp<AppParamList>;
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 const Stack = createStackNavigator<RootStackParamList>();
